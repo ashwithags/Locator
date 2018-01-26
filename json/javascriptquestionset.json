@@ -1,0 +1,46 @@
+{
+  "success": true,
+  "Message": "Success",
+  "questions": [
+    {
+      "question": "Inside which HTML element do we put the JavaScript?",
+      "choices": ["<javascript>","<js>","<scripting>","<script>"],
+      "correct": "<script>"
+    },
+    {
+      "question": "Where is the correct place to insert a JavaScript?",
+      "choices": [
+        "The <body> section",
+        "Both the <head> section and the <body> section are correct",
+        "The <head> section"
+      ],
+      "correct": "Both the <head> section and the <body> section are correct"
+    },
+    {
+      "question": "The external JavaScript file must contain the <script> tag.",
+      "choices": [
+        "Yes",
+        "No"
+      ],
+      "correct": "No"
+    },
+    {
+      "question": "How do you create a function in JavaScript?",
+      "choices": [
+        "function:myFunction()",
+        "function myFunction()",
+        "function = myFunction()"
+		],
+      "correct": "function = myFunction()"
+    },
+    {
+      "question": "How does a WHILE loop start?",
+      "choices": [
+        " while i = 1 to 10",
+		"while (i <= 10; i++)",
+		"while (i <= 10)"
+      ],
+      "correct": "while (i <= 10)"
+    }
+  ]
+}
