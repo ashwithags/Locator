@@ -1,4 +1,5 @@
 <header></header>
+<div class="container-fluid">
 <div class="col-md-4">
 <sidebar></sidebar>
 </div>
@@ -8,4 +9,11 @@
 <div class="col-md-2"><button class="btn-signUp" ng-click="contacted()">Contacted</button></div>
 <div class="col-md-2"><button class="btn-signUp" ng-click="student()">Student</button></div>
 <div class="col-md-2"><button class="btn-signUp" ng-click="standout()">Stand out</button></div>
-</div>s
+
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-repeat="enq in enquiries">
+<p>{{enq.enquirey_unique_no}}</p>
+
+
+</div>
+</div>
+</div>

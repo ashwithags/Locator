@@ -46,9 +46,12 @@ angular.module('UrbonPro.controllers', [])
 
 .controller('enquiryController', function($scope, $state,enquiry){
 $scope.enquiries= function () {
-	enquiry.getEnqList().success(function(wow){
-		if(wow.success){
+	enquiry.getEnqList().success(function(now){
+		if(now.success){
 			console.log("success");
+			console.log(now.enq_list);
+			console.log(now.enq_list[1].enquired_username.charAt(0));
+
 		}
 	})
 	}

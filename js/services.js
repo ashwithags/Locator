@@ -24,8 +24,8 @@ angular.module('UrbonPro.services', [])
 	services.getEnqList = function(){
 		return $http({
 			method: 'GET',
-			url: 'https://api.myjson.com/bins/cb8rn',
-
+			url: 'json/enquiry.json',
+			dataType: 'json'
 		})
 	}
 	return services;
