@@ -1,4 +1,4 @@
-angular.module('UrbonPro', ['ui.router','UrbonPro.controllers','UrbonPro.services','UrbonPro.directive'])
+angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.services','LocatorApp.directive'])
 .config(function($stateProvider, $urlRouterProvider){
 	   $urlRouterProvider.otherwise('login');	
 	
@@ -15,8 +15,8 @@ angular.module('UrbonPro', ['ui.router','UrbonPro.controllers','UrbonPro.service
 		})
 		.state('homepage',{
 			url: '/home',
-			templateUrl : 'pages/home.html',
-			controller : 'homeController'
+			templateUrl : 'pages/home.html'/*,
+			controller : 'homeController'*/
 		})
 		.state('enquiry',{
 			url: '/enquiry',

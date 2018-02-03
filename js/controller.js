@@ -1,4 +1,4 @@
-angular.module('UrbonPro.controllers', [])
+angular.module('LocatorApp.controllers', [])
 
 .controller('loginController', function($scope, $state, loginOperation) {
 	$scope.login = function(loginData) {
@@ -45,14 +45,14 @@ angular.module('UrbonPro.controllers', [])
 })
 
 .controller('enquiryController', function($scope, $state,enquiry){
-$scope.enquiries= function () {
-	enquiry.getEnqList().success(function(now){
-		if(now.success){
-			console.log("success");
-			console.log(now.enq_list);
-			console.log(now.enq_list[1].enquired_username.charAt(0));
+	$scope.enquiries= function () {
+		enquiry.getEnqList().success(function(now){
+			if(now.success){
+				console.log("success");
+				console.log(now.enq_list);
+				console.log(now.enq_list[1].enquired_username.charAt(0));
 
-		}
-	})
-	}
-})
+			}
+		})
+	};
+});

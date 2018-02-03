@@ -1,4 +1,4 @@
-angular.module('UrbonPro.directive',[])
+angular.module('LocatorApp.directive',[])
 .directive('header',function(){
 	return{
 		templateUrl: 'pages/header.html'
