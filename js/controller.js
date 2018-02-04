@@ -44,18 +44,12 @@ angular.module('LocatorApp.controllers', [])
 	}
 })
 
-.controller('enquiryController', function($scope, $state,enquiry){
-	$scope.enquiries= function () {
-		enquiry.getEnqList().success(function(wow){
-			if(wow.success){
-				 $scope.products = wow.enq_list;  
-				console.log("success");
-				console.log(wow.enq_list);
-				console.log(wow.enq_list[1].enquired_username.charAt(0));
-
-			}
-		})
-	};
+.controller('enquiryController', function($scope, $state, enquiry){
+	enquiry.getEnqList().success(function(now){
+		if(now.success){
+			$scope.enquries = now.enq_list;
+		}
+	});
 })
 
 .controller('contactedController',function($scope,$state,enquiry){

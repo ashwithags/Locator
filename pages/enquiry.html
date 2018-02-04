@@ -1,22 +1,49 @@
 <header></header>
-<div class="container-fluid">
-<div class="col-md-4">
 <sidebar></sidebar>
-</div>
+<div class="container">
+	<div class="col-md-2 col-lg-2"></div>
+	<div class="col-md-8 col-lg-8">
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" data-target="#home">Enquiries</a></li>
+			<li><a data-toggle="tab" data-target="#menu1">Contacted</a></li>
+			<li><a data-toggle="tab" data-target="#menu2">Student</a></li>
+			<li><a data-toggle="tab" data-target="#menu3">Stand out</a></li>
+		</ul>
 
-<div class="col-md-8"> 
-<div class="col-md-2"><button class="btn-signUp" ng-click="enquiries()">Enquiries</button></div>
- <div class="col-md-2"><button class="btn-signUp" ng-click="contacted()">Contacted</button></div>
-<div class="col-md-2"><button class="btn-signUp" ng-click="student()">Student</button></div>
-<div class="col-md-2"><button class="btn-signUp" ng-click="standout()">Stand out</button></div>
-
- <p ng-model=""> {{products.length}} Enquiries</p>
-<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 data-list" ng-repeat="item in products">
-	<div class="first-letter" ng-bind="item.enquired_username.charAt(0)"></div>
-<p ng-bind="item.enquired_username"></p>
-<p ng-bind="item.enquired_category"></p>
-<p ng-model="loaction">{{item.enquired_user_location}}, {{item.enquired_user_city}}</p>
-
-</div>
-</div>
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active">
+				<div class="list" ng-repeat="enquery in enquries">
+					
+                    <div class="first-letter" ng-bind="enquery.enquired_username.charAt(0)"></div>
+                    <div class="desc">
+                    	<h3>{{enquery.enquired_username}}</h3>
+						<h6>{{enquery.enquired_category}}</h6>
+						<p ng-model="loaction">{{enquery.enquired_user_location}}, {{enquery.enquired_user_city}}</p>
+	                </div>
+				</div>
+			</div>
+			<div id="menu1" class="tab-pane fade">
+				<h3>Menu 1</h3>
+				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<div class="list" ng-repeat="contact in cont">
+					
+                    <div class="first-letter" ng-bind="enquery.enquired_username.charAt(0)"></div>
+                    <div class="desc">
+                    	<h3>{{contact.enquired_username}}</h3>
+						<h6>{{contact.enquired_category}}</h6>
+						<p ng-model="loaction">{{contact.enquired_user_location}}, {{contact.enquired_user_city}}</p>
+	                </div>
+				</div>
+			</div>
+			<div id="menu2" class="tab-pane fade">
+				<h3>Menu 2</h3>
+				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+			</div>
+			<div id="menu3" class="tab-pane fade">
+				<h3>Menu 3</h3>
+				<p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 col-lg-2"></div>
 </div>
