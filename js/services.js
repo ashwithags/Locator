@@ -27,6 +27,13 @@ angular.module('LocatorApp.services', [])
 			url: 'json/enquiry.json',
 			dataType: 'json'
 		})
+	},
+	services.getContactedList = function(){
+		return $http({
+			method: 'GET',
+			url: 'json/contacted.json',
+			dataType: 'json'
+		})
 	}
 	return services;
 });

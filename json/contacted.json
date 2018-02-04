@@ -1,0 +1,71 @@
+{
+  "success": true,
+  "Message": "Success",
+  "cnt_list":[
+
+  {
+    "enquirey_unique_no": "25",
+    "enquired_username": "Raj",
+    "enquired_user_location": "k.s.layout",
+    "enquired_user_city": "Bangalore",
+    "enquired_user_phnno": 9036197151,
+    "enquired_category": "AngularJS",
+    "enquired_addons": {
+      "requirement": "AngularJS",
+      "hiring": "Just Exploring",
+      "preferences": "Wiling to travel"
+    },
+    "timestamp": "",
+    "current_stat": "Contacted",
+    "message_vender": "We can help you with your requirements for AngularJS Learning Program"
+  },
+  {
+    "enquirey_unique_no": "26",
+    "enquired_username": "Aman",
+    "enquired_user_location": "Jayanagar",
+    "enquired_user_city": "Bangalore",
+    "enquired_user_phnno": 9036197191,
+    "enquired_category": "Java",
+    "enquired_addons": {
+      "requirement": "Java",
+      "hiring": "Just Exploring",
+      "preferences": "Wiling to travel"
+    },
+    "timestamp": "",
+    "current_stat": "Contacted",
+    "message_vender": "We can help you with your requirements for Java Training Program"
+  },
+  {
+    "enquirey_unique_no": "27",
+    "enquired_username": "Vikash",
+    "enquired_user_location": "Indiranagar",
+    "enquired_user_city": "Bangalore",
+    "enquired_user_phnno": 9037887191,
+    "enquired_category": "Big Data",
+    "enquired_addons": {
+      "requirement": "Big Data",
+      "hiring": "Just Exploring",
+      "preferences": "Wiling to travel"
+    },
+    "timestamp": "",
+    "current_stat": "Contacted",
+    "message_vender": "We can help you with your requirements for Big Data Learning"
+  },
+  {
+    "enquirey_unique_no": "28",
+    "enquired_username": "Pramod",
+    "enquired_user_location": "Banashankari",
+    "enquired_user_city": "Bangalore",
+    "enquired_user_phnno": 9036197191,
+    "enquired_category": "Web Development",
+    "enquired_addons": {
+      "requirement": "Web Development",
+      "hiring": "Just Exploring",
+      "preferences": "Wiling to travel"
+    },
+    "timestamp": "",
+    "current_stat": "Contacted",
+    "message_vender": "We can help you with your requirements for Web Development Handon Training"
+  }
+]
+}

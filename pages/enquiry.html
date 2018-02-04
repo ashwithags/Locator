@@ -6,13 +6,16 @@
 
 <div class="col-md-8"> 
 <div class="col-md-2"><button class="btn-signUp" ng-click="enquiries()">Enquiries</button></div>
-<div class="col-md-2"><button class="btn-signUp" ng-click="contacted()">Contacted</button></div>
+ <div class="col-md-2"><button class="btn-signUp" ng-click="contacted()">Contacted</button></div>
 <div class="col-md-2"><button class="btn-signUp" ng-click="student()">Student</button></div>
 <div class="col-md-2"><button class="btn-signUp" ng-click="standout()">Stand out</button></div>
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-repeat="enq in enquiries">
-<p>{{enq.enquirey_unique_no}}</p>
-
+ <p ng-model=""> {{products.length}} Enquiries</p>
+<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 data-list" ng-repeat="item in products">
+	<div class="first-letter" ng-bind="item.enquired_username.charAt(0)"></div>
+<p ng-bind="item.enquired_username"></p>
+<p ng-bind="item.enquired_category"></p>
+<p ng-model="loaction">{{item.enquired_user_location}}, {{item.enquired_user_city}}</p>
 
 </div>
 </div>

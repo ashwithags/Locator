@@ -23,4 +23,9 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 			templateUrl : 'pages/enquiry.html',
 			controller : 'enquiryController'
 		})
+		.state('contacted',{
+			url: '/contacted',
+			templateUrl : 'pages/enquiry.html',
+			controller : 'contactedController'
+		})
 	});
