@@ -1,3 +1,6 @@
+body{
+    background-color: #f5f5f5cc; 
+}
 .reister {
     background-color: rgba(241, 241, 241, 0.69);
     padding: 40px;
@@ -52,6 +55,10 @@ button.btn-signUp {
 img.logo {
     width: 100px;
 }
+.navbar-default {
+    background-color: #ffffff;
+    border-color: #f1f1f1;
+}
 ul.nav.navbar-nav.navbar-right {
     margin-top: 20px;
 }
@@ -76,4 +83,40 @@ ul.nav.navbar-nav.navbar-right {
 .list.total {
     padding: 20px;
     font-size: 16px;
+}
+.nav-tabs {
+    border-bottom: 0px solid #ddd;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    padding: 20px 50px;
+    border: 0px;
+    font-weight: bold;
+    border: 0px;
+    color: #333;
+    border-radius: 0px;
+}
+.nav-tabs>li>a {
+    background-color: #dcdcdc;
+    padding: 20px 50px;
+    border: 0px;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 0px;
+    margin-right: 10px;
+}
+.tab-content {
+    background-color: #fff;
+    margin-top: 8px;
+    padding: 0px 20px;
+}
+footer.page-footer.blue.center-on-small-only {
+    background-color: #656262;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+.footer-copyright a {
+    color: #dedddd;
+    text-decoration: none;
 }

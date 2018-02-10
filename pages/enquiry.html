@@ -26,6 +26,7 @@
 			<div id="contacted" class="tab-pane fade">
 				<h3>Menu 1</h3>
 				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<div class="list total">{{cont.length}} Enquiries</div>
 				<div class="list" ng-repeat="contact in cont">					
                     <div class="first-letter" ng-bind="contact.enquired_username.charAt(0)"></div>
                     <div class="desc">
