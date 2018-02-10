@@ -73,3 +73,7 @@ ul.nav.navbar-nav.navbar-right {
 .list {
     border-bottom: 1px solid #ccc;
 }
+.list.total {
+    padding: 20px;
+    font-size: 16px;
+}

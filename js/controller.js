@@ -52,16 +52,13 @@ angular.module('LocatorApp.controllers', [])
 	});
 })
 
-.controller('contactedController',function($scope,$state,enquiry){
-	$scope.contacted=function () {
-		console.log("clicked contact");
-   		enquiry.getContactedList().success(function(wow){
-   			if(wow.success){
-   				$scope.cont = wow.cnt_list;
-   				console.log(wow.Message);
-				console.log(wow.cnt_list);
+.controller('contactedController',function($scope, $state, enquiry){
+	enquiry.getContactedList().success(function(wow){
+   		if(wow.success){
+   			$scope.cont = wow.cnt_list;
+   			console.log(wow.Message);
+			console.log(wow.cnt_list);
 
-   			}
-   		})
-	}
+   		}
+   	});
 });

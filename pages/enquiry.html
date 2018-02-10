@@ -5,13 +5,14 @@
 	<div class="col-md-8 col-lg-8">
 		<ul class="nav nav-tabs">
 			<li class="active"><a data-toggle="tab" data-target="#home">Enquiries</a></li>
-			<li><a data-toggle="tab" data-target="#menu1">Contacted</a></li>
-			<li><a data-toggle="tab" data-target="#menu2">Student</a></li>
-			<li><a data-toggle="tab" data-target="#menu3">Stand out</a></li>
+			<li><a data-toggle="tab" data-target="#contacted">Contacted</a></li>
+			<li><a data-toggle="tab" data-target="#student">Student</a></li>
+			<li><a data-toggle="tab" data-target="#stand-out">Stand out</a></li>
 		</ul>
 
 		<div class="tab-content">
 			<div id="home" class="tab-pane fade in active">
+				<div class="list total">{{enquries.length}} Enquiries</div>
 				<div class="list" ng-repeat="enquery in enquries">
 					
                     <div class="first-letter" ng-bind="enquery.enquired_username.charAt(0)"></div>
@@ -22,7 +23,7 @@
 	                </div>
 				</div>
 			</div>
-			<div id="menu1" class="tab-pane fade">
+			<div id="contacted" class="tab-pane fade">
 				<h3>Menu 1</h3>
 				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 				<div class="list" ng-repeat="contact in cont">
@@ -35,11 +36,11 @@
 	                </div>
 				</div>
 			</div>
-			<div id="menu2" class="tab-pane fade">
+			<div id="student" class="tab-pane fade">
 				<h3>Menu 2</h3>
 				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
 			</div>
-			<div id="menu3" class="tab-pane fade">
+			<div id="stand-out" class="tab-pane fade">
 				<h3>Menu 3</h3>
 				<p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
 			</div>
