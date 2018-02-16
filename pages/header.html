@@ -1,21 +1,41 @@
-<nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>   
-        <span class="icon-bar"></span>                        
-                     
-      </button>
-      <a class="navbar-brand" href="#"><img class="logo" src="img/ideology.png"></a>
+<div class="container-fluid header-section">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-2 col-sm-4 col-xs-4">
+      <div class="site-logo">
+        <img style="height: 40px;" src="img/ideology.png" alt="urban" class="img-responsive">
+      </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">WHY</a></li>
-        <li><a href="#">WHAT</a></li>
-        <li><a href="#/login">LOGOUT</a></li>
-      </ul>
+    <div class=" col-md-6 col-sm-6 col-xs-6">
+      <div class="col-md-3 col-sm-4 col-xs-4 padding-modify">
+        <div class="form-group">
+          <input type="text" class="form-control form-control1-modify" placeholder="">
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-8 col-xs-8 padding-modify">
+        <div class="form-group">
+          <input type="text" class="form-control form-control2-modify" placeholder="Search...">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-offset-1 col-md-2 col-sm-4 col-xs-4">
+      <span class="techninzaz">
+        <b>DIAMOND</b>
+        <div class="profile-logo">
+          <a href="#">
+            <img src="img/techninzaz-logo.jpg" alt="urban" class="img-responsive techninzaz-logo">
+          </a>
+          <div class="subMenu" ng-show = false>
+            <ul>
+              <li>
+                <a ui-sref="#">Edit Profile</a>
+              </li>
+              <li>
+                <a ui-sref="#">Sign Out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </span>
     </div>
   </div>
-</nav>
+</div>

@@ -1,5 +1,6 @@
 <header></header>
 <sidebar></sidebar>
+<randomBackgroundcolor></randomBackgroundcolor>
 <div class="container">
 	<div class="col-md-2 col-lg-2"></div>
 	<div class="col-md-8 col-lg-8">
@@ -7,42 +8,65 @@
 			<li class="active"><a data-toggle="tab" data-target="#home">Enquiries</a></li>
 			<li><a data-toggle="tab" data-target="#contacted">Contacted</a></li>
 			<li><a data-toggle="tab" data-target="#student">Student</a></li>
-			<li><a data-toggle="tab" data-target="#stand-out">Stand out</a></li>
+			<li><a class="margin-adjust" data-toggle="tab" data-target="#stand-out">Stand out</a></li>
 		</ul>
 
 		<div class="tab-content">
 			<div id="home" class="tab-pane fade in active">
 				<div class="list total">{{enquries.length}} Enquiries</div>
-				<div class="list" ng-repeat="enquery in enquries">
-					
-                    <div class="first-letter" ng-bind="enquery.enquired_username.charAt(0)"></div>
+				<div class="list animation wow flipInX" ng-click="enquiryDetail()" data-wow-delay="0.2s" ng-repeat="enquery in enquries">	
+                    <div class="first-char">
+                    	<div class="first-letter" ng-bind="enquery.enquired_username.charAt(0)"></div>
+                    </div>
                     <div class="desc">
                     	<h3>{{enquery.enquired_username}}</h3>
-						<h6>{{enquery.enquired_category}}</h6>
-						<p ng-model="loaction">{{enquery.enquired_user_location}}, {{enquery.enquired_user_city}}</p>
+						<h6 class="category">{{enquery.enquired_category}}</h6>
+						<p class="location" ng-model="loaction">{{enquery.enquired_user_location}}, {{enquery.enquired_user_city}}</p>
 	                </div>
 				</div>
 			</div>
 			<div id="contacted" class="tab-pane fade">
-				<h3>Menu 1</h3>
-				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				<div class="list total">{{cont.length}} Enquiries</div>
-				<div class="list" ng-repeat="contact in cont">					
-                    <div class="first-letter" ng-bind="contact.enquired_username.charAt(0)"></div>
+				<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="contacts in contacted">	
+                    <div class="first-char">
+                    	<div class="first-letter" ng-bind="contacts.enquired_username.charAt(0)"></div>
+                    </div>
                     <div class="desc">
-                    	<h3>{{contact.enquired_username}}</h3>
-						<h6>{{contact.enquired_category}}</h6>
-						<p ng-model="loaction">{{contact.enquired_user_location}}, {{contact.enquired_user_city}}</p>
+                    	<h3>{{contacts.enquired_username}}</h3>
+						<h6 class="category">{{contacts.enquired_category}}</h6>
+						<p class="location" ng-model="loaction">{{contacts.enquired_user_location}}, {{contacts.enquired_user_city}}</p>
+						<p class="msg">Hi, {{contacts.enquired_username}}. We can help you with the above requirement as we offer a....</p>
+	                </div>
+				</div>
+				<!-- <div style="display: inline-block;">
+					<span>Student Converted?</span>
+				</div> -->
+			</div>
+			<div id="student" class="tab-pane fade">
+				<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="stud in StudentsList">	
+                    <div class="first-char">
+                    	<div class="first-letter" ng-bind="stud.enquired_username.charAt(0)"></div>
+                    </div>
+                    <div class="desc">
+                    	<h3>{{stud.enquired_username}}</h3>
+						<h6 class="category">{{stud.enquired_category}}</h6>
+						<p class="msg">Hi, {{stud.enquired_username}}. We can help you with the above requirement as we offer a....</p>
 	                </div>
 				</div>
 			</div>
-			<div id="student" class="tab-pane fade">
-				<h3>Menu 2</h3>
-				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-			</div>
 			<div id="stand-out" class="tab-pane fade">
-				<h3>Menu 3</h3>
-				<p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+				<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="pos in position">	
+                    <div class="first-char">
+                    	<div class="training-institue-logo" ng-bind=""></div>
+                    </div>
+                    <div class="desc">
+                    	<h3>{{pos.enquired_address}}</h3>
+                    	<div class="icon-group">
+                    		<span class="icon-space"><i class="far fa-comment-alt"></i> {{pos.enquired_review}}</span>&nbsp;
+                    		<span class="icon-space"><i class="far fa-file"></i> {{pos.enquired_reply}}</span>&nbsp;
+                    		<span class="icon-space"><i class="far fa-gem"></i> {{pos.enquired_range}}</span>
+                    	</div>
+	                </div>
+				</div>
 			</div>
 		</div>
 	</div>

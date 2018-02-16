@@ -14,7 +14,7 @@ angular.module('LocatorApp.services', [])
             headers: {
             	'Authorization': 'Basic '+string
             },
-		}) 
+		}) // Doubt
 	}
 	return services;
 	
@@ -35,5 +35,22 @@ angular.module('LocatorApp.services', [])
 			dataType: 'json'
 		})
 	}
+	services.getStudentsList = function(){
+		return $http({
+			method: 'GET',
+			url:'https://api.myjson.com/bins/13gdxp'
+			// url: 'https://api.myjson.com/bins/i5wyh'
+			/*dataType: 'json'*/
+		})
+	}
+	services.currentPosition = function(){
+		return $http({
+			method: 'GET',
+			url:'https://api.myjson.com/bins/d8ut1'
+			//url:'https://api.myjson.com/bins/qo0pl'
+		})
+	}
+
 	return services;
+
 });
