@@ -5,15 +5,16 @@ angular.module('LocatorApp.services', [])
 	var services={};
 	services.getUserDetail = function(ldata){
 	//console.log(ldata);
-	var string = "ankan"+":"+"Mukhopadhyay";
+	//var string = "ankan"+":"+"Mukhopadhyay";
 	//var encoding = btoa(string);
 		return $http({
-			method: 'GET',
-			url: 'json/login.json',
-            dataType: 'json',
+			method: 'POST',
+			url:'http://192.168.1.12:7999/api/v1/institute/loginInstitute',
+			//url: ' json/login.json',
             headers: {
-            	'Authorization': 'Basic '+string
+            	'Content-Type': 'application/json'
             },
+            data: ldata
 		}) // Doubt
 	}
 	return services;
@@ -39,15 +40,18 @@ angular.module('LocatorApp.services', [])
 		return $http({
 			method: 'GET',
 			url:'https://api.myjson.com/bins/13gdxp'
-			// url: 'https://api.myjson.com/bins/i5wyh'
-			/*dataType: 'json'*/
 		})
 	}
 	services.currentPosition = function(){
 		return $http({
 			method: 'GET',
 			url:'https://api.myjson.com/bins/d8ut1'
-			//url:'https://api.myjson.com/bins/qo0pl'
+		})
+	}
+	services.search = function(){
+		return $http({
+			method: 'GET',
+			url:'https://api.myjson.com/bins/ysy8h'
 		})
 	}
 

@@ -23,9 +23,17 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 			templateUrl : 'pages/enquiry.html',
 			controller : 'enquiryController'
 		})
-		.state('contacted',{
-			url: '/contacted',
-			templateUrl : 'pages/enquiry.html',
-			controller : 'contactedController'
+		.state('needuserdetails',{
+			url: '/needuserdetails',
+			params: {
+				obj: null
+			},
+			templateUrl : 'pages/userDetails.html',
+			controller : 'detailController'
 		})
-	});
+		.state('searchResult',{
+			url: '/searchResult',
+			templateUrl : 'pages/search.html',
+			controller : 'searchController'
+		})
+});

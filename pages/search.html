@@ -1,0 +1,74 @@
+<header></header>
+
+<div class="topSpacing">
+	<div class="container-fluid">
+		<div class="col-md-3 col-lg-3">
+			<div class="filter-block">
+				<h3><i class="fas fa-filter"></i>&nbsp; FILTER</h3>
+				<div class="location">
+					<h4><i class="fas fa-globe"></i>&nbsp; Location</h4>
+					<ul class="list-item">
+						<li>My Home</li>
+						<li>I am willing to travel</li>
+						<li>Online (video chat via skype, google hangout etc.)</li>
+					</ul>
+				</div>
+				<div class="area">
+					<h4><i class="fas fa-globe"></i>&nbsp; Area</h4>
+					<p>Within km of</p>
+				</div>
+				<div class="soft-skill">
+					<h4><i class="far fa-file"></i>&nbsp; Soft Skill Training</h4>
+					<div class="search-input">
+						<input type="text" class="form-control reduce-size" placeholder="Search..." >
+					</div>
+				</div>
+				<div class="general-info">
+					<h4><i class="fas fa-info-circle"></i>&nbsp; General Info</h4>
+					<div class="form-group gender-block">
+						<label class="gender" for="sel1">Gender</label>
+						<select class="form-control reduce-size" id="sel1">
+							<option>Male</option>
+							<option>Female</option>
+						</select>
+					</div>
+					<h5>Enquries with Phone Number</h5>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9 col-lg-9 ">
+			<div ng-repeat="search in searchData">
+				<div class="training-section">
+					<div  class="col-md-12 col-lg-12">
+						<h4>{{search.message}}</h4>
+				    	<h5>Category:{{search.course_category}} | Posted {{}} days ago</h5>
+					</div>
+					<div class="col-md-6 col-lg-6">
+						<h5>Customer</h5>
+						<h6><i class="far fa-user"></i> &nbsp; {{search.customer_preference.name}}
+						</h6>
+						<h6>
+							<i class="fas fa-map-marker"></i> &nbsp;
+							{{search.customer_preference.location}}
+						</h6>
+						<h6>
+							<i class="fas fa-phone-volume"></i> &nbsp;
+							{{search.location_preference.availability}}
+						</h6>
+					</div>
+					<div class="col-md-6 col-lg-6">
+						<h5>Location Preferences</h5>
+						<h6>
+							<i class="fas fa-fighter-jet"></i> &nbsp;
+							{{search.location_preference.travel}}
+						</h6>
+						<h6>
+							<i class="fas fa-home"></i> &nbsp;
+							{{search.location_preference.other}}
+						</h6>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>

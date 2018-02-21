@@ -5,27 +5,11 @@ angular.module('LocatorApp.controllers', [])
 		console.log(loginData);
         showDiv=true;/* Doubt*/
 		loginOperation.getUserDetail(loginData).success(function(wow) {
-			if (wow.success) {
-				console.log(wow.logins); // Doubt
-				console.log(loginData.username);
-				var userexist = false;
-				for (var i = 0; i < wow.logins.length; i++) {
-					console.log(wow.logins[i].username); // Block
-					if (loginData.username === wow.logins[i].username) {
-						//alert("match");
-						if (loginData.mobile == wow.logins[i].mobile) {
-							//alert("match");
-							$state.go('homepage');
-							userexist = true;
-						} else {
-							alert("mobile not match");
-							userexist = true;
-						}
-					}
-				}
-				if (userexist == false) {
-					alert("username does not exist");
-				}
+			console.log(wow);
+			if (wow.status) {
+				$state.go('enquiry');
+			} else {
+				alert(wow.message);
 			}
 		},function(err) {
 			console.log(err);
@@ -64,26 +48,27 @@ angular.module('LocatorApp.controllers', [])
 		$scope.position = data;
 		//console.log(position);
    	});
+   	$scope.enquiryDetail = function(data){
+   		console.log(data);
+   		//$scope.userDetail = data;
+   		$state.go('needuserdetails',{obj: data});
+   	}
+   /*	$scope. = function(){
+   		$state.go('searchResult');
+   	}*/
+
 })
 
-.controller('contactedController',function($scope, $state, enquiry){
-	/*enquiry.getContactedList().success(function(wow){
-   		if(wow.success){
-   			$scope.contacted = wow.cnt_list;
-   			console.log(contacted);
-
-   			console.log(wow.Message);
-			console.log(wow.cnt_list);
-   		}
-   	});*/
-
-
-	/*enquiry.getContactedList().success(function(info){
-		console.log(info);
+.controller('detailController',function($scope, $state){
+	$scope.userDetail = $state.params.obj;
+	//console.log($scope.userDetail);
+})
+.controller('searchController',function($scope, $state, enquiry){
+	enquiry.search().success(function(data){
+		console.log(data);
+		$scope.searchData = data;
 
 	}).error(function(err){
 		console.log(err);
 	});
-*/
-	
 });

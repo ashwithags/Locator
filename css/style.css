@@ -222,3 +222,193 @@ footer.page-footer.blue.center-on-small-only {
 .profile-logo{
     display: inline-block;
 }
+
+/*    USER DETAILS    */
+.user-block{
+    box-shadow: 1.5px 2.5px 2px 1px  #9ea3aa;
+    border-radius: 5px;
+    background-color: #fff;
+    padding-bottom: 50px;
+    position: relative;
+}
+.user-basic-detail{
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+}
+.user-basic-detail h3{
+    padding-top: 35px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding-bottom: 5px;
+}
+.user-basic-detail h5{
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    opacity: 0.8;
+    padding-bottom: 5px;
+}
+.user-basic-detail p{
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 15px;
+    opacity: 0.8;
+}
+.payment{
+    right: 10px;
+    bottom: 5px;
+    position: absolute;
+}
+.payment h5{
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    word-spacing: 0.5px;
+}
+span.payment-request{
+    text-align: right;
+    font-size: 16px;
+    color: #0000FF;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+}
+.user-searched-course{
+    margin-top: 15px;
+    box-shadow: 1.5px 2.5px 2px 1px  #9ea3aa;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+}
+.user-searched-course h5{
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 25px;
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+}
+.user-searched-course p{
+    font-size: 16px;
+    opacity: 0.8;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    letter-spacing: 0.4px;
+}
+.message{
+    box-shadow: 1.5px 2.5px 2px 1px  #9ea3aa;
+    border-radius: 5px;
+    margin-top: 15px;
+    text-align: center;
+    background-color: #fff;
+}
+.msgDetails{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+}
+
+.msgDetails h5{
+    line-height: 1.6em;
+    text-align: center;
+    background-color: #87CEFA;
+    padding: 25px 40px;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    opacity: 0.9;
+}
+.discuss-details h3{
+    font-size: 21px;
+    text-align: center;
+    margin-top: 30px;
+    letter-spacing: 0.4px;
+}
+.contact-block{
+    margin-top: 15px;
+}
+.contact-button{
+    margin: 0 auto;
+    outline: none;
+    border: 0px;
+    background-color: #DDDDDD;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+.discuss-details p{
+    padding-bottom: 15px;
+    margin-top: 15px;
+    letter-spacing: 0.4px;
+}
+
+/*    SEARCH RESULT   */
+.filter-block{
+    border-radius: 6px;
+     background-color: #fff; 
+}
+.filter-block h3{
+    font-size: 18px;
+    padding-left: 10px;
+    padding-top: 15px;
+    color: red;
+    letter-spacing: 0.4px;
+}
+.location h4{
+    color: #228AE6;
+    padding-left: 15px;
+    margin-top: 20px;
+    letter-spacing: 0.4px;
+    font-size: 18px;
+}
+.list-item{
+    list-style: none;
+}
+.area h4{
+    color: #228AE6;
+    padding-left: 15px;
+    margin-top: 20px;
+    letter-spacing: 0.4px;
+    font-size: 18px;
+}
+.area p{
+    padding-left: 25px;
+}
+.soft-skill h4{
+    color: #228AE6;
+    padding-left: 15px;
+    margin-top: 20px;
+    letter-spacing: 0.4px;
+    font-size: 18px;
+}
+.search-input{
+    margin-top: 15px;
+    padding-left: 25px;
+}
+.general-info h4{
+    color: #228AE6;
+    padding-left: 15px;
+    margin-top: 20px;
+    letter-spacing: 0.4px;
+    font-size: 18px;
+}
+label.gender{
+    opacity: 0.8;
+    margin-top: 5px;
+    padding-bottom: 5px;
+}
+.general-info h5{
+    margin-top: 18px;
+    padding-bottom: 15px;
+    padding-left: 25px;
+}
+.gender-block{
+    padding-left: 15px;
+}
+.form-control.reduce-size{
+    width: 60%;
+}
+.training-section{
+    background-color: #fff;
+}
+.search-msg h4{
+    color: red;
+    opacity: 0.8;
+}
