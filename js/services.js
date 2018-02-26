@@ -70,7 +70,7 @@ angular.module('LocatorApp.services', [])
 	var services = {};
 	services.getCourseList = function(){
 		return $http({
-			url: 'js/course.json',
+			url: 'http://192.168.1.12:7999/api/v1/search/allcourses',
 			method: 'GET'
 		});
 	}
