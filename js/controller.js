@@ -76,7 +76,7 @@ angular.module('LocatorApp.controllers', [])
 	});
 })
 
-.controller('selectLocationsController', function($scope, selectLoc){
+.controller('selectLocationsController', function($scope, $state, selectLoc){
 	$scope.checkedItemsList = [];
 	selectLoc.getLocations().success(function(res){
     	$scope.locations = res.response;
@@ -102,7 +102,7 @@ angular.module('LocatorApp.controllers', [])
 		obj.i_id = sessionStorage.getItem('logged_in');
 		selectLoc.saveLocations(obj).success(function(res) {
 			if(res.status) {
-				$state.go('selectCourses');
+				$state.go('courses');
 			}
 		}).error(function(error){
 			
