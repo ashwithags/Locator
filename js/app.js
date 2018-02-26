@@ -8,11 +8,6 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 			templateUrl : 'pages/login.html',
 			controller : 'loginController'
 		})
-		.state('signUp',{
-			url: '/signup',
-			templateUrl : 'pages/login.html',
-			controller : 'signUpController'
-		})
 		.state('homepage',{
 			url: '/home',
 			templateUrl : 'pages/home.html'/*,
@@ -21,6 +16,9 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 		.state('enquiry',{
 			url: '/enquiry',
 			templateUrl : 'pages/enquiry.html',
+			params: {
+				inst_id: null
+			},
 			controller : 'enquiryController'
 		})
 		.state('needuserdetails',{

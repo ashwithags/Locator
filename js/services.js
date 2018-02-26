@@ -3,19 +3,25 @@ angular.module('LocatorApp.services', [])
 //This JavaScript file "factory.js" for fetching the data from the database and provide it to the controller.
 .factory('loginOperation', function($http,$q){
 	var services={};
-	services.getUserDetail = function(ldata){
-	//console.log(ldata);
-	//var string = "ankan"+":"+"Mukhopadhyay";
-	//var encoding = btoa(string);
+	services.instituteLogin = function(ldata){
 		return $http({
 			method: 'POST',
-			url:'http://192.168.1.12:7999/api/v1/institute/loginInstitute',
-			//url: ' json/login.json',
-            headers: {
+			url:'http://localhost:7999/api/v1/institute/loginInstitute',
+	        headers: {
             	'Content-Type': 'application/json'
             },
             data: ldata
-		}) // Doubt
+		})
+	}
+	services.instituteSignup = function(ldata){
+		return $http({
+			method: 'POST',
+			url:'http://localhost:7999/api/v1/institute/addinstitute',
+	        headers: {
+            	'Content-Type': 'application/json'
+            },
+            data: ldata
+		})
 	}
 	return services;
 	

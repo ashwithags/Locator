@@ -3,11 +3,12 @@ angular.module('LocatorApp.controllers', [])
 .controller('loginController', function($scope, $state, loginOperation) {
 	$scope.login = function(loginData) {
 		console.log(loginData);
-        showDiv=true;/* Doubt*/
-		loginOperation.getUserDetail(loginData).success(function(wow) {
-			console.log(wow);
+        showDiv=true;
+		loginOperation.instituteLogin(loginData).success(function(wow) {
+			//console.log(wow);
 			if (wow.status) {
-				$state.go('enquiry');
+				sessionStorage.setItem('logged_in',wow.result.id);
+				$state.go('enquiry',{inst_id: wow.result.id});
 			} else {
 				alert(wow.message);
 			}
@@ -15,19 +16,20 @@ angular.module('LocatorApp.controllers', [])
 			console.log(err);
 		}); // Error
 	}
-})
-
-
-.controller('signUpController', function($scope, $state) {
-	$state.go('enquiry');// y enquiry page
-	alert("signin");
 	$scope.signUp = function(signUpData) {
-		alert("signin");
 		console.log(signUpData);
-		localStorage.setItem('signupDetail', signUpData); // doubt
+		signUpData.i_images = "no images";
+		loginOperation.instituteSignup(signUpData).success(function(wow) {
+			if (wow.status) {
+				showDiv=true;
+			} else {
+				alert(wow.message);
+			}
+		},function(err) {
+			console.log(err);
+		});
 	}
 })
-
 .controller('enquiryController', function($scope, $state, enquiry){
 	enquiry.getEnqList().success(function(now){
 		if(now.success){
