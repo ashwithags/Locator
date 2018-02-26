@@ -73,6 +73,18 @@ angular.module('LocatorApp.services', [])
 			url: 'http://192.168.1.12:7999/api/v1/search/allcourses',
 			method: 'GET'
 		});
-	}
+	};
 	return services;
+	services.sendCourseDetails = function(info){
+		return $http({
+			url:"http://192.168.1.12:7999/api/v1/institute/updateid",
+			method:"POST",
+			data:info
+
+		})
+	}
 })
+
+
+
+

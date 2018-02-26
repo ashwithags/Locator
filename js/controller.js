@@ -107,4 +107,16 @@ angular.module('LocatorApp.controllers', [])
 		
 		console.log(checkedCourse);
 	}
-});
+	$scope.next = function(){
+		var courseinfo = {};
+		courseinfo.i_cid = checkedCourse;
+		courseinfo.i_type = "courseList";
+		courseinfo.i_id = "18";
+		
+		courseListProcess.sendCourseDetails(courseinfo).success(function(resp){
+				console.log(resp);
+		}).error(function(er){
+			console.log(er);
+		})
+	};
+})
