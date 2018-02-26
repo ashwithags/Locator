@@ -12,7 +12,7 @@ angular.module('LocatorApp.controllers', [])
 			} else {
 				alert(wow.message);
 			}
-		},function(err) {
+		}, function(err) {
 			console.log(err);
 		}); // Error
 	}
@@ -20,10 +20,11 @@ angular.module('LocatorApp.controllers', [])
 		console.log(signUpData);
 		signUpData.i_images = "no images";
 		loginOperation.instituteSignup(signUpData).success(function(wow) {
+			$scope.signUpData = '';
 			if (wow.status) {
-				showDiv=true;
+				$scope.showDiv=true;
 			} else {
-				alert(wow.message);
+				$scope.showDiv=true;
 			}
 		},function(err) {
 			console.log(err);
@@ -74,6 +75,7 @@ angular.module('LocatorApp.controllers', [])
 		console.log(err);
 	});
 })
+
 .controller('selectLocationsController', function($scope, selectLoc){
 	$scope.checkedItemsList = [];
 	selectLoc.getLocations().success(function(res){
@@ -105,5 +107,52 @@ angular.module('LocatorApp.controllers', [])
 		}).error(function(error){
 			
 		});
+	};
+})
+
+//courseList Ctrl - Dinesh
+.controller("courseCtrl", function($scope,$state,courseListProcess){
+	courseListProcess.getCourseList().success(function(response){
+		//console.log(response.status);
+		if(response.status){
+			//console.log(response.response);
+			$scope.courses = response.response;
+		}
+	}).error(function(err){
+		console.log(err);
+	});
+
+
+	var checkedCourse = [];
+	$scope.getCourseId = function(id){
+		var search_index = checkedCourse.indexOf(id);
+		if(search_index == -1) {
+			//Push into array
+			checkedCourse.push(id);
+		} else {
+			//Remove from array
+			checkedCourse.splice(search_index, 1);
+		}
+		//console.log(checkedCourse.length);
+		if(checkedCourse.length < 2){
+			console.log(id);
+			$scope.check_disable = false;
+		} else if(checkedCourse.length >= 2) {
+			$scope.check_disable = true;	
+		}
+		
+		console.log(checkedCourse);
+	}
+	$scope.next = function(){
+		var courseinfo = {};
+		courseinfo.i_lc = checkedCourse.toString();
+		courseinfo.i_type = "courseList";
+		courseinfo.i_id = "18";
+		console.log(courseinfo);
+		courseListProcess.sendCourseDetails(courseinfo).success(function(resp){
+				console.log(resp);
+		}).error(function(er){
+			console.log(er);
+		})
 	};
 });
