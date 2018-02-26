@@ -63,7 +63,7 @@ angular.module('LocatorApp.services', [])
 
 	return services;
 
-});
+})
 
 //selectcourse services Dinesh
 .factory("courseListProcess", function($http){
