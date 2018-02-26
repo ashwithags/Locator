@@ -134,10 +134,10 @@ angular.module('LocatorApp.controllers', [])
 			//Remove from array
 			checkedCourse.splice(search_index, 1);
 		}
-		if(checkedCourse.length < 2){
+		if(checkedCourse.length < 10){
 			console.log(id);
 			$scope.check_disable = false;
-		} else if(checkedCourse.length >= 2) {
+		} else if(checkedCourse.length >= 10) {
 			$scope.check_disable = true;	
 		}
 
@@ -151,7 +151,7 @@ angular.module('LocatorApp.controllers', [])
 
 		var courseinfo = {};
 		courseinfo.i_lc = checkedCourse.toString();
-		courseinfo.i_type = "courseList";
+		courseinfo.i_type = "course";
 		courseinfo.i_id = sessionStorage.getItem('logged_in');
 		courseListProcess.sendCourseDetails(courseinfo).success(function(resp){
 			if(resp.status){
