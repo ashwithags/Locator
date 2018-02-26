@@ -25,28 +25,33 @@
   	}
   }
 </style>
-<div class="row" id="product_row">
-	<div id="cartlist">
-		<div class="col-md-12" style='margin-bottom: 20px;'>
-			<div class="col-md-12">
-        <form name="form" ng-submit="submit()" class="form-horizontal" novalidate>
-  				<div class="panel panel-default">
-  			  		<div class="panel-heading">Select Course</div>
-  				  	<div class="panel-body">
-  				  		  <div class='col-xs-6 col-md-6' ng-repeat="course in courses">
-  					        <div class="checkbox">
-  								    <label><input ng-model="course_ip" type="checkbox" ng-disabled="check_disable && !course_ip" ng-click="getCourseId(course.course_id)" ng-required="true">{{course.course_name}} </label>
-  								    <!-- <span style="color: red">{{check_disable}}</span><span style="color: green">{{course_ip}}</span> -->
-  							  	</div>
-  						    </div>
-  				    </div>
-  			  		<div class="panel-footer">
-  			  			<button  class="pull-right btn btn-default btn-md" ng-click="next()">Submit{{course_ip}}</button>
-  			  			<div class="clearfix"></div>
-  		  			</div>
-  	  		</div>
-        </form>
-			</div>
-		</div>
-	</div>
+<header></header>
+<div class="topSpacing">
+  <div class="container-fluid">
+    <div class="row" id="product_row">
+    	<div id="cartlist">
+    		<div class="col-md-12" style='margin-bottom: 20px;'>
+    			<div class="col-md-12">
+            <form name="form" ng-submit="submit()" class="form-horizontal" novalidate>
+      				<div class="panel panel-default">
+      			  		<div class="panel-heading">Select Course</div>
+      				  	<div class="panel-body">
+      				  		  <div class='col-xs-6 col-md-6' ng-repeat="course in courses">
+      					        <div class="checkbox">
+      								    <label><input ng-model="course_ip" type="checkbox" ng-disabled="check_disable && !course_ip" ng-click="getCourseId(course.course_id)" ng-required="true">{{course.course_name}} </label>
+      								    <!-- <span style="color: red">{{check_disable}}</span><span style="color: green">{{course_ip}}</span> -->
+      							  	</div>
+      						    </div>
+      				    </div>
+      			  		<div class="panel-footer">
+      			  			<button ng-disabled="courseLength" class="pull-right btn btn-default btn-md" ng-click="next()">Submit{{course_ip}}</button>
+      			  			<div class="clearfix"></div>
+      		  			</div>
+      	  		</div>
+            </form>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+  </div>
 </div>

@@ -77,44 +77,52 @@ angular.module('LocatorApp.controllers', [])
 //courseList Ctrl - Dinesh
 .controller("courseCtrl", function($scope,$state,courseListProcess){
 	courseListProcess.getCourseList().success(function(response){
-		//console.log(response.status);
 		if(response.status){
-			//console.log(response.response);
 			$scope.courses = response.response;
 		}
 	}).error(function(err){
 		console.log(err);
 	});
 
-
+	$scope.courseLength = true;
 	var checkedCourse = [];
 	$scope.getCourseId = function(id){
+
 		var search_index = checkedCourse.indexOf(id);
 		if(search_index == -1) {
+			$scope.courseLength = false;
 			//Push into array
 			checkedCourse.push(id);
 		} else {
+			$scope.courseLength = false;
 			//Remove from array
 			checkedCourse.splice(search_index, 1);
 		}
-		//console.log(checkedCourse.length);
 		if(checkedCourse.length < 2){
 			console.log(id);
 			$scope.check_disable = false;
 		} else if(checkedCourse.length >= 2) {
 			$scope.check_disable = true;	
 		}
+
+		if(checkedCourse.length == 0){
+			$scope.courseLength = true;
+		}
 		
 		console.log(checkedCourse);
 	}
 	$scope.next = function(){
+
 		var courseinfo = {};
 		courseinfo.i_lc = checkedCourse.toString();
 		courseinfo.i_type = "courseList";
-		courseinfo.i_id = "18";
-		console.log(courseinfo);
+		courseinfo.i_id = sessionStorage.getItem('logged_in');
 		courseListProcess.sendCourseDetails(courseinfo).success(function(resp){
-				console.log(resp);
+			if(resp.status){
+				$state.go('enquiry');
+			} else {
+
+			}
 		}).error(function(er){
 			console.log(er);
 		})
