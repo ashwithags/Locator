@@ -73,4 +73,50 @@ angular.module('LocatorApp.controllers', [])
 	}).error(function(err){
 		console.log(err);
 	});
-});
+})
+//courseList Ctrl - Dinesh
+.controller("courseCtrl", function($scope,$state,courseListProcess){
+	courseListProcess.getCourseList().success(function(response){
+		//console.log(response.status);
+		if(response.status){
+			//console.log(response.response);
+			$scope.courses = response.response;
+		}
+	}).error(function(err){
+		console.log(err);
+	});
+
+
+	var checkedCourse = [];
+	$scope.getCourseId = function(id){
+		var search_index = checkedCourse.indexOf(id);
+		if(search_index == -1) {
+			//Push into array
+			checkedCourse.push(id);
+		} else {
+			//Remove from array
+			checkedCourse.splice(search_index, 1);
+		}
+		//console.log(checkedCourse.length);
+		if(checkedCourse.length < 2){
+			console.log(id);
+			$scope.check_disable = false;
+		} else if(checkedCourse.length >= 2) {
+			$scope.check_disable = true;	
+		}
+		
+		console.log(checkedCourse);
+	}
+	$scope.next = function(){
+		var courseinfo = {};
+		courseinfo.i_lc = checkedCourse.toString();
+		courseinfo.i_type = "courseList";
+		courseinfo.i_id = "18";
+		console.log(courseinfo);
+		courseListProcess.sendCourseDetails(courseinfo).success(function(resp){
+				console.log(resp);
+		}).error(function(er){
+			console.log(er);
+		})
+	};
+})
