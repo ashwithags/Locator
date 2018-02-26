@@ -34,4 +34,9 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 			templateUrl : 'pages/search.html',
 			controller : 'searchController'
 		})
+		.state('selectLocations',{
+			url: '/selectLocations',
+			templateUrl : 'pages/selectLocations.html',
+			controller : 'selectLocationsController'
+		})
 });
