@@ -64,3 +64,15 @@ angular.module('LocatorApp.services', [])
 	return services;
 
 });
+
+//selectcourse services Dinesh
+.factory("courseListProcess", function($http){
+	var services = {};
+	services.getCourseList = function(){
+		return $http({
+			url: 'js/course.json',
+			method: 'GET'
+		});
+	}
+	return services;
+})

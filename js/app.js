@@ -35,8 +35,8 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 			controller : 'searchController'
 		})
 		.state('courses',{
-			url: '/courses',
-			templateUrl : 'pages/courses.html',
+			url: '/selectCourses',
+			templateUrl : 'pages/selectCourses.html',
 			controller: 'courseCtrl'
 		})
 });
