@@ -74,15 +74,16 @@ angular.module('LocatorApp.services', [])
 			method: 'GET'
 		});
 	};
-	return services;
+	
 	services.sendCourseDetails = function(info){
 		return $http({
-			url:"http://192.168.1.12:7999/api/v1/institute/updateid",
+			url:"http://192.168.1.12:7999/api/v1/institute/updatelc",
 			method:"POST",
 			data:info
 
 		})
 	}
+	return services;
 })
 
 

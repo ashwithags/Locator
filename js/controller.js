@@ -109,10 +109,10 @@ angular.module('LocatorApp.controllers', [])
 	}
 	$scope.next = function(){
 		var courseinfo = {};
-		courseinfo.i_cid = checkedCourse;
+		courseinfo.i_lc = checkedCourse.toString();
 		courseinfo.i_type = "courseList";
 		courseinfo.i_id = "18";
-		
+		console.log(courseinfo);
 		courseListProcess.sendCourseDetails(courseinfo).success(function(resp){
 				console.log(resp);
 		}).error(function(er){
