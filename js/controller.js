@@ -3,16 +3,15 @@ angular.module('LocatorApp.controllers', [])
 .controller('loginController', function($scope, $state, loginOperation) {
 	$scope.login = function(loginData) {
 		console.log(loginData);
-        showDiv=true;
-		loginOperation.instituteLogin(loginData).success(function(wow) {
-			//console.log(wow);
+        loginOperation.instituteLogin(loginData).success(function(wow) {
+			console.log(wow);
 			if (wow.status) {
 				sessionStorage.setItem('logged_in',wow.result.id);
 				$state.go('enquiry',{inst_id: wow.result.id});
 			} else {
 				alert(wow.message);
 			}
-		},function(err) {
+		}, function(err) {
 			console.log(err);
 		}); // Error
 	}
@@ -20,10 +19,11 @@ angular.module('LocatorApp.controllers', [])
 		console.log(signUpData);
 		signUpData.i_images = "no images";
 		loginOperation.instituteSignup(signUpData).success(function(wow) {
+			$scope.signUpData = '';
 			if (wow.status) {
-				showDiv=true;
+				$scope.showDiv=true;
 			} else {
-				alert(wow.message);
+				$scope.showDiv=true;
 			}
 		},function(err) {
 			console.log(err);

@@ -16,7 +16,7 @@ angular.module('LocatorApp.services', [])
 	services.instituteSignup = function(ldata){
 		return $http({
 			method: 'POST',
-			url:'http://localhost:7999/api/v1/institute/addinstitute',
+			url:'http://192.168.1.12:7999/api/v1/institute/addinstitute',
 	        headers: {
             	'Content-Type': 'application/json'
             },
