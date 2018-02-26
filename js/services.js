@@ -65,6 +65,28 @@ angular.module('LocatorApp.services', [])
 
 })
 
+.factory("selectLoc", function($http){
+	var services = {};
+	services.getLocations = function(){
+		return $http({
+			url: 'http://192.168.1.12:7999/api/v1/search/alllocation',
+			method: 'GET'				
+		})
+	}
+	services.saveLocations = function(slocdata) {
+		return $http({
+			url: 'http://192.168.1.12:7999/api/v1/institute/updatelc',
+			method: 'POST',
+			header: {
+				'Content-Type': 'application/json'
+			},
+			data: slocdata
+		});
+	}
+	return services;
+})
+
+
 //selectcourse services Dinesh
 .factory("courseListProcess", function($http){
 	var services = {};
@@ -84,8 +106,4 @@ angular.module('LocatorApp.services', [])
 		})
 	}
 	return services;
-})
-
-
-
-
+});

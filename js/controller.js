@@ -8,11 +8,11 @@ angular.module('LocatorApp.controllers', [])
 			//console.log(wow);
 			if (wow.status) {
 				sessionStorage.setItem('logged_in',wow.result.id);
-				$state.go('enquiry',{inst_id: wow.result.id});
+				$state.go('selectLocations',{inst_id: wow.result.id});
 			} else {
 				alert(wow.message);
 			}
-		},function(err) {
+		}, function(err) {
 			console.log(err);
 		}); // Error
 	}
@@ -20,10 +20,11 @@ angular.module('LocatorApp.controllers', [])
 		console.log(signUpData);
 		signUpData.i_images = "no images";
 		loginOperation.instituteSignup(signUpData).success(function(wow) {
+			$scope.signUpData = '';
 			if (wow.status) {
-				showDiv=true;
+				$scope.showDiv=true;
 			} else {
-				alert(wow.message);
+				$scope.showDiv=true;
 			}
 		},function(err) {
 			console.log(err);
@@ -74,6 +75,41 @@ angular.module('LocatorApp.controllers', [])
 		console.log(err);
 	});
 })
+
+.controller('selectLocationsController', function($scope, selectLoc){
+	$scope.checkedItemsList = [];
+	selectLoc.getLocations().success(function(res){
+    	$scope.locations = res.response;
+    	//console.log(res);	
+    }).error(function(err){
+    	console.log(err);
+    })
+    $scope.checkedItems = function() {
+		$scope.checkedItemsList = [];
+		angular.forEach($scope.locations, function(appObj, arrayIndex){
+			if(appObj.checked) {
+				$scope.checkedItemsList.push(appObj.id);
+			}
+		});
+		//console.log(checkedItems);
+		//return $scope.checkedItemsList;
+	};
+	$scope.saveLocations = function() {
+		var list = $scope.checkedItemsList.join();
+		var obj = {};
+		obj.i_lc = list;
+		obj.i_type = "location";
+		obj.i_id = sessionStorage.getItem('logged_in');
+		selectLoc.saveLocations(obj).success(function(res) {
+			if(res.status) {
+				$state.go('selectCourses');
+			}
+		}).error(function(error){
+			
+		});
+	};
+})
+
 //courseList Ctrl - Dinesh
 .controller("courseCtrl", function($scope,$state,courseListProcess){
 	courseListProcess.getCourseList().success(function(response){
@@ -127,4 +163,4 @@ angular.module('LocatorApp.controllers', [])
 			console.log(er);
 		})
 	};
-})
+});
