@@ -4,10 +4,9 @@ angular.module('LocatorApp.controllers', [])
 	$scope.login = function(loginData) {
 		console.log(loginData);
         loginOperation.instituteLogin(loginData).success(function(wow) {
-			//console.log(wow);
 			if (wow.status) {
 				sessionStorage.setItem('logged_in',wow.result.id);
-				$state.go('enquiry',{inst_id: wow.result.id});
+				$state.go('selectLocations',{inst_id: wow.result.id});
 			} else {
 				alert(wow.message);
 			}
@@ -70,49 +69,92 @@ angular.module('LocatorApp.controllers', [])
 		console.log(err);
 	});
 })
+
+.controller('selectLocationsController', function($scope, $state, selectLoc){
+	$scope.checkedItemsList = [];
+	selectLoc.getLocations().success(function(res){
+    	$scope.locations = res.response;
+    	//console.log(res);	
+    }).error(function(err){
+    	console.log(err);
+    })
+    $scope.checkedItems = function() {
+		$scope.checkedItemsList = [];
+		angular.forEach($scope.locations, function(appObj, arrayIndex){
+			if(appObj.checked) {
+				$scope.checkedItemsList.push(appObj.id);
+			}
+		});
+		//console.log(checkedItems);
+		//return $scope.checkedItemsList;
+	};
+	$scope.saveLocations = function() {
+		var list = $scope.checkedItemsList.join();
+		var obj = {};
+		obj.i_lc = list;
+		obj.i_type = "location";
+		obj.i_id = sessionStorage.getItem('logged_in');
+		selectLoc.saveLocations(obj).success(function(res) {
+			if(res.status) {
+				$state.go('courses');
+			}
+		}).error(function(error){
+			
+		});
+	};
+})
+
 //courseList Ctrl - Dinesh
 .controller("courseCtrl", function($scope,$state,courseListProcess){
 	courseListProcess.getCourseList().success(function(response){
-		//console.log(response.status);
 		if(response.status){
-			//console.log(response.response);
 			$scope.courses = response.response;
 		}
 	}).error(function(err){
 		console.log(err);
 	});
 
-
+	$scope.courseLength = true;
 	var checkedCourse = [];
 	$scope.getCourseId = function(id){
+
 		var search_index = checkedCourse.indexOf(id);
 		if(search_index == -1) {
+			$scope.courseLength = false;
 			//Push into array
 			checkedCourse.push(id);
 		} else {
+			$scope.courseLength = false;
 			//Remove from array
 			checkedCourse.splice(search_index, 1);
 		}
-		//console.log(checkedCourse.length);
-		if(checkedCourse.length < 2){
+		if(checkedCourse.length < 10){
 			console.log(id);
 			$scope.check_disable = false;
-		} else if(checkedCourse.length >= 2) {
+		} else if(checkedCourse.length >= 10) {
 			$scope.check_disable = true;	
+		}
+
+		if(checkedCourse.length == 0){
+			$scope.courseLength = true;
 		}
 		
 		console.log(checkedCourse);
 	}
 	$scope.next = function(){
+
 		var courseinfo = {};
 		courseinfo.i_lc = checkedCourse.toString();
-		courseinfo.i_type = "courseList";
-		courseinfo.i_id = "18";
-		console.log(courseinfo);
+		courseinfo.i_type = "course";
+		courseinfo.i_id = sessionStorage.getItem('logged_in');
 		courseListProcess.sendCourseDetails(courseinfo).success(function(resp){
-				console.log(resp);
+			if(resp.status){
+				$state.go('enquiry');
+			} else {
+
+			}
 		}).error(function(er){
 			console.log(er);
 		})
 	};
-})
+});

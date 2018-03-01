@@ -1,0 +1,22 @@
+<header></header>
+<br /><br />
+<div class="col-md-12" style='margin-bottom: 20px;'>
+	<div class="col-md-12">
+		<div class="panel panel-default">
+  			<div class="panel-heading">Select Locations Where you Offer Trainings</div>
+			<div class="panel-body">
+				<div class="input-group-prepend  col-md-4" ng-repeat="loc in locations | orderBy: 'location_name'">
+			 		<div class="input-group-text">
+			 			<div>
+							<label style="margin: 5px;"><input type="checkbox" aria-label="Checkbox for following text input" ng-model="loc.checked" ng-click="checkedItems()">&nbsp; {{loc.location_name}}</label>  	
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+  			  	<button type="button" class="btn btn-default pull-right" ng-disabled="checkedItemsList.length == 0" ng-click="saveLocations()"> Submit </button>
+  			  	<div class="clearfix"></div>
+  		  	</div>
+		</div>
+	</div>
+</div>
