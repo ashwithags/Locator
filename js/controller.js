@@ -4,7 +4,7 @@ angular.module('LocatorApp.controllers', [])
 	$scope.login = function(loginData) {
 		console.log(loginData);
         loginOperation.instituteLogin(loginData).success(function(wow) {
-			console.log(wow);
+			//console.log(wow);
 			if (wow.status) {
 				sessionStorage.setItem('logged_in',wow.result.id);
 				$state.go('enquiry',{inst_id: wow.result.id});
@@ -55,10 +55,6 @@ angular.module('LocatorApp.controllers', [])
    		//$scope.userDetail = data;
    		$state.go('needuserdetails',{obj: data});
    	}
-   /*	$scope. = function(){
-   		$state.go('searchResult');
-   	}*/
-
 })
 
 .controller('detailController',function($scope, $state){

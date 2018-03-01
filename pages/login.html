@@ -3,19 +3,24 @@
 	<div class="col-lg-4"></div>
 	<div class="col-lg-4 col-sm-8 col-md-4">
 		<div class="reister">
-	        <h1 class="title">Login</h1>
-	        <div class="form-group">
-		        <input placeholder="Username" type="text" ng-model="loginData.i_loginparams" required="required"/>
-	        </div>
-	   		<div class="form-group">
-		        <input placeholder="Password" type="password" ng-model="loginData.i_password" required="required"/>
-	        </div> 
-	        <div class="form-group">
-	        	<button class="btn-signUp" ng-click="login(loginData)">Login <span class="glyphicon glyphicon-log-in"></span></button>
-	        	<p>New User <button class="btn-link" ng-click="showDiv=false">SignUp</button></p>
-   			</div> 
-	    </div> 
-	     
+			<h1 class="title">Login</h1>
+			<form name="loginform">
+				<div class="form-group">
+					<input name="i_loginparams" placeholder="Username" type="text" ng-model="loginData.i_loginparams" ng-required="true"/>
+					<p ng-show="loginform.i_loginparams.$invalid && loginform.i_loginparams.$dirty"> Field cannot be blank</p>
+				</div>
+				<div class="form-group">
+					<input name="i_password" placeholder="Password" type="password" ng-model="loginData.i_password" ng-required="true"/>
+					<span ng-show="!loginform.i_password.$invalid && loginform.i_password.$dirty">
+					Field cannot be blank
+					</span>
+				</div> 
+				<div class="form-group">
+					<button class="btn-signUp" ng-click="login(loginData)" ng-disabled="loginform.$invalid || loginform.$pristine">Login <span class="glyphicon glyphicon-log-in"></span></button>
+					<p>New User <button class="btn-link" ng-click="showDiv=false">SignUp</button></p>
+				</div> 
+			</form>
+		</div> 
 	</div>
 	<div class="col-lg-4"></div>
 </div>
@@ -24,37 +29,50 @@
 	<div class="col-lg-4"></div>
 	<div class="col-lg-4 col-sm-8 col-md-4">
 		<div class="reister">
-	        <h1 class="title">Register</h1>
-	        <div class="form-group">
-		        <input placeholder="Institute Name" type="text" ng-model="signUpData.i_name" required="required"/>
-		    </div>
-		    <div class="form-group">
-		        <input placeholder="Office Mobile No." maxlength="10" type="tel" ng-model="signUpData.i_contact" required="required"/>
-	        </div>
-	        <div class="form-group">
-		        <input placeholder="Office Alternative No." type="tel" ng-model="signUpData.i_altcontact" required="required"/>
-	        </div> 
-	        <div class="form-group">
-		        <input placeholder="Email" type="email" ng-model="signUpData.i_email" required="required"/>
-	        </div>
-	        <div class="form-group">
-		        <input placeholder="Office Address" type="text" ng-model="signUpData.i_address" required="required"/>
-	        </div>
-	        <div class="form-group">
-		        <input placeholder="City" type="text" ng-model="signUpData.i_city" required="required"/>
-	        </div>
-	        <div class="form-group">
-		        <input placeholder="Enter Password" type="password" ng-model="signUpData.i_password" required="required"/>
-		    </div>
-		    <div class="form-group">
-		        <input placeholder="Re-enter Password" type="password" ng-model="signUpData.i_altpassword" required="required"/>
-		    </div>
-	        <div class="form-group">
-	        	<button class="btn-signUp" ng-click="signUp(signUpData)">SignUp  <span class="glyphicon glyphicon-log-in"></span></button>
-	        	<p>Already User<button class="btn-link" ng-click="showDiv=true">Login</button>
-   			</div> 
-	    </div> 
+			<h1 class="title">Register</h1>
+			<form name="locname">
+				<div class="form-group">
+					<input name="i_name" placeholder="Institute Name" type="text" ng-model="signUpData.i_name" ng-required="true"/>
+					<p ng-show="locname.i_name.$invalid && locname.i_name.$dirty"> Field cannot be blank</p>
+				</div>
+				<div class="form-group">
+					<input name="i_contact" placeholder="Office Mobile No." maxlength="10" type="tel" ng-model="signUpData.i_contact" ng-required="true"/>
+					<p ng-show="locname.i_contact.$invalid && locname.i_contact.$dirty" > Field cannot be blank</p>
+				</div>
+				<div class="form-group">
+					<input name="i_altcontact" placeholder="Office Alternative No." type="tel" ng-model="signUpData.i_altcontact"  ng-required="true"/>
+					<p ng-show="locname.i_altcontact.$invalid && locname.i_altcontact.$dirty">
+					Field cannot be blank </p>
+				</div> 
+				<div class="form-group">
+					<input name="i_email" placeholder="Email" type="email" ng-model="signUpData.i_email"  ng-required="true"/>
+					<p ng-show="locname.i_email.$invalid && locname.i_email.$dirty">      Field cannot be blank</p>
+				</div>
+				<div class="form-group">
+					<input name="i_address" placeholder="Office Address" type="text" ng-model="signUpData.i_address" ng-required="true"/>
+					<p ng-show="locname.i_address.$invalid && locname.i_address.$dirty">
+					Field cannot be blank</p>
+				</div>
+				<div class="form-group">
+					<input name="i_city" placeholder="City" type="text" ng-model="signUpData.i_city" ng-required="true"/>
+					<p ng-show="locname.i_city.$invalid && locname.i_city.$dirty">
+					Field cannot be blank </p>
+				</div>
+				<div class="form-group">
+					<input name="i_password" type="password" class="form-control" placeholder="Password" ng-model="signUpData.i_password" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required />
+					<span ng-show="!locname.i_password.$error.required &&  locname.i_password.$error.pattern && locname.i_password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
+				</div>
+				<div class="form-group" >
+					<input name="i_altpassword" type="password" class="form-control" placeholder="Confirm Password" ng-model="signUpData.i_altpassword" ng-pattern="signUpData.i_password" required />
+					<span ng-show="signUpData.i_password != signUpData.i_altpassword">Your passwords must match.</span>
+				</div>
+				<div class="form-group">
+					<button class="btn-signUp" ng-click="signUp(signUpData)" ng-disabled="locname.$invalid || locname.$pristine">SignUp  <span class="glyphicon glyphicon-log-in"></span></button>
+					
+					<p>Already User<button class="btn-link" ng-click="showDiv=true" >Login</button>
+					</div>
+				</form>
+			</div> 
+		</div>
+		<div class="col-lg-4"></div>
 	</div>
-	
-	<div class="col-lg-4"></div>
-</div>

@@ -18,6 +18,9 @@ h1.title {
     text-align: center;
     line-height: 45px;
 }
+input.ng-invalid.ng-dirty {
+    border: 2px solid red;
+}
 .reister input {
     width: 100%;
     height: 40px;
