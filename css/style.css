@@ -18,6 +18,9 @@ h1.title {
     text-align: center;
     line-height: 45px;
 }
+input.ng-invalid.ng-dirty {
+    border: 2px solid red;
+}
 .reister input {
     width: 100%;
     height: 40px;
@@ -406,10 +409,17 @@ label.gender{
 .form-control.reduce-size{
     width: 60%;
 }
-.training-section{
+.training-section {
     background-color: #fff;
+    float: left;
+    margin-top: 7px;
+    border-radius: 5px;
+    width: 100%;padding: 10px;
 }
 .search-msg h4{
     color: red;
     opacity: 0.8;
+}
+.search-msges {
+    color: #228ae6;
 }

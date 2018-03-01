@@ -3,8 +3,7 @@ angular.module('LocatorApp.controllers', [])
 .controller('loginController', function($scope, $state, loginOperation, $rootScope) {
 	$scope.login = function(loginData) {
 		console.log(loginData);
-        showDiv=true;
-		loginOperation.instituteLogin(loginData).success(function(wow) {
+        loginOperation.instituteLogin(loginData).success(function(wow) {
 			if (wow.status) {
 				sessionStorage.setItem('logged_in',wow.result.id);
 				$rootScope.instituteImage = wow.result.inst_images;
