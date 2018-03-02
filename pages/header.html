@@ -1,5 +1,5 @@
 <div class="container-fluid header-section">
-  <div class="row">
+  <div class="row relative">
     <div class="col-md-offset-1 col-md-2 col-sm-4 col-xs-4">
       <div class="site-logo">
         <img style="height: 40px;" src="img/ideology.png" alt="urban" class="img-responsive">
@@ -8,32 +8,39 @@
     <div class=" col-md-6 col-sm-6 col-xs-6">
       <div class="col-md-3 col-sm-4 col-xs-4 padding-modify">
         <div class="form-group">
-          <input type="text" class="form-control form-control1-modify" placeholder="">
+          <input type="text" class="form-control form-control1-modify" placeholder="search location.." ng-model="locate" ng-keyup="suggestLocations(locate)">
+          <ul class="tall list-group" ng-hide="hidethis" ng-blur="disp()">
+            <li class="list-group-item" ng-repeat="place in places" ng-click="filltextbox(place)">
+              {{place}}
+            </li>
+          </ul>
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-8 padding-modify">
         <div class="form-group">
-          <input type="text" class="form-control form-control2-modify" placeholder="Search...">
+          <input type="text" class="form-control form-control2-modify" placeholder="Search courses.." ng-model="subject" ng-keyup="suggestCourses(subject)" ng-blur="dispp()">
+          <ul class=" drop list-group" ng-hide="hidden">
+            <li class="list-group-item" ng-repeat="course in undercourses" ng-click="fillcoursebox(course);">{{course}}</li>
+          </ul>
         </div>
       </div>
     </div>
     <div class="col-md-offset-1 col-md-2 col-sm-4 col-xs-4">
       <span class="techninzaz">
         <b>DIAMOND</b>
-        <div class="profile-logo">
-          <a href="#">
-            <img src="img/techninzaz-logo.jpg" alt="urban" class="img-responsive techninzaz-logo">
-          </a>
-          <div class="subMenu" ng-show = false>
-            <ul>
-              <li>
-                <a ui-sref="#">Edit Profile</a>
-              </li>
-              <li>
-                <a ui-sref="#">Sign Out</a>
-              </li>
+        <div class="profile-logo dropdown">
+
+          <a href="#" >
+            <ul class="dropdown-menu">
+              <li class="dropdown-header"><a href="#">{{instituteName}}</a></li>
+              <li class="divider"></li>             
+              <li><a href="#">Profile Settings</a></li>
+             
+              <li class="divider"></li>
+              <li><a href="#">Sign Out</a></li>
             </ul>
-          </div>
+            <img ng-src={{instituteImage}} alt="urban" data-toggle="dropdown" class="img-responsive techninzaz-logo">
+          </a>
         </div>
       </span>
     </div>
