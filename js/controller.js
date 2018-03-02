@@ -74,6 +74,19 @@ angular.module('LocatorApp.controllers', [])
 	}).error(function(err){
 		console.log(err);
 	});
+	//$scope.getSearchResults = function() {
+		enquiry.searchCourseLocation()
+			.success(function(res) {
+				$scope.searchResults = res.response; 
+			}).error(function(error) {
+				console.log(error);
+			});
+	//};
+		
+		$scope.message = {
+		   text: 'hello world!',
+		   time: "2018-02-01 09:00:00"
+		};
 })
 
 .controller('selectLocationsController', function($scope, $state, selectLoc){
