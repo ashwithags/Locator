@@ -5,10 +5,10 @@
 		<div class="col-md-2 col-lg-2">
 			<sidebar></sidebar>
 		</div>
-		<div class="col-md-10 col-lg-10">
+		<div class="col-md-3 col-lg-3">
+			
 			<div class="user-block">
 				<div class="user-basic-detail">
-					<!-- <span><i class="fas fa-arrow-circle-left"></i></span> -->
 					<h3><span><i class="fas fa-arrow-circle-left"></i></span> {{userDetail.enquired_username}}</h3>
 					<h5><i class="fas fa-map-marker-alt"></i>&nbsp; {{userDetail.enquired_user_location}}, {{userDetail.enquired_user_city}}</h5>
 					<p><i class="fas fa-mobile-alt"></i>&nbsp; {{userDetail.enquired_user_phnno}}</p>
@@ -22,11 +22,23 @@
 				<h5>{{userDetail.enquired_category}}</h5>
 				<p>Received at {{userDetail.timestamp}}</p>
 			</div>
+		</div>
+		<div class="col-md-7 col-lg-7">
 			<div class="message">
-				<div class="msgDetails">
-					<h5>Hi {{userDetail.enquired_username}}. We can help you with the above requirement.We have a Classroom Training Module on Hybride Angularjs Development.Please contactus at +91-9739789657(verified)Thanks & regards.TechNinzaz
-					</h5>
-				</div>
+				<div class="msgDetails">	
+					<div class="form-group"  ng-if="userDetail.enquired_username == null">
+						<form name="messageform">
+	    					<label for="message"></label>
+	    					<textarea class="form-control" name="msgText" ng-model="msgText" id="message" rows="7"></textarea>
+	    					<br>
+	    					<button class="btn btn-info" ng-click="submitQuotation()" ng-disabled="messageform.$invalid || messageform.$pristine">Send</button>
+	    				</form>
+	    			</div>
+					<div ng-if="userDetail.enquired_username != null">	
+						<h5>Hi {{userDetail.enquired_username}}. We can help you with the above requirement.We have a Classroom Training Module on Hybride Angularjs Development.Please contactus at +91-9739789657(verified)Thanks & regards.TechNinzaz
+						</h5>	
+					</div>
+    			</div>
 				<div class="discuss-details">
 					<h3>Call {{userDetail.enquired_username}} to discuss details</h3>
 					<div class="contact-block">

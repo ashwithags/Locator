@@ -1,0 +1,137 @@
+{
+  "status": true,
+  "response": [
+    {
+      "id": 1,
+      "course_id": "L00001",
+      "course_name": "NodeJs Training",
+      "course_status": 1
+    },
+    {
+      "id": 2,
+      "course_id": "L00002",
+      "course_name": "AngularJS Training",
+      "course_status": 1
+    },
+    {
+      "id": 3,
+      "course_id": "L00003",
+      "course_name": "Web Development Training",
+      "course_status": 1
+    },
+    {
+      "id": 4,
+      "course_id": "L00004",
+      "course_name": "HTML Training",
+      "course_status": 1
+    },
+    {
+      "id": 5,
+      "course_id": "L00005",
+      "course_name": "CSS Training",
+      "course_status": 1
+    },
+    {
+      "id": 6,
+      "course_id": "L00006",
+      "course_name": "CodeIgniter Training",
+      "course_status": 1
+    },
+    {
+      "id": 7,
+      "course_id": "L00007",
+      "course_name": "XML Webservices Training",
+      "course_status": 1
+    },
+    {
+      "id": 8,
+      "course_id": "L00008",
+      "course_name": "SAP Training",
+      "course_status": 1
+    },
+    {
+      "id": 9,
+      "course_id": "L00009",
+      "course_name": "Oracle Training (WebCenter Content)",
+      "course_status": 1
+    },
+    {
+      "id": 10,
+      "course_id": "L000010",
+      "course_name": "Oracle Training (WebCenter Portal)",
+      "course_status": 1
+    },
+    {
+      "id": 11,
+      "course_id": "L000011",
+      "course_name": "BTech Tuition (Java Programming)",
+      "course_status": 1
+    },
+    {
+      "id": 12,
+      "course_id": "L000012",
+      "course_name": "Java Training (Java Certification)",
+      "course_status": 1
+    },
+    {
+      "id": 13,
+      "course_id": "L000013",
+      "course_name": "Java Training Classes",
+      "course_status": 1
+    },
+    {
+      "id": 14,
+      "course_id": "L000014",
+      "course_name": "Engineering Diploma Tuition (Java Programming)",
+      "course_status": 1
+    },
+    {
+      "id": 15,
+      "course_id": "L000015",
+      "course_name": "Java Script Training",
+      "course_status": 1
+    },
+    {
+      "id": 16,
+      "course_id": "L000016",
+      "course_name": "Data Science (Java) Classes",
+      "course_status": 1
+    },
+    {
+      "id": 17,
+      "course_id": "L000017",
+      "course_name": "Java Training (Core Java) Classes",
+      "course_status": 1
+    },
+    {
+      "id": 18,
+      "course_id": "L000018",
+      "course_name": "Java Training (JSP (Java Server Pages)) Classes",
+      "course_status": 1
+    },
+    {
+      "id": 19,
+      "course_id": "L000019",
+      "course_name": "Design and Development of Web Applications",
+      "course_status": 1
+    },
+    {
+      "id": 20,
+      "course_id": "L000020",
+      "course_name": "Internet Concepts and Web Design",
+      "course_status": 1
+    },
+    {
+      "id": 21,
+      "course_id": "L000021",
+      "course_name": "Advanced Web Designing",
+      "course_status": 1
+    },
+    {
+      "id": 22,
+      "course_id": "L000022",
+      "course_name": "Basic Web Designing",
+      "course_status": 1
+    }
+  ]
+}
