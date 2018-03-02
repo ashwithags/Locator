@@ -86,7 +86,7 @@ angular.module('LocatorApp.services', [])
 })
 
 
-//selectcourse services Dinesh
+
 .factory("courseListProcess", function($http){
 	var services = {};
 	services.getCourseList = function(){
