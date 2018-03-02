@@ -1,35 +1,39 @@
 angular.module('LocatorApp.controllers', [])
 
-.controller('loginController', function($scope, $state, loginOperation) {
+.controller('loginController', function($scope, $state, loginOperation, $rootScope) {
 	$scope.login = function(loginData) {
 		console.log(loginData);
-    showDiv=true;
     loginOperation.instituteLogin(loginData).success(function(wow) {
-			//console.log(wow);
 			if (wow.status) {
 				sessionStorage.setItem('logged_in',wow.result.id);
-				$state.go('selectLocations',{inst_id: wow.result.id});
+				$rootScope.instituteImage = wow.result.inst_images;
+				$rootScope.instituteName = wow.result.inst_name;
+
+				$state.go('enquiry',{inst_id: wow.result.id});
 			} else {
 				alert(wow.message);
 			}
 		}, function(err) {
 			console.log(err);
 		}); // Error
-  }
-  $scope.signUp = function(signUpData) {
-    console.log(signUpData);
-    signUpData.i_images = "no images";
-    loginOperation.instituteSignup(signUpData).success(function(wow) {
-     $scope.signUpData = '';
-     if (wow.status) {
-      $scope.showDiv=true;
-    } else {
-      $scope.showDiv=true;
-    }
-  },function(err) {
-   console.log(err);
- });
-  }
+	}
+	$scope.signUp = function(signUpData) {
+		console.log(signUpData);
+		signUpData.i_images = "no images";
+		loginOperation.instituteSignup(signUpData).success(function(wow) {
+			$scope.signUpData = '';
+			if (wow.status) {
+				$scope.showDiv=true;
+				console.log(wow);
+				sessionStorage.setItem('logged_in',wow.result.user_id);
+				$state.go('selectLocations',{inst_id: wow.result.user_id});
+			} else {
+				$scope.showDiv=true;
+			}
+		},function(err) {
+			console.log(err);
+		});
+	}
 })
 .controller('enquiryController', function($scope, $state, enquiry){
 	enquiry.getEnqList().success(function(now){
@@ -55,12 +59,8 @@ angular.module('LocatorApp.controllers', [])
    console.log(data);
    		//$scope.userDetail = data;
    		$state.go('needuserdetails',{obj: data});
-   	}
-   /*	$scope. = function(){
-   		$state.go('searchResult');
-   	}*/
-
-   })
+   }
+})
 
 .controller('detailController',function($scope, $state){
 	$scope.userDetail = $state.params.obj;
@@ -77,31 +77,35 @@ angular.module('LocatorApp.controllers', [])
 })
 
 .controller('selectLocationsController', function($scope, $state, selectLoc){
-	$scope.checkedItemsList = [];
-	
+	selectLoc.getLocations().success(function(res){
+    	$scope.locations = res.response;
+    	//console.log(res);	
+    }).error(function(err){
+    	console.log(err);
+  });
+  
   $scope.checkedItems = function() {
-    $scope.checkedItemsList = [];
-    angular.forEach($scope.locations, function(appObj, arrayIndex){
-     if(appObj.checked) {
-      $scope.checkedItemsList.push(appObj.id);
-    }
-  });
-  };
-  $scope.saveLocations = function() {
-    var list = $scope.checkedItemsList.join();
-    var obj = {};
-    obj.i_lc = list;
-    obj.i_type = "location";
-    obj.i_id = sessionStorage.getItem('logged_in');
-    selectLoc.saveLocations(obj).success(function(res) {
-     if(res.status) {
-      $state.go('courses');
-    }
-  }).error(function(error){
-
-  });
-};
-
+		$scope.checkedItemsList = [];
+		angular.forEach($scope.locations, function(appObj, arrayIndex){
+			if(appObj.checked) {
+				$scope.checkedItemsList.push(appObj.id);
+			}
+		});
+	};
+	$scope.saveLocations = function() {
+		var list = $scope.checkedItemsList.join();
+		var obj = {};
+		obj.i_lc = list;
+		obj.i_type = "location";
+		obj.i_id = sessionStorage.getItem('logged_in');
+		selectLoc.saveLocations(obj).success(function(res) {
+			if(res.status) {
+				$state.go('courses');
+			}
+		}).error(function(error){
+			
+		});
+	};
 })
 
 
@@ -164,6 +168,7 @@ angular.module('LocatorApp.controllers', [])
   $scope.hidden = true;
 
   selectLoc.getLocations().success(function(res){
+    console.log('wow');
     $scope.location = res.response;
   }).error(function(err){
     console.log(err);

@@ -1,6 +1,5 @@
 angular.module('LocatorApp.services', [])
 
-//This JavaScript file "factory.js" for fetching the data from the database and provide it to the controller.
 .factory('loginOperation', function($http,$q){
 	var services={};
 	services.instituteLogin = function(ldata){
