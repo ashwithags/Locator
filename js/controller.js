@@ -35,12 +35,16 @@ angular.module('LocatorApp.controllers', [])
 		});
 	}
 })
+.controller('profileCtrl', function($scope, $state){
+	
+})
 .controller('enquiryController', function($scope, $state, enquiry){
-	enquiry.getEnqList().success(function(now){
-		if(now.success){
-			$scope.enquries = now.enq_list;
+	enquiry.getReceivedLeads('enquiry', sessionStorage.getItem('logged_in')).success(function(now){
+		if(now.status){
+			$scope.enquries = now.response;
 		}
 	});
+
 	enquiry.getContactedList().success(function(wow){
    if(wow.success){
     $scope.contacted = wow.cnt_list;
@@ -60,6 +64,12 @@ angular.module('LocatorApp.controllers', [])
    		//$scope.userDetail = data;
    		$state.go('needuserdetails',{obj: data});
    }
+  enquiry.getReceivedLeads('contact', sessionStorage.getItem('logged_in'))
+  	.success(function(data) {
+  		$scope.contacted = data.response;
+  	}).error(function(error) {
+  		
+  	});
 })
 
 .controller('detailController',function($scope, $state){

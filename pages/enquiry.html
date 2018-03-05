@@ -17,25 +17,25 @@
 					<div class="list total">{{enquries.length}} Enquiries</div>
 					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="enquery in enquries" ng-click="enquiryDetail(enquery)">	
 	                    <div class="first-char">
-	                    	<div class="first-letter randomColor" ng-bind="enquery.enquired_username.charAt(0)"></div>
+	                    	<div class="first-letter randomColor" ng-bind="enquery.firstname.charAt(0)"></div>
 	                    </div>
 	                    <div class="desc">
-	                    	<h3>{{enquery.enquired_username}}</h3>
-							<h6 class="category"><strong>{{enquery.enquired_category | uppercase}}</strong></h6>
-							<p class="location" ng-model="loaction">{{enquery.enquired_user_location}}, {{enquery.enquired_user_city}}</p>
+	                    	<h3>{{enquery.firstname}} {{enquery.lastname}}</h3>
+							<h6 class="category"><strong>{{enquery.coursename | uppercase}}</strong></h6>
+							<p class="location" ng-model="loaction">{{enquery.location_name}}, {{enquery.location_city}}</p>
 		                </div>
 					</div>
 				</div>
 				<div id="contacted" class="tab-pane fade">
 					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="contacts in contacted">	
 	                    <div class="first-char">
-	                    	<div class="first-letter randomColor" ng-bind="contacts.enquired_username.charAt(0)"></div>
+	                    	<div class="first-letter randomColor" ng-bind="contacts.firstname.charAt(0)"></div>
 	                    </div>
 	                    <div class="desc">
-	                    	<h3>{{contacts.enquired_username}}</h3>
-							<h6 class="category"><strong>{{contacts.enquired_category | uppercase}}</strong>, {{contacts.enquired_user_location}},  {{contacts.enquired_user_city}}</h6>
+	                    	<h3>{{contacts.firstname}} {{contacts.lastname}}</h3>
+							<h6 class="category"><strong>{{contacts.coursename | uppercase}}</strong>, {{contacts.location_name}},  {{contacts.location_city}}</h6>
 							<p class="location" ng-model="loaction"></p>
-							<p class="msg">Hi, {{contacts.enquired_username}}. We can help you with the above requirement as we offer a....</p>
+							<p class="msg">Hi, {{contacts.firstname}}. We can help you with the above requirement as we offer a....</p>
 		                </div>
 					</div>
 				</div>
