@@ -39,20 +39,21 @@ angular.module('LocatorApp.controllers', [])
 	
 })
 .controller('enquiryController', function($scope, $state, enquiry){
-	enquiry.getEnqList().success(function(now){
-		if(now.success){
-			$scope.enquries = now.enq_list;
+	enquiry.getReceivedLeads('enquiry', sessionStorage.getItem('logged_in')).success(function(now){
+		if(now.status){
+			$scope.enquries = now.response;
 		}
 	});
+
 	enquiry.getContactedList().success(function(wow){
    if(wow.success){
     $scope.contacted = wow.cnt_list;
    			//console.log(contacted);
    		}
    	});
-  enquiry.getStudentsList().success(function(info){
-    $scope.StudentsList = info;
-		//console.log(StudentsList);
+  enquiry.getReceivedLeads("student",3).success(function(info){
+    $scope.StudentsList = info.response;
+		console.log($scope.StudentsList);
   });
   enquiry.currentPosition().success(function(data){
     $scope.position = data;
@@ -148,13 +149,13 @@ angular.module('LocatorApp.controllers', [])
 
 
 .controller("courseCtrl", function($scope,$state,courseListProcess){
-	courseListProcess.getCourseList().success(function(response){
+	/*courseListProcess.getCourseList().success(function(response){
 		if(response.status){
 			$scope.courses = response.response;
 		}
 	}).error(function(err){
 		console.log(err);
-	});
+	});*/
 
 	$scope.courseLength = true;
 	var checkedCourse = [];
@@ -212,11 +213,11 @@ angular.module('LocatorApp.controllers', [])
     console.log(err);
   });
 
-  courseListProcess.getCourseList().success(function(res){
+  /*courseListProcess.getCourseList().success(function(res){
     $scope.courselist = res.response;
   }).error(function(err){
     console.log(err);
-  });
+  });*/
 
   $scope.disp = function(){
     $scope.hidethis = true;
