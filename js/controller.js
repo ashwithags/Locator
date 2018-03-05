@@ -86,7 +86,9 @@ angular.module('LocatorApp.controllers', [])
 		  object.type = updateTypeTo;
 		  enquiry.updateLeadStatus(object)
 		  	.success(function(data) {
-		  		console.log(data);
+		  		if(data.status) {
+		  			$state.go('/enquiry')
+		  		}
 		  	}).error(function(error) {
 		  		
 		  	});
