@@ -40,6 +40,24 @@
 						<button class="contact-button">
 							<i class="fas fa-phone-volume"></i> &nbsp; {{userDetail.enquired_user_phnno}}
 						</button>
+				<div class="msgDetails">	
+					<div class="form-group"  ng-if="userDetail.enquired_username == null">
+						<form name="messageform">
+	    					<label for="message"></label>
+	    					<textarea class="form-control" name="msgText" ng-model="msgText" id="message" rows="7"></textarea>
+	    					<br>
+	    					<button class="btn btn-info" ng-click="submitQuotation()" ng-disabled="messageform.$invalid || messageform.$pristine">Send</button>
+	    				</form>
+	    			</div>
+					<div ng-if="userDetail.enquired_username != null">	
+						<h5>Hi {{userDetail.enquired_username}}. We can help you with the above requirement.We have a Classroom Training Module on Hybride Angularjs Development.Please contactus at +91-9739789657(verified)Thanks & regards.TechNinzaz
+						</h5>	
+					</div>
+    			</div>
+				<div class="discuss-details">
+					<h3>Call {{userDetail.enquired_username}} to discuss details</h3>
+					<div class="contact-block">
+						<button class="contact-button"><i class="fas fa-phone-volume"></i> &nbsp; {{userDetail.enquired_user_phnno}}</button>
 					</div>
 					<p>Please call between 9am and 9pm</p>
 				</div>

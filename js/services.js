@@ -59,7 +59,18 @@ angular.module('LocatorApp.services', [])
 			url:'https://api.myjson.com/bins/ysy8h'
 		})
 	}
-
+	services.searchCourseLocation = function() {
+		return $http({
+			method: 'GET',
+			url: 'http://192.168.1.12:7999/api/v1/institute/searchStudents/2/3'
+		})
+	}
+	services.getReceivedLeads = function(type, inst_id) {
+		return $http({
+			method: 'GET',
+			url: 'http://192.168.1.12:7999/api/v1/institute/receivedleads/'+type+'/'+inst_id,
+		})
+	}
 	return services;
 
 })

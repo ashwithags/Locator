@@ -68,6 +68,9 @@ angular.module('LocatorApp.controllers', [])
 .controller('detailController',function($scope, $state){
 	$scope.userDetail = $state.params.obj;
 	//console.log($scope.userDetail);
+	$scope.submitQuotation = function(){
+		console.log('Quotation Submission Should happen from Here');
+	};
 })
 .controller('searchController',function($scope, $state, enquiry){
 	enquiry.search().success(function(data){
@@ -77,6 +80,19 @@ angular.module('LocatorApp.controllers', [])
 	}).error(function(err){
 		console.log(err);
 	});
+	//$scope.getSearchResults = function() {
+		enquiry.searchCourseLocation()
+			.success(function(res) {
+				$scope.searchResults = res.response; 
+			}).error(function(error) {
+				console.log(error);
+			});
+	//};
+		
+		$scope.message = {
+		   text: 'hello world!',
+		   time: "2018-02-01 09:00:00"
+		};
 })
 
 .controller('selectLocationsController', function($scope, $state, selectLoc){
