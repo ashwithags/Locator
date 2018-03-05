@@ -59,10 +59,10 @@ angular.module('LocatorApp.controllers', [])
     $scope.position = data;
 		//console.log(position);
   });
-  $scope.enquiryDetail = function(data){
+  $scope.enquiryDetail = function(data, type){
    console.log(data);
    		//$scope.userDetail = data;
-   		$state.go('needuserdetails',{obj: data});
+   		$state.go('needuserdetails',{obj: data, type: type});
    }
   enquiry.getReceivedLeads('contact', sessionStorage.getItem('logged_in'))
   	.success(function(data) {
@@ -72,12 +72,25 @@ angular.module('LocatorApp.controllers', [])
   	});
 })
 
-.controller('detailController',function($scope, $state){
+.controller('detailController',function($scope, $state, enquiry){
 	$scope.userDetail = $state.params.obj;
-	console.log($scope.userDetail);
+	$scope.type = $state.params.type;
+	//console.log($scope.userDetail);
 	$scope.submitQuotation = function(){
 		console.log('Quotation Submission Should happen from Here');
 	};
+	
+	$scope.updateTransactionStatus = function(updateTypeTo) {
+		  var object = {};
+		  object.trans_id = $scope.userDetail.transactionid;
+		  object.type = updateTypeTo;
+		  enquiry.updateLeadStatus(object)
+		  	.success(function(data) {
+		  		console.log(data);
+		  	}).error(function(error) {
+		  		
+		  	});
+	}
 })
 .controller('searchController',function($scope, $state, enquiry){
 	enquiry.search().success(function(data){

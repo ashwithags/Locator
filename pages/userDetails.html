@@ -18,16 +18,16 @@
 				</div>
 			</div>
 			<div class="join">
-			<div class="did-join-course">
-				<h3>{{userDetail.coursename}}</h3>
-				<p>Received at {{userDetail.timestamp}}</p>
-				<div class="did-join-detail">
-					<h4> Did {{userDetail.firstname}} {{userDetail.lastname}} join for any course?</h4>
-					<button> Yes </button> &nbsp;&nbsp;&nbsp; 
-					<button> No</button>
+				<div class="did-join-course" ng-if="type = 'contact'">
+					<h5>{{userDetail.coursename}}</h5>
+					<p>Received at {{userDetail.timestamp}}</p>
+					<div class="did-join-detail">
+						<h5> Did {{userDetail.firstname}} join for any course?</h5>
+						<button ng-click="updateTransactionStatus('student')"> Yes </button> &nbsp;&nbsp;&nbsp; 
+						<button> No</button>
+					</div>
+					<br>
 				</div>
-				<br>
-			</div>
 			</div>
 		</div>
 		<div class="col-md-7 col-lg-7">

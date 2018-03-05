@@ -24,7 +24,8 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 		.state('needuserdetails',{
 			url: '/needuserdetails',
 			params: {
-				obj: null
+				obj: null,
+				type: null
 			},
 			templateUrl : 'pages/userDetails.html',
 			controller : 'detailController'

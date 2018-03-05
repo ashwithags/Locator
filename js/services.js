@@ -71,6 +71,16 @@ angular.module('LocatorApp.services', [])
 			url: 'http://192.168.1.12:7999/api/v1/institute/receivedleads/'+type+'/'+inst_id
 		})
 	}
+	services.updateLeadStatus = function(data) {
+		return $http({
+			method: 'POST',
+			url: 'http://192.168.1.12:7999/api/v1/institute/updateleadstatus',
+			header: {
+				'Content-Type': 'application/json'
+			},
+			data: data
+		})
+	}
 	return services;
 
 })
