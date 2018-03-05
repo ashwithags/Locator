@@ -77,7 +77,8 @@ angular.module('LocatorApp.controllers', [])
 	$scope.type = $state.params.type;
 	//console.log($scope.userDetail);
 	$scope.submitQuotation = function(){
-		console.log('Quotation Submission Should happen from Here');
+		console.log($scope.msgText);
+		console.log($scope.userDetail.transactionid);
 	};
 	
 	$scope.updateTransactionStatus = function(updateTypeTo) {
