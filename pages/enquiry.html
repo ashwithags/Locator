@@ -42,12 +42,12 @@
 				<div id="student" class="tab-pane fade">
 					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="stud in StudentsList">	
 	                    <div class="first-char">
-	                    	<div class="first-letter randomColor" ng-bind="stud.enquired_username.charAt(0)"></div>
+	                    	<div class="first-letter randomColor" ng-bind="stud.firstname.charAt(0)"></div>
 	                    </div>
 	                    <div class="desc">
-	                    	<h3>{{stud.enquired_username}}</h3>
-							<h6 class="category"><strong>{{stud.enquired_category | uppercase}}</strong></h6>
-							<p class="msg">Hi, {{stud.enquired_username}}. We can help you with the above requirement as we offer a....</p>
+	                    	<h3>{{stud.firstname }} {{stud.lastname}}</h3>
+							<h6 class="category"><strong>{{stud.coursename | uppercase}}</strong></h6>
+							<p class="msg">Hi, {{stud.username}}. We can help you with the above requirement as we offer a....</p>
 		                </div>
 					</div>
 				</div>
