@@ -43,5 +43,9 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 			url: '/selectCourses',
 			templateUrl : 'pages/selectCourse.html',
 			controller: 'courseCtrl'
+		}).state("coursestatus",{
+			url:"/coursestatus",
+			templateUrl:"pages/coursestatus.html",
+			controller:"coursestatusctrl"
 		})
 });

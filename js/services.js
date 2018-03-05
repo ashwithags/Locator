@@ -89,13 +89,7 @@ angular.module('LocatorApp.services', [])
 
 .factory("courseListProcess", function($http){
 	var services = {};
-	services.getCourseList = function(){
-		return $http({
-			url: 'http://192.168.1.12:7999/api/v1/search/allcourses',
-			method: 'GET'
-		});
-	};
-	
+
 	services.sendCourseDetails = function(info){
 		return $http({
 			url:"http://192.168.1.12:7999/api/v1/institute/updatelc",

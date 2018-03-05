@@ -1,0 +1,12 @@
+<div class="flexcontainer1">
+	<ul class="flexcontainer2" >
+		<li class="fntsz" ng-repeat="course in courses">
+			{{course.course_name}}
+			<label class="switch">
+			  <input type="checkbox" ng-model="ticked" ng-click="course_availablity(ticked,course.course_id)" >
+			  <span class="slider round"></span>
+			</label>
+
+		</li>
+	</ul>
+</div>

@@ -8,22 +8,23 @@
     <div class=" col-md-6 col-sm-6 col-xs-6">
       <div class="col-md-3 col-sm-4 col-xs-4 padding-modify">
         <div class="form-group">
-          <input type="text" class="form-control form-control1-modify" placeholder="search location.." ng-model="locate" ng-keyup="suggestLocations(locate)">
+          <input type="text" size="50" class="form-control form-control1-modify" placeholder="search location.." ng-model="locate" ng-keyup="suggestLocations(locate)">
           <ul class="tall list-group" ng-hide="hidethis" ng-blur="disp()">
             <li class="list-group-item" ng-repeat="place in places" ng-click="filltextbox(place)">
-              {{place}}
+              {{place.plc}}
             </li>
           </ul>
         </div>
       </div>
-      <div class="col-md-9 col-sm-8 col-xs-8 padding-modify">
+      <div class="col-md-4 col-sm-4 col-xs-4 padding-modify">
         <div class="form-group">
-          <input type="text" class="form-control form-control2-modify" placeholder="Search courses.." ng-model="subject" ng-keyup="suggestCourses(subject)" ng-blur="dispp()">
-          <ul class=" drop list-group" ng-hide="hidden">
-            <li class="list-group-item" ng-repeat="course in undercourses" ng-click="fillcoursebox(course);">{{course}}</li>
+          <input type="text" size="50" class="form-control form-control2-modify" placeholder="Search courses.." ng-model="subject" ng-keyup="suggestCourses(subject)" ng-blur="dispp()">
+          <ul class=" drop list-group" ng-hide="hidden" >
+            <li class="list-group-item" ng-repeat="course in courses" ng-click="fillcoursebox(course);">{{course.course_name}}</li>
           </ul>
         </div>
       </div>
+      <button class="col-md-offset-1" ng-click="capture(selectedlocation,selectedcourse)">capture</button>
     </div>
     <div class="col-md-offset-1 col-md-2 col-sm-4 col-xs-4">
       <span class="techninzaz">
