@@ -74,7 +74,7 @@ angular.module('LocatorApp.controllers', [])
 
 .controller('detailController',function($scope, $state){
 	$scope.userDetail = $state.params.obj;
-	//console.log($scope.userDetail);
+	console.log($scope.userDetail);
 	$scope.submitQuotation = function(){
 		console.log('Quotation Submission Should happen from Here');
 	};
