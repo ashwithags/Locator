@@ -60,6 +60,12 @@ angular.module('LocatorApp.controllers', [])
    		//$scope.userDetail = data;
    		$state.go('needuserdetails',{obj: data});
    }
+  enquiry.getReceivedLeads('contact', sessionStorage.getItem('logged_in'))
+  	.success(function(data) {
+  		$scope.contacted = data.response;
+  	}).error(function(error) {
+  		
+  	});
 })
 
 .controller('detailController',function($scope, $state){

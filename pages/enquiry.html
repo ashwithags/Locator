@@ -29,13 +29,13 @@
 				<div id="contacted" class="tab-pane fade">
 					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="contacts in contacted">	
 	                    <div class="first-char">
-	                    	<div class="first-letter randomColor" ng-bind="contacts.enquired_username.charAt(0)"></div>
+	                    	<div class="first-letter randomColor" ng-bind="contacts.firstname.charAt(0)"></div>
 	                    </div>
 	                    <div class="desc">
-	                    	<h3>{{contacts.enquired_username}}</h3>
-							<h6 class="category"><strong>{{contacts.enquired_category | uppercase}}</strong>, {{contacts.enquired_user_location}},  {{contacts.enquired_user_city}}</h6>
+	                    	<h3>{{contacts.firstname}} {{contacts.lastname}}</h3>
+							<h6 class="category"><strong>{{contacts.coursename | uppercase}}</strong>, {{contacts.location_name}},  {{contacts.location_city}}</h6>
 							<p class="location" ng-model="loaction"></p>
-							<p class="msg">Hi, {{contacts.enquired_username}}. We can help you with the above requirement as we offer a....</p>
+							<p class="msg">Hi, {{contacts.firstname}}. We can help you with the above requirement as we offer a....</p>
 		                </div>
 					</div>
 				</div>
