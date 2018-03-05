@@ -8,33 +8,46 @@
 		<div class="col-md-3 col-lg-3">
 			<div class="user-block">
 				<div class="user-basic-detail">
-					<h3><span><i class="fas fa-arrow-circle-left"></i></span> {{userDetail.enquired_username}}</h3>
-					<h5><i class="fas fa-map-marker-alt"></i>&nbsp; {{userDetail.enquired_user_location}}, {{userDetail.enquired_user_city}}</h5>
-					<p><i class="fas fa-mobile-alt"></i>&nbsp; {{userDetail.enquired_user_phnno}}</p>
+					<h3><span><i class="fas fa-arrow-circle-left"></i></span> {{userDetail.firstname}} {{userDetail.lastname}}</h3>
+					<h5><i class="fas fa-map-marker-alt"></i>&nbsp; {{userDetail.location_name}}, {{userDetail.location_city}}</h5>
+					<p><i class="fas fa-mobile-alt"></i>&nbsp; {{userDetail.moible}}</p>
 				</div>
 				<div class="payment">
-					<span class="payment-request">Request a Payment</span>
+					<span class="payment-request"> Request a Payment</span>
 					<h5>When the student is ready to pay</h5>
 				</div>
 			</div>
-			<div class="did-join-course" ng-if="type == 'contact'">
-				<h5>{{userDetail.coursename}}</h5>
-				<p>Received at {{userDetail.timestamp}}</p>
-				<div class="did-join-detail">
-					<h5> Did {{userDetail.firstname}} join for any course?</h5>
-					<button ng-click="updateTransactionStatus('student')"> Yes </button>
+			<div class="join">
+				<div class="did-join-course" ng-if="type == 'contact'">
+					<h5>{{userDetail.coursename}}</h5>
+					<p>Received at {{userDetail.timestamp}}</p>
+					<div class="did-join-detail">
+						<h5> Did {{userDetail.firstname}} join for any course?</h5>
+						<button ng-click="updateTransactionStatus('student')"> Yes </button> &nbsp;&nbsp;&nbsp; 
+						<button> No</button>
+					</div>
+					<br>
 				</div>
-				<br>
+				<div class="did-join-course" ng-if="type == 'enquiry'">
+					<h5>{{userDetail.coursename}}</h5>
+					<p>Received at {{userDetail.timestamp}}</p>
+					<div class="did-join-detail">
+						<h5> Did {{userDetail.firstname}} join for any course?</h5>
+						<button ng-click="updateTransactionStatus('contact')"> Yes </button> &nbsp;&nbsp;&nbsp; 
+						<button> No</button>
+					</div>
+					<br>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-7 col-lg-7">
 			<div class="message">
 				<div class="msgDetails">
-					<h5>Hi {{userDetail.enquired_username}}. We can help you with the above requirement.We have a Classroom Training Module on Hybride Angularjs Development.Please contactus at +91-9739789657(verified)Thanks & regards.TechNinzaz
+					<h5>Hi {{userDetail.firstname}} {{userDetail.lastname}}. We can help you with the above requirement.We have a Classroom Training Module on Hybrid Angularjs Development.Please contact us at +91-9739789657(verified)Thanks & regards.TechNinzaz
 					</h5>
 				</div>
 				<div class="discuss-details">
-					<h3>Call {{userDetail.enquired_username}} to discuss details</h3>
+					<h3>Call {{userDetail.firstname}} {{userDetail.lastname}} to discuss details</h3>
 					<div class="contact-block">
 						<button class="contact-button">
 							<i class="fas fa-phone-volume"></i> &nbsp; {{userDetail.enquired_user_phnno}}
@@ -56,7 +69,7 @@
 				<div class="discuss-details">
 					<h3>Call {{userDetail.enquired_username}} to discuss details</h3>
 					<div class="contact-block">
-						<button class="contact-button"><i class="fas fa-phone-volume"></i> &nbsp; {{userDetail.enquired_user_phnno}}</button>
+						<button class="contact-button"><i class="fas fa-phone-volume"></i> &nbsp; {{userDetail.moible}}</button>
 					</div>
 					<p>Please call between 9am and 9pm</p>
 				</div>

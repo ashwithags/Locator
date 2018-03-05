@@ -285,6 +285,7 @@ footer.page-footer.blue.center-on-small-only {
     right: 10px;
     bottom: 5px;
     position: absolute;
+    text-align: center;
 }
 .payment h5{
     font-size: 16px;
@@ -306,9 +307,13 @@ span.payment-request{
     border-radius: 5px;
     background-color: #fff;
     text-align: center;
-     padding-left: 20px;
+    padding-left: 20px;
     padding-right: 20px;
     padding-top: 15px;
+    
+}
+.did-join-course h4{
+    color: #0000FF;
 }
 .did-join-detail{
     line-height: 1.6em;
