@@ -15,7 +15,7 @@
 			<div class="tab-content">
 				<div id="home" class="tab-pane fade in active">
 					<div class="list total">{{enquries.length}} Enquiries</div>
-					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="enquery in enquries" ng-click="enquiryDetail(enquery)">	
+					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="enquery in enquries" ng-click="enquiryDetail(enquery, 'enquiry')">	
 	                    <div class="first-char">
 	                    	<div class="first-letter randomColor" ng-bind="enquery.enquired_username.charAt(0)"></div>
 	                    </div>
@@ -27,7 +27,7 @@
 					</div>
 				</div>
 				<div id="contacted" class="tab-pane fade">
-					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="contacts in contacted">	
+					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="contacts in contacted" ng-click="enquiryDetail(contacts, 'contact')">	
 	                    <div class="first-char">
 	                    	<div class="first-letter randomColor" ng-bind="contacts.firstname.charAt(0)"></div>
 	                    </div>
