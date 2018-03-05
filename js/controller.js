@@ -35,6 +35,9 @@ angular.module('LocatorApp.controllers', [])
 		});
 	}
 })
+.controller('profileCtrl', function($scope, $state){
+	
+})
 .controller('enquiryController', function($scope, $state, enquiry){
 	enquiry.getEnqList().success(function(now){
 		if(now.success){

@@ -40,8 +40,13 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 			controller : 'selectLocationsController'
 		})
 		.state('courses',{
-			url: '/selectCourses',
+			url: '/courses',
 			templateUrl : 'pages/selectCourse.html',
 			controller: 'courseCtrl'
+		})
+		.state('profile',{
+			url: '/profile',
+			templateUrl : 'pages/profileinfo.html',
+			controller: 'profileCtrl'
 		})
 });
