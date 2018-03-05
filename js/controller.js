@@ -35,6 +35,9 @@ angular.module('LocatorApp.controllers', [])
 		});
 	}
 })
+.controller('profileCtrl', function($scope, $state){
+	
+})
 .controller('enquiryController', function($scope, $state, enquiry){
 	enquiry.getEnqList().success(function(now){
 		if(now.success){
@@ -207,45 +210,93 @@ angular.module('LocatorApp.controllers', [])
   };
 
   $scope.suggestLocations = function(locate){
-    var output = [];
+    $scope.places = [];
     $scope.hidethis = false;
     angular.forEach($scope.location,function(pl){
       if(pl.location_name.toLowerCase().indexOf(locate.toLowerCase())>=0){
         var plc =  pl.location_name + " "+pl.location_city;
-        output.push(plc);
-      }
-      else if(pl.location_pincode.toString().indexOf(locate) >=0){
+        pl.plc = plc;
+        $scope.places.push(pl);
+      } else if(pl.location_pincode.toString().indexOf(locate) >=0){
         var plbypin = pl.location_pincode.toString()+ " "+pl.location_name;
-        output.push(plbypin);
+        pl.plc = plbypin;
+        $scope.places.push(pl);
       }
     });
-    $scope.places = output;
+    
   };
 
   $scope.filltextbox = function(selectedplace){
-    $scope.locate = selectedplace;
+    $scope.locate = selectedplace.plc;
+    $scope.selectedlocation = selectedplace.id;
     $scope.hidethis = "true";
   };
 
   $scope.suggestCourses = function(sub){
-    var output = [];
+    $scope.courses = [];
     $scope.hidden = false;
     angular.forEach($scope.courselist,function(cr){
       
       if(cr.course_name.toLowerCase().indexOf(sub.toLowerCase()) >=0){
-        output.push(cr.course_name);
+        $scope.courses.push(cr);
       }
     });
-    $scope.undercourses = output;
   };
 
-  $scope.fillcoursebox = function(crse){
-    $scope.subject = crse;
+  $scope.fillcoursebox = function(course){
+    $scope.subject = course.course_name;
+    $scope.selectedcourse = course.id;
     $scope.hidden = true;
   };
+
+  $scope.capture = function(l,c){
+    console.log(l);
+    console.log(c);
+  }
 
   /*$scope.dispp = function(){
     $scope.hidden = true;
   };*/
+
   
-});
+})
+.controller('coursestatusctrl', function($scope,courseListProcess){
+  $scope.allCourses = [];
+  $scope.availableCourses=[];
+  $scope.unavailableCourses = [];
+  
+  courseListProcess.getCourseList().success(function(result){
+    $scope.courses = result.response;
+    angular.forEach($scope.courses,function(ce){
+    $scope.allCourses.push(ce.course_id);
+  });
+  }).error(function(err){
+    console.log(err);
+  });
+
+  
+
+  $scope.course_availablity = function(status,id){
+    
+    console.log(status,id);
+    if(status==true){
+      console.log('in here true');
+      $scope.availableCourses.push(id);
+      if($scope.unavailableCourses.indexOf(id)>=0){
+        $scope.unavailableCourses.splice($scope.unavailableCourses.indexOf(id),1);
+      }
+
+    }
+    if(status == false) {
+      console.log($scope.availableCourses.indexOf(id)>=0);
+      if($scope.availableCourses.indexOf(id)>=0){
+        console.log('in here bro');
+        $scope.availableCourses.splice($scope.availableCourses.indexOf(id),1);
+        $scope.unavailableCourses.push(id);
+      }
+      
+    }
+    console.log($scope.availableCourses);
+    console.log($scope.unavailableCourses);
+  };
+})
