@@ -36,11 +36,12 @@ angular.module('LocatorApp.controllers', [])
 	}
 })
 .controller('enquiryController', function($scope, $state, enquiry){
-	enquiry.getEnqList().success(function(now){
-		if(now.success){
-			$scope.enquries = now.enq_list;
+	enquiry.getReceivedLeads('enquiry', sessionStorage.getItem('logged_in')).success(function(now){
+		if(now.status){
+			$scope.enquries = now.response;
 		}
 	});
+
 	enquiry.getContactedList().success(function(wow){
    if(wow.success){
     $scope.contacted = wow.cnt_list;

@@ -17,12 +17,12 @@
 					<div class="list total">{{enquries.length}} Enquiries</div>
 					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="enquery in enquries" ng-click="enquiryDetail(enquery)">	
 	                    <div class="first-char">
-	                    	<div class="first-letter randomColor" ng-bind="enquery.enquired_username.charAt(0)"></div>
+	                    	<div class="first-letter randomColor" ng-bind="enquery.firstname.charAt(0)"></div>
 	                    </div>
 	                    <div class="desc">
-	                    	<h3>{{enquery.enquired_username}}</h3>
-							<h6 class="category"><strong>{{enquery.enquired_category | uppercase}}</strong></h6>
-							<p class="location" ng-model="loaction">{{enquery.enquired_user_location}}, {{enquery.enquired_user_city}}</p>
+	                    	<h3>{{enquery.firstname}} {{enquery.lastname}}</h3>
+							<h6 class="category"><strong>{{enquery.coursename | uppercase}}</strong></h6>
+							<p class="location" ng-model="loaction">{{enquery.location_name}}, {{enquery.location_city}}</p>
 		                </div>
 					</div>
 				</div>

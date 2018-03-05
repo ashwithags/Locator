@@ -68,7 +68,7 @@ angular.module('LocatorApp.services', [])
 	services.getReceivedLeads = function(type, inst_id) {
 		return $http({
 			method: 'GET',
-			url: 'http://192.168.1.12:7999/api/v1/institute/receivedleads/'+type+'/'+inst_id,
+			url: 'http://192.168.1.12:7999/api/v1/institute/receivedleads/'+type+'/'+inst_id
 		})
 	}
 	return services;
