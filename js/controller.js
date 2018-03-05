@@ -88,7 +88,7 @@ angular.module('LocatorApp.controllers', [])
 		  enquiry.updateLeadStatus(object)
 		  	.success(function(data) {
 		  		if(data.status) {
-		  			$state.go('/enquiry')
+		  			$state.go('enquiry')
 		  		}
 		  	}).error(function(error) {
 		  		
