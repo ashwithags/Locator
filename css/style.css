@@ -6,10 +6,13 @@ body{
 h3,h6,p{
     margin: 6px;
 }
+.center{
+    text-align: center;
+}
 .topSpacing{
     margin-top: 10px;
 }
-.reister {
+.register {
     background-color: rgba(241, 241, 241, 0.69);
     padding: 40px;
     margin-top: 20%;
@@ -21,7 +24,7 @@ h1.title {
 input.ng-invalid.ng-dirty {
     border: 2px solid red;
 }
-.reister input {
+.register input {
     width: 100%;
     height: 40px;
     border-radius: 4px;
@@ -29,14 +32,14 @@ input.ng-invalid.ng-dirty {
     padding: 15px;
     border: 0px;
 }
-.reister input[type=number]::-webkit-inner-spin-button, 
-.reister input[type=number]::-webkit-outer-spin-button { 
+.register input[type=number]::-webkit-inner-spin-button, 
+.register input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     margin: 0; 
 }
-.reister ::placeholder {
+.register ::placeholder {
     color: #FFF;
 }
 .container-fluid.login {
@@ -80,6 +83,9 @@ ul.nav.navbar-nav.navbar-right {
 }
 .desc{
     display: inline-block;
+}
+.fa-phone-volume{
+    font-size: 20px;
 }
 .first-letter {
     background-color:  transparent;   /*#de2222*/ 
@@ -232,7 +238,7 @@ footer.page-footer.blue.center-on-small-only {
     box-shadow: 1.5px 2.5px 2px 1px  #9ea3aa;
     border-radius: 5px;
     background-color: #fff;
-    padding-bottom: 50px;
+    padding: 20px 15px;
     position: relative;
 }
 .user-basic-detail{
@@ -241,10 +247,8 @@ footer.page-footer.blue.center-on-small-only {
     text-align: center;
 }
 .user-basic-detail h3{
-    padding-top: 35px;
     font-weight: 500;
     letter-spacing: 0.5px;
-    padding-bottom: 5px;
 }
 .user-basic-detail h5{
     font-size: 16px;
@@ -281,21 +285,19 @@ footer.page-footer.blue.center-on-small-only {
 .profileDetails h4{
     margin-left: 50px;
 }
-.payment{
+/*.payment{
     right: 10px;
     bottom: 5px;
     position: absolute;
     text-align: center;
-}
+}*/
 .payment h5{
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.4px;
     word-spacing: 0.5px;
-    
 }
 span.payment-request{
-    text-align: right;
     font-size: 16px;
     color: #0000FF;
     letter-spacing: 0.5px;
@@ -311,6 +313,14 @@ span.payment-request{
     padding-right: 20px;
     padding-top: 15px;
     
+}
+.leftBottom{
+    margin-top: 5px;
+    box-shadow: 1.5px 2.5px 2px 1px  #9ea3aa;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+    padding: 20px 15px;
 }
 .did-join-course h4{
     color: #0000FF;
@@ -363,7 +373,6 @@ span.payment-request{
     box-shadow: 1.5px 2.5px 2px 1px  #9ea3aa;
     border-radius: 5px;
     margin-top: 15px;
-    text-align: center;
     background-color: #fff;
 }
 .msgDetails{
@@ -374,7 +383,6 @@ span.payment-request{
 
 .msgDetails h5{
     line-height: 1.6em;
-    text-align: center;
     background-color: #87CEFA;
     padding: 25px 40px;
     letter-spacing: 0.5px;

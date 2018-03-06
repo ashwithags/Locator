@@ -3,7 +3,7 @@ angular.module('LocatorApp.controllers', [])
 .controller('loginController', function($scope, $state, loginOperation, $rootScope) {
 	$scope.login = function(loginData) {
 		console.log(loginData);
-    loginOperation.instituteLogin(loginData).success(function(wow) {
+		loginOperation.instituteLogin(loginData).success(function(wow) {
 			if (wow.status) {
 				sessionStorage.setItem('logged_in',wow.result.id);
 				$rootScope.instituteImage = wow.result.inst_images;
@@ -44,121 +44,113 @@ angular.module('LocatorApp.controllers', [])
 			$scope.enquries = now.response;
 		}
 	});
-
-	enquiry.getContactedList().success(function(wow){
-   if(wow.success){
-    $scope.contacted = wow.cnt_list;
-   			//console.log(contacted);
-   		}
-   	});
-  enquiry.getReceivedLeads("student",3).success(function(info){
-    $scope.StudentsList = info.response;
+	enquiry.getReceivedLeads("student",3).success(function(info){
+		$scope.StudentsList = info.response;
 		console.log($scope.StudentsList);
-  });
-  enquiry.currentPosition().success(function(data){
-    $scope.position = data;
+	});
+	enquiry.currentPosition().success(function(data){
+		$scope.position = data;
 		//console.log(position);
-  });
-  $scope.enquiryDetail = function(data, type){
-   console.log(data);
+	});
+	$scope.enquiryDetail = function(data, type){
+		console.log(data);
    		//$scope.userDetail = data;
    		$state.go('needuserdetails',{obj: data, type: type});
-   }
-  enquiry.getReceivedLeads('contact', sessionStorage.getItem('logged_in'))
-  	.success(function(data) {
-  		$scope.contacted = data.response;
-  	}).error(function(error) {
-  		
-  	});
-})
+   	}
+   	enquiry.getReceivedLeads('contact', sessionStorage.getItem('logged_in'))
+   	.success(function(data) {
+   		$scope.contacted = data.response;
+   	}).error(function(error) {
+
+   	});
+   })
 
 .controller('detailController',function($scope, $state, enquiry){
+	//$scope.newmessage='';
 	$scope.userDetail = $state.params.obj;
 	$scope.type = $state.params.type;
-	//console.log($scope.userDetail);
 	$scope.submitQuotation = function(){
-		console.log($scope.msgText);
+		console.log($('#message').val());
 		console.log($scope.userDetail.transactionid);
+		var data = {
+			"transactionid": $scope.userDetail.transactionid,
+			"message": $('#message').val()
+		}
+		enquiry.updateInstituteMessage(data).success(function(resp) {
+			console.log(resp);
+		}).error(function(error) {
+
+		});
 	};
 	
 	$scope.updateTransactionStatus = function(updateTypeTo) {
-		  var object = {};
-		  object.trans_id = $scope.userDetail.transactionid;
-		  object.type = updateTypeTo;
-		  enquiry.updateLeadStatus(object)
-		  	.success(function(data) {
-		  		if(data.status) {
-		  			$state.go('enquiry')
-		  		}
-		  	}).error(function(error) {
-		  		
-		  	});
+		var object = {};
+		object.trans_id = $scope.userDetail.transactionid;
+		object.type = updateTypeTo;
+		enquiry.updateLeadStatus(object)
+		.success(function(data) {
+			if(data.status) {
+				$state.go('enquiry')
+			}
+		}).error(function(error) {
+
+		});
 	}
 })
 .controller('searchController',function($scope, $state, enquiry){
-	enquiry.search().success(function(data){
-		console.log(data);
-		$scope.searchData = data;
-
-	}).error(function(err){
-		console.log(err);
+	enquiry.searchCourseLocation().success(function(res) {
+		$scope.searchResults = res.response; 
+	}).error(function(error) {
+		console.log(error);
 	});
-	//$scope.getSearchResults = function() {
-		enquiry.searchCourseLocation()
-			.success(function(res) {
-				$scope.searchResults = res.response; 
-			}).error(function(error) {
-				console.log(error);
-			});
-	//};
-		
-		$scope.message = {
-		   text: 'hello world!',
-		   time: "2018-02-01 09:00:00"
-		};
+
+	$scope.message = {
+		text: 'hello world!',
+		time: "2018-02-01 09:00:00"
+	};
 })
 
 .controller('selectLocationsController', function($scope, $state, selectLoc){
 	selectLoc.getLocations().success(function(res){
-    	$scope.locations = res.response;
+		$scope.locations = res.response;
     	//console.log(res);	
     }).error(function(err){
     	console.log(err);
-  });
-  
-  $scope.checkedItems = function() {
-		$scope.checkedItemsList = [];
-		angular.forEach($scope.locations, function(appObj, arrayIndex){
-			if(appObj.checked) {
-				$scope.checkedItemsList.push(appObj.id);
-			}
-		});
-	};
-	$scope.saveLocations = function() {
-		var list = $scope.checkedItemsList.join();
-		var obj = {};
-		obj.i_lc = list;
-		obj.i_type = "location";
-		obj.i_id = sessionStorage.getItem('logged_in');
-		selectLoc.saveLocations(obj).success(function(res) {
-			if(res.status) {
-				$state.go('courses');
-			}
-		}).error(function(error){
-			
-		});
-	};
+    });
+
+    $scope.checkedItems = function() {
+    	$scope.checkedItemsList = [];
+    	angular.forEach($scope.locations, function(appObj, arrayIndex){
+    		if(appObj.checked) {
+    			$scope.checkedItemsList.push(appObj.id);
+    		}
+    	});
+    };
+    $scope.saveLocations = function() {
+    	var list = $scope.checkedItemsList.join();
+    	var obj = {};
+    	obj.i_lc = list;
+    	obj.i_type = "location";
+    	obj.i_id = sessionStorage.getItem('logged_in');
+    	selectLoc.saveLocations(obj).success(function(res) {
+    		if(res.status) {
+    			$state.go('courses');
+    		}
+    	}).error(function(error){
+
+    	});
+    };
 })
 
 
 .controller("courseCtrl", function($scope,$state,courseListProcess){
-	/*courseListProcess.getCourseList().success(function(response){
+	courseListProcess.getCourseList().success(function(response){
 		if(response.status){
 			$scope.courses = response.response;
 		}
 	}).error(function(err){
 		console.log(err);
-	});*/
+	});
 
 	$scope.courseLength = true;
 	var checkedCourse = [];
@@ -206,114 +198,114 @@ angular.module('LocatorApp.controllers', [])
 })
 .controller('headercntrl', function($scope,$state,selectLoc,courseListProcess){
 
-  $scope.hidethis = true;
-  $scope.hidden = true;
+	$scope.hidethis = true;
+	$scope.hidden = true;
 
-  selectLoc.getLocations().success(function(res){
-    console.log('wow');
-    $scope.location = res.response;
-  }).error(function(err){
-    console.log(err);
-  });
+	selectLoc.getLocations().success(function(res){
+		console.log('wow');
+		$scope.location = res.response;
+	}).error(function(err){
+		console.log(err);
+	});
 
   /*courseListProcess.getCourseList().success(function(res){
     $scope.courselist = res.response;
   }).error(function(err){
     console.log(err);
-  });*/
+});*/
 
-  $scope.disp = function(){
-    $scope.hidethis = true;
-  };
+$scope.disp = function(){
+	$scope.hidethis = true;
+};
 
-  $scope.suggestLocations = function(locate){
-    $scope.places = [];
-    $scope.hidethis = false;
-    angular.forEach($scope.location,function(pl){
-      if(pl.location_name.toLowerCase().indexOf(locate.toLowerCase())>=0){
-        var plc =  pl.location_name + " "+pl.location_city;
-        pl.plc = plc;
-        $scope.places.push(pl);
-      } else if(pl.location_pincode.toString().indexOf(locate) >=0){
-        var plbypin = pl.location_pincode.toString()+ " "+pl.location_name;
-        pl.plc = plbypin;
-        $scope.places.push(pl);
-      }
-    });
-    
-  };
+$scope.suggestLocations = function(locate){
+	$scope.places = [];
+	$scope.hidethis = false;
+	angular.forEach($scope.location,function(pl){
+		if(pl.location_name.toLowerCase().indexOf(locate.toLowerCase())>=0){
+			var plc =  pl.location_name + " "+pl.location_city;
+			pl.plc = plc;
+			$scope.places.push(pl);
+		} else if(pl.location_pincode.toString().indexOf(locate) >=0){
+			var plbypin = pl.location_pincode.toString()+ " "+pl.location_name;
+			pl.plc = plbypin;
+			$scope.places.push(pl);
+		}
+	});
 
-  $scope.filltextbox = function(selectedplace){
-    $scope.locate = selectedplace.plc;
-    $scope.selectedlocation = selectedplace.id;
-    $scope.hidethis = "true";
-  };
+};
 
-  $scope.suggestCourses = function(sub){
-    $scope.courses = [];
-    $scope.hidden = false;
-    angular.forEach($scope.courselist,function(cr){
-      
-      if(cr.course_name.toLowerCase().indexOf(sub.toLowerCase()) >=0){
-        $scope.courses.push(cr);
-      }
-    });
-  };
+$scope.filltextbox = function(selectedplace){
+	$scope.locate = selectedplace.plc;
+	$scope.selectedlocation = selectedplace.id;
+	$scope.hidethis = "true";
+};
 
-  $scope.fillcoursebox = function(course){
-    $scope.subject = course.course_name;
-    $scope.selectedcourse = course.id;
-    $scope.hidden = true;
-  };
+$scope.suggestCourses = function(sub){
+	$scope.courses = [];
+	$scope.hidden = false;
+	angular.forEach($scope.courselist,function(cr){
 
-  $scope.capture = function(l,c){
-    console.log(l);
-    console.log(c);
-  }
+		if(cr.course_name.toLowerCase().indexOf(sub.toLowerCase()) >=0){
+			$scope.courses.push(cr);
+		}
+	});
+};
+
+$scope.fillcoursebox = function(course){
+	$scope.subject = course.course_name;
+	$scope.selectedcourse = course.id;
+	$scope.hidden = true;
+};
+
+$scope.capture = function(l,c){
+	console.log(l);
+	console.log(c);
+}
 
   /*$scope.dispp = function(){
     $scope.hidden = true;
-  };*/
+};*/
 
-  
+
 })
 .controller('coursestatusctrl', function($scope,courseListProcess){
-  $scope.allCourses = [];
-  $scope.availableCourses=[];
-  $scope.unavailableCourses = [];
-  
-  courseListProcess.getCourseList().success(function(result){
-    $scope.courses = result.response;
-    angular.forEach($scope.courses,function(ce){
-    $scope.allCourses.push(ce.course_id);
-  });
-  }).error(function(err){
-    console.log(err);
-  });
+	$scope.allCourses = [];
+	$scope.availableCourses=[];
+	$scope.unavailableCourses = [];
 
-  
+	courseListProcess.getCourseList().success(function(result){
+		$scope.courses = result.response;
+		angular.forEach($scope.courses,function(ce){
+			$scope.allCourses.push(ce.course_id);
+		});
+	}).error(function(err){
+		console.log(err);
+	});
 
-  $scope.course_availablity = function(status,id){
-    
-    console.log(status,id);
-    if(status==true){
-      console.log('in here true');
-      $scope.availableCourses.push(id);
-      if($scope.unavailableCourses.indexOf(id)>=0){
-        $scope.unavailableCourses.splice($scope.unavailableCourses.indexOf(id),1);
-      }
 
-    }
-    if(status == false) {
-      console.log($scope.availableCourses.indexOf(id)>=0);
-      if($scope.availableCourses.indexOf(id)>=0){
-        console.log('in here bro');
-        $scope.availableCourses.splice($scope.availableCourses.indexOf(id),1);
-        $scope.unavailableCourses.push(id);
-      }
-      
-    }
-    console.log($scope.availableCourses);
-    console.log($scope.unavailableCourses);
-  };
+
+	$scope.course_availablity = function(status,id){
+
+		console.log(status,id);
+		if(status==true){
+			console.log('in here true');
+			$scope.availableCourses.push(id);
+			if($scope.unavailableCourses.indexOf(id)>=0){
+				$scope.unavailableCourses.splice($scope.unavailableCourses.indexOf(id),1);
+			}
+
+		}
+		if(status == false) {
+			console.log($scope.availableCourses.indexOf(id)>=0);
+			if($scope.availableCourses.indexOf(id)>=0){
+				console.log('in here bro');
+				$scope.availableCourses.splice($scope.availableCourses.indexOf(id),1);
+				$scope.unavailableCourses.push(id);
+			}
+
+		}
+		console.log($scope.availableCourses);
+		console.log($scope.unavailableCourses);
+	};
 })

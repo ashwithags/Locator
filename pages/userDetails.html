@@ -9,42 +9,38 @@
 			<div class="user-block">
 				<div class="user-basic-detail">
 					<h3><span><i class="fas fa-arrow-circle-left"></i></span> {{userDetail.firstname}} {{userDetail.lastname}}</h3>
-					<h5><i class="fas fa-map-marker-alt"></i>&nbsp; {{userDetail.location_name}}, {{userDetail.location_city}}</h5>
-					<p><i class="fas fa-mobile-alt"></i>&nbsp; {{userDetail.moible}}</p>
+					<p><i class="fas fa-map-marker-alt"></i>&nbsp; {{userDetail.location_name}}, {{userDetail.location_city}}</p>
+					<h5><i class="fas fa-mobile-alt"></i>&nbsp; {{userDetail.mobile}}</h5>
 				</div>
-				<div class="payment">
+				<div class="payment center">
 					<span class="payment-request"> Request a Payment</span>
 					<h5>When the student is ready to pay</h5>
 				</div>
 			</div>
 			<div class="join">
-				<div class="did-join-course" ng-if="type == 'contact'">
-					<h5>{{userDetail.coursename}}</h5>
+				<div class="leftBottom" ng-if="type == 'contact'">
+					<h4>{{userDetail.coursename}}</h4>
 					<p>Received at {{userDetail.timestamp}}</p>
 					<div class="did-join-detail">
-						<h5> Did {{userDetail.firstname}} join for any course?</h5>
-						<button ng-click="updateTransactionStatus('student')"> Yes </button>
+						<h5> Did {{userDetail.firstname}} started class in your Institute?</h5>
+						<button ng-click="updateTransactionStatus('student')"> Joined </button>
 					</div>
 					<br>
 				</div>
-				<div class="did-join-course" ng-if="type == 'enquiry'">
-					<h5>{{userDetail.coursename}}</h5>
+				<div class="leftBottom" ng-if="type == 'enquiry'">
+					<h3>{{userDetail.coursename}}</h3>
 					<p>Received at {{userDetail.timestamp}}</p>
-					<div class="did-join-detail">
-						<h5> Did {{userDetail.firstname}} contacted you?</h5>
-						<button ng-click="updateTransactionStatus('contact')"> Yes </button>
-					</div>
-					<br>
+					<button ng-click="updateTransactionStatus('contact')"> I Have Called </button>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-7 col-lg-7">
 			<div class="message">
 				<div class="msgDetails">	
-					<div class="form-group"  ng-if="userDetail.message == null">
+					<div class="form-group center"  ng-if="userDetail.message == null">
 						<form name="messageform">
 	    					<label for="message"></label>
-	    					<textarea class="form-control" name="msgText" ng-model="msgText" id="message" rows="7"></textarea>
+	    					<textarea class="form-control" name="msgText" ng-model="newmessage" id="message" rows="7"></textarea>
 	    					<br>
 	    					<button class="btn btn-info" ng-click="submitQuotation()" ng-disabled="messageform.$invalid || messageform.$pristine">Send</button>
 	    				</form>
@@ -53,10 +49,10 @@
 						<h5>{{userDetail.message}}</h5>	
 					</div>
     			</div>
-				<div class="discuss-details">
+				<div class="discuss-details center">
 					<h3>Call {{userDetail.enquired_username}} to discuss details</h3>
 					<div class="contact-block">
-						<button class="contact-button"><i class="fas fa-phone-volume"></i> &nbsp; {{userDetail.moible}}</button>
+						<button class="contact-button"><i class="fas fa-phone-volume"></i> &nbsp;<h4 class="desc">{{userDetail.mobile}}</h4></button>
 					</div>
 					<p>Please call between 9am and 9pm</p>
 				</div>

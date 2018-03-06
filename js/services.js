@@ -41,22 +41,10 @@ angular.module('LocatorApp.services', [])
 			dataType: 'json'
 		})
 	}
-	services.getStudentsList = function(){
-		return $http({
-			method: 'GET',
-			url:'https://api.myjson.com/bins/13gdxp'
-		})
-	}
 	services.currentPosition = function(){
 		return $http({
 			method: 'GET',
 			url:'https://api.myjson.com/bins/d8ut1'
-		})
-	}
-	services.search = function(){
-		return $http({
-			method: 'GET',
-			url:'https://api.myjson.com/bins/ysy8h'
 		})
 	}
 	services.searchCourseLocation = function() {
@@ -75,6 +63,16 @@ angular.module('LocatorApp.services', [])
 		return $http({
 			method: 'POST',
 			url: 'http://192.168.1.12:7999/api/v1/institute/updateleadstatus',
+			header: {
+				'Content-Type': 'application/json'
+			},
+			data: data
+		})
+	}
+	services.updateInstituteMessage = function(data) {
+		return $http({
+			method: 'POST',
+			url: 'http://192.168.1.12:7999/api/v1/institute/sendMessage',
 			header: {
 				'Content-Type': 'application/json'
 			},
@@ -111,6 +109,12 @@ angular.module('LocatorApp.services', [])
 .factory("courseListProcess", function($http){
 	var services = {};
 
+	services.getCourseList = function(){
+		return $http({
+			url: 'http://192.168.1.12:7999/api/v1/search/allcourses',
+			method: 'GET'				
+		})
+	}
 	services.sendCourseDetails = function(info){
 		return $http({
 			url:"http://192.168.1.12:7999/api/v1/institute/updatelc",

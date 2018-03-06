@@ -35,7 +35,8 @@
 	                    	<h3>{{contacts.firstname}} {{contacts.lastname}}</h3>
 							<h6 class="category"><strong>{{contacts.coursename | uppercase}}</strong>, {{contacts.location_name}},  {{contacts.location_city}}</h6>
 							<p class="location" ng-model="loaction"></p>
-							<p class="msg">Hi, {{contacts.firstname}}. We can help you with the above requirement as we offer a....</p>
+							<p ng-if="contacts.message != null" class="msg">{{contacts.message}}</p>
+							<p ng-if="contacts.message == null" class="msg">No Message</p>
 		                </div>
 					</div>
 				</div>
@@ -47,7 +48,8 @@
 	                    <div class="desc">
 	                    	<h3>{{stud.firstname }} {{stud.lastname}}</h3>
 							<h6 class="category"><strong>{{stud.coursename | uppercase}}</strong></h6>
-							<p class="msg">Hi, {{stud.username}}. We can help you with the above requirement as we offer a....</p>
+							<p ng-if="stud.message != null" class="msg">{{stud.message }}</p>
+							<p ng-if="stud.message == null" class="msg">No Message</p>
 		                </div>
 					</div>
 				</div>
