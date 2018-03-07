@@ -36,13 +36,19 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="col-md-9 col-lg-9" ng-if="!searchResults.status">
+			<div class="col-md-12 col-lg-12">
+				<h3>Sorry! No Students has searched for this combination</h3>
+			</div>
+		</div>
 
-		<div class="col-md-9 col-lg-9 ">
+		<div class="col-md-9 col-lg-9"  ng-if="searchResults.status">
 			<div  class="col-md-12 col-lg-12">
-				<h4 class="search-msges">Looking for COURSE_NAME</h4>
+				<h4 class="search-msges">Looking for {{searchResults.response[0].course_name}}</h4>
 		    	<!-- <h5>Category:{{search.course_category}} | Posted {{}} days ago</h5> -->
 			</div>
-			<div ng-repeat="search in searchResults">
+			<div ng-if="searchResults.status" ng-repeat="search in searchResults.response">
 				<div class="col-md-6">
 					<h5>Posted <span am-time-ago="search.datetime | amParse:'YYYY-MM-DD HH:mm:ss'"></span></h5>
 					<div class="training-section">
@@ -51,11 +57,12 @@
 							</h6>
 							<h6>
 								<i class="fas fa-map-marker"></i> &nbsp;
-								{{search.location_id}}
+								{{search.location_name}}
 							</h6>
 							<h6>
 								<i class="fas fa-phone-volume"></i> &nbsp;
-								<a href="tel:{{search.user_mobile_number}}">{{search.user_mobile_number}}</a>
+								<a href="tel:{{search.user_mobile_number}}" ng-if="search.comp_inst.indexOf(comp_inst) !== -1">{{search.user_mobile_number}}</a>
+								<span ng-if="search.comp_inst.indexOf(comp_inst) === -1">XXX XXX {{search.mobLast3}}</span>
 							</h6>
 						</div>
 						<div class="col-md-6 col-lg-6">

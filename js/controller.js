@@ -98,16 +98,25 @@ angular.module('LocatorApp.controllers', [])
 	}
 })
 .controller('searchController',function($scope, $state, enquiry){
-	enquiry.searchCourseLocation().success(function(res) {
-		$scope.searchResults = res.response; 
+	$scope.courseid = $state.params.location_id;
+	$scope.locationid = $state.params.course_id;
+	if($scope.courseid == null) {
+		$scope.courseid = sessionStorage.getItem('search_course');
+		$scope.locationid = sessionStorage.getItem('search_location');
+	}
+	enquiry.searchCourseLocation($scope.courseid, $scope.locationid).success(function(res) {
+		if(res.status)
+		{
+			for(var i = 0; i<res.response.length; i++) {
+				res.response[i].comp_inst = "," + res.response[i].institute_received + ",";
+				res.response[i].mobLast3 = String(res.response[i].user_mobile_number).substring(3,1); 
+			}
+		}
+		$scope.comp_inst = "," + sessionStorage.getItem('logged_in') + ",";
+		$scope.searchResults = res; 
 	}).error(function(error) {
 		console.log(error);
 	});
-
-	$scope.message = {
-		text: 'hello world!',
-		time: "2018-02-01 09:00:00"
-	};
 })
 
 .controller('selectLocationsController', function($scope, $state, selectLoc){
@@ -261,6 +270,10 @@ $scope.fillcoursebox = function(course){
 $scope.capture = function(l,c){
 	console.log(l);
 	console.log(c);
+	//Set these values in Local Session Storage
+	sessionStorage.setItem('search_location',l);
+	sessionStorage.setItem('search_course',c);
+	$state.go('searchResult', { location_id: l, course_id: c});
 }
 
   /*$scope.dispp = function(){
