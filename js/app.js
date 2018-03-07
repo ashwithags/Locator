@@ -33,6 +33,10 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 		.state('searchResult',{
 			url: '/searchResult',
 			templateUrl : 'pages/search.html',
+			params: {
+				location_id: null,
+				course_id: null
+			},
 			controller : 'searchController'
 		})
 		.state('selectLocations',{
