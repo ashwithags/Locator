@@ -208,11 +208,11 @@ angular.module('LocatorApp.controllers', [])
 		console.log(err);
 	});
 
-  /*courseListProcess.getCourseList().success(function(res){
-    $scope.courselist = res.response;
-  }).error(function(err){
-    console.log(err);
-});*/
+  	courseListProcess.getCourseList().success(function(res){
+    	$scope.courselist = res.response;
+  	}).error(function(err){
+	    console.log(err);
+	});
 
 $scope.disp = function(){
 	$scope.hidethis = true;
