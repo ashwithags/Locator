@@ -67,6 +67,8 @@ angular.module('LocatorApp.controllers', [])
 
 .controller('detailController',function($scope, $state, enquiry){
 	//$scope.newmessage='';
+	$scope.msgbox = false;
+	$scope.msgbox1 = true;
 	$scope.userDetail = $state.params.obj;
 	$scope.type = $state.params.type;
 	$scope.submitQuotation = function(){
@@ -78,8 +80,10 @@ angular.module('LocatorApp.controllers', [])
 		}
 		enquiry.updateInstituteMessage(data).success(function(resp) {
 			console.log(resp);
+			$scope.msgbox = true;
+			$scope.msgbox1 = true;
+			$scope.userDetail.message = data.message;
 		}).error(function(error) {
-
 		});
 	};
 	
