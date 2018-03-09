@@ -9,7 +9,7 @@
 
 	.profile .profile-blog {
 	    padding: 20px;
-	    background: #57c1b7;
+	    background: #a8a9a9;
 	}
 
 	.profile .blog-border {
@@ -119,32 +119,27 @@
 		</div>
 
 		<div class="col-md-9 col-lg-9 profile">
-			<div class="panel panel-default">
-				<div class="panel-heading">Looking for {{searchResults.response[0].course_name}}</div>
-				<div class="panel-body">
-					<div class="col-sm-4" ng-if="searchResults.status" ng-repeat="search in searchResults.response">
-		                <div class="blog-border">
-		                	<div class="profile-blog">
-			                    <img class="rounded-x" src="http://www.anyrefer.com/assets/uploads/users/default.png" alt="">
-			                    <div class="name-location">
-			                        <strong>{{search.user_first_name}} {{search.user_last_name}}</strong>
-			                        <span><i class="fa fa-map-marker"></i><a href="#">{{search.location_name}}</a></span> <br/>
-			                        <span><i class="fa fa-phone-volume"></i><a href="tel:{{search.user_mobile_number}}" ng-if="search.comp_inst.indexOf(comp_inst) !== -1">{{search.user_mobile_number}}</a></span>
-			                        <span ng-if="search.comp_inst.indexOf(comp_inst) === -1"><i class="fa fa-phone-volume"></i>XXX XXX {{search.mobLast3}}</span> <br/>
-			                        <span><i class="fa fa-user"></i><a href="#">{{search.user_type}}</a></span> <br/>
-			                        <span><i class="fa fa-envelope"></i><a href="#">{{search.user_email}}</a></span> <br/>
-			                        <span ng-if="search.user_altmobile_number != undefined"><i class="fa fa-phone-square"></i><a href="#">{{search.user_altmobile_number}}</a></span>
-			                    </div>
-			                    <div class="clearfix margin-bottom-20"></div>
-		                    </div>    
-		                    <hr>
-		                    <ul class="list-inline share-list" style="background-color: #c6c9ca">
-		                        <li><i class="fa fa-group"></i><a href="#"><span am-time-ago="search.datetime | amParse:'YYYY-MM-DD HH:mm:ss'"></span> Posted</a></li>
-		                    </ul>
-		                </div>
-		            </div>
-	            </div>  
-            </div>      
+			<div class="col-sm-4" ng-if="searchResults.status" ng-repeat="search in searchResults.response">
+                <div class="blog-border">
+                	<div class="profile-blog">
+	                    <img class="rounded-x" src="http://www.anyrefer.com/assets/uploads/users/default.png" alt="">
+	                    <div class="name-location">
+	                        <strong>{{search.user_first_name}} {{search.user_last_name}}</strong>
+	                        <span><i class="fa fa-map-marker"></i><a href="#">{{search.location_name}}</a></span> <br/>
+	                        <span><i class="fa fa-phone-volume"></i><a href="tel:{{search.user_mobile_number}}" ng-if="search.comp_inst.indexOf(comp_inst) !== -1">{{search.user_mobile_number}}</a></span>
+	                        <span ng-if="search.comp_inst.indexOf(comp_inst) === -1"><i class="fa fa-phone-volume"></i>XXX XXX {{search.mobLast3}}</span> <br/>
+	                        <span><i class="fa fa-user"></i><a href="#">{{search.user_type}}</a></span> <br/>
+	                        <span><i class="fa fa-envelope"></i><a href="#">{{search.user_email}}</a></span> <br/>
+	                        <span ng-if="search.user_altmobile_number != undefined"><i class="fa fa-phone-square"></i><a href="#">{{search.user_altmobile_number}}</a></span>
+	                    </div>
+	                    <div class="clearfix margin-bottom-20"></div>
+                    </div>    
+                    <hr>
+                    <ul class="list-inline share-list" style="background-color: #ffffff">
+                        <li><i class="fa fa-group"></i><a href="#"><span am-time-ago="search.datetime | amParse:'YYYY-MM-DD HH:mm:ss'"></span> Posted</a></li>
+                    </ul>
+                </div>
+            </div>     
     	</div>
 	</div>
 </div>
