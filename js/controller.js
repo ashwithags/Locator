@@ -282,43 +282,115 @@ $scope.capture = function(l,c){
 
 
 })
-.controller('coursestatusctrl', function($scope,courseListProcess){
-	$scope.allCourses = [];
+.controller('coursestatusctrl', function($scope,courseListProcess,selectLoc){
+	
 	$scope.availableCourses=[];
 	$scope.unavailableCourses = [];
+	$scope.idOfava_cour = [];
+	$scope.idOfunava_cour = [];
 
-	courseListProcess.getCourseList().success(function(result){
+	$scope.hide = false;
+	$scope.hidden = false;
+
+	courseListProcess.staticgetCourseList().success(function(result){
 		$scope.courses = result.response;
 		angular.forEach($scope.courses,function(ce){
-			$scope.allCourses.push(ce.course_id);
+			if(ce.course_available==true){
+				$scope.availableCourses.push(ce);
+				$scope.idOfava_cour.push(ce.id);
+			}
+			else if(ce.course_available==false){
+				$scope.unavailableCourses.push(ce);
+				$scope.idOfunava_cour.push(ce.id);
+			}
 		});
+		console.log($scope.availableCourses);
+		console.log($scope.unavailableCourses);
 	}).error(function(err){
 		console.log(err);
 	});
 
+	selectLoc.getstaticLocations().success(function(result){
 
+		$scope.availableLocations = [];
+		$scope.availableLocationsid = [];
+		$scope.unavailableLocationsid = [];
+		$scope.regLocations = result.response;
+
+		angular.forEach($scope.regLocations, function(ce){
+			if(ce.location_activity == true){
+				ce.Complc = ce.location_name+" "+ce.location_city;
+				$scope.availableLocations.push(ce);	
+				$scope.availableLocationsid.push(ce.id);
+			}else if(ce.location_activity == false){
+				$scope.unavailableLocationsid.push(ce.id);
+			}	
+		});
+		console.log($scope.availableLocations);	
+	});
+
+	$scope.showRegCourses = function(keyword){
+		$scope.hide = true;
+		$scope.regCourses = [];
+		angular.forEach($scope.courses, function(ce){
+			if(ce.course_name.toLowerCase().indexOf(keyword.toLowerCase()) >=0){
+				$scope.regCourses.push(ce);
+			}
+		});
+	};
+
+	$scope.showAvaLoc = function(locate){
+		$scope.hidden = true;
+		$scope.avaLoc = [];
+		angular.forEach($scope.regLocations, function(ce){
+			if(ce.location_name.toLowerCase().indexOf(locate.toLowerCase()) >=0){
+				ce.plc = ce.location_name+" "+ce.location_city;
+				$scope.avaLoc.push(ce);
+			}
+			else if (ce.location_pincode.toString().indexOf(locate) >=0){
+				ce.plc = ce.location_pincode.toString()+" "+ce.location_city;
+				$scope.avaLoc.push(ce);
+			}
+		});
+	};
 
 	$scope.course_availablity = function(status,id){
 
 		console.log(status,id);
-		if(status==true){
-			console.log('in here true');
-			$scope.availableCourses.push(id);
-			if($scope.unavailableCourses.indexOf(id)>=0){
-				$scope.unavailableCourses.splice($scope.unavailableCourses.indexOf(id),1);
+		if(status==false){
+			$scope.idOfava_cour.push(id);
+			if($scope.idOfunava_cour.indexOf(id)>=0){
+				$scope.idOfunava_cour.splice($scope.idOfunava_cour.indexOf(id),1);
 			}
 
 		}
-		if(status == false) {
-			console.log($scope.availableCourses.indexOf(id)>=0);
-			if($scope.availableCourses.indexOf(id)>=0){
-				console.log('in here bro');
-				$scope.availableCourses.splice($scope.availableCourses.indexOf(id),1);
-				$scope.unavailableCourses.push(id);
+		if(status == true) {
+			if($scope.idOfava_cour.indexOf(id)>=0){
+				$scope.idOfava_cour.splice($scope.idOfava_cour.indexOf(id),1);
+				$scope.idOfunava_cour.push(id);
 			}
-
 		}
-		console.log($scope.availableCourses);
-		console.log($scope.unavailableCourses);
+		console.log($scope.idOfava_cour);
+		console.log($scope.idOfunava_cour);
 	};
+
+	$scope.place_availablity = function(stat,ide){
+
+		if(stat == false){
+			$scope.availableLocationsid.push(ide);
+			if($scope.unavailableLocationsid.indexOf(ide)>=0){
+				$scope.unavailableLocationsid.splice($scope.unavailableLocationsid.indexOf(ide),1);
+			}
+		}
+		if(stat == true){
+			if($scope.availableLocationsid.indexOf(ide)>=0){
+				$scope.availableLocationsid.splice($scope.availableLocationsid.indexOf(ide),1);
+				$scope.unavailableLocationsid.push(ide);
+			}
+		}
+		console.log($scope.availableLocationsid);
+		console.log($scope.unavailableLocationsid);
+	};	
+	
+
 })
