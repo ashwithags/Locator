@@ -221,59 +221,59 @@ angular.module('LocatorApp.controllers', [])
 		console.log(err);
 	});
 
-  	courseListProcess.getCourseList().success(function(res){
-    	$scope.courselist = res.response;
-  	}).error(function(err){
-	    console.log(err);
+	courseListProcess.getCourseList().success(function(res){
+		$scope.courselist = res.response;
+	}).error(function(err){
+		console.log(err);
 	});
 
-$scope.disp = function(){
-	$scope.hidethis = true;
-};
+	$scope.disp = function(){
+		$scope.hidethis = true;
+	};
 
-$scope.suggestLocations = function(locate){
-	$scope.places = [];
-	$scope.hidethis = false;
-	angular.forEach($scope.location,function(pl){
-		if(pl.location_name.toLowerCase().indexOf(locate.toLowerCase())>=0){
-			var plc =  pl.location_name + " "+pl.location_city;
-			pl.plc = plc;
-			$scope.places.push(pl);
-		} else if(pl.location_pincode.toString().indexOf(locate) >=0){
-			var plbypin = pl.location_pincode.toString()+ " "+pl.location_name;
-			pl.plc = plbypin;
-			$scope.places.push(pl);
-		}
-	});
+	$scope.suggestLocations = function(locate){
+		$scope.places = [];
+		$scope.hidethis = false;
+		angular.forEach($scope.location,function(pl){
+			if(pl.location_name.toLowerCase().indexOf(locate.toLowerCase())>=0){
+				var plc =  pl.location_name + " "+pl.location_city;
+				pl.plc = plc;
+				$scope.places.push(pl);
+			} else if(pl.location_pincode.toString().indexOf(locate) >=0){
+				var plbypin = pl.location_pincode.toString()+ " "+pl.location_name;
+				pl.plc = plbypin;
+				$scope.places.push(pl);
+			}
+		});
 
-};
+	};
 
-$scope.filltextbox = function(selectedplace){
-	$scope.locate = selectedplace.plc;
-	$scope.selectedlocation = selectedplace.id;
-	$scope.hidethis = "true";
-};
+	$scope.filltextbox = function(selectedplace){
+		$scope.locate = selectedplace.plc;
+		$scope.selectedlocation = selectedplace.id;
+		$scope.hidethis = "true";
+	};
 
-$scope.suggestCourses = function(sub){
-	$scope.courses = [];
-	$scope.hidden = false;
-	angular.forEach($scope.courselist,function(cr){
+	$scope.suggestCourses = function(sub){
+		$scope.courses = [];
+		$scope.hidden = false;
+		angular.forEach($scope.courselist,function(cr){
 
-		if(cr.course_name.toLowerCase().indexOf(sub.toLowerCase()) >=0){
-			$scope.courses.push(cr);
-		}
-	});
-};
+			if(cr.course_name.toLowerCase().indexOf(sub.toLowerCase()) >=0){
+				$scope.courses.push(cr);
+			}
+		});
+	};
 
-$scope.fillcoursebox = function(course){
-	$scope.subject = course.course_name;
-	$scope.selectedcourse = course.id;
-	$scope.hidden = true;
-};
+	$scope.fillcoursebox = function(course){
+		$scope.subject = course.course_name;
+		$scope.selectedcourse = course.id;
+		$scope.hidden = true;
+	};
 
-$scope.capture = function(l,c){
-	console.log(l);
-	console.log(c);
+	$scope.capture = function(l,c){
+		console.log(l);
+		console.log(c);
 	//Set these values in Local Session Storage
 	sessionStorage.setItem('search_location',l);
 	sessionStorage.setItem('search_course',c);
@@ -286,7 +286,7 @@ $scope.capture = function(l,c){
 
 
 })
-.controller('coursestatusctrl', function($scope,courseListProcess,selectLoc){
+.controller('coursestatusctrl', function($scope,selectLoc){
 	
 	$scope.availableCourses=[];
 	$scope.unavailableCourses = [];
@@ -296,14 +296,16 @@ $scope.capture = function(l,c){
 	$scope.hide = false;
 	$scope.hidden = false;
 
-	courseListProcess.staticgetCourseList().success(function(result){
+	var coursedata = { "i_id": sessionStorage.getItem('logged_in'), "i_type": "course" };
+	var locationdata = { "i_id": sessionStorage.getItem('logged_in'), "i_type": "location" };
+
+	selectLoc.getstaticLocations(coursedata).success(function(result){
 		$scope.courses = result.response;
 		angular.forEach($scope.courses,function(ce){
-			if(ce.course_available==true){
+			if(ce.opted=="true"){
 				$scope.availableCourses.push(ce);
 				$scope.idOfava_cour.push(ce.id);
-			}
-			else if(ce.course_available==false){
+			} else {
 				$scope.unavailableCourses.push(ce);
 				$scope.idOfunava_cour.push(ce.id);
 			}
@@ -314,7 +316,7 @@ $scope.capture = function(l,c){
 		console.log(err);
 	});
 
-	selectLoc.getstaticLocations().success(function(result){
+	selectLoc.getstaticLocations(locationdata).success(function(result){
 
 		$scope.availableLocations = [];
 		$scope.availableLocationsid = [];
@@ -322,11 +324,11 @@ $scope.capture = function(l,c){
 		$scope.regLocations = result.response;
 
 		angular.forEach($scope.regLocations, function(ce){
-			if(ce.location_activity == true){
+			if(ce.opted == "true"){
 				ce.Complc = ce.location_name+" "+ce.location_city;
 				$scope.availableLocations.push(ce);	
 				$scope.availableLocationsid.push(ce.id);
-			}else if(ce.location_activity == false){
+			}else {
 				$scope.unavailableLocationsid.push(ce.id);
 			}	
 		});

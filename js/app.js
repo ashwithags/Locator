@@ -48,7 +48,8 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 			url: '/courses',
 			templateUrl : 'pages/selectCourse.html',
 			controller: 'courseCtrl'
-		}).state("coursestatus",{
+		})
+		.state("coursestatus",{
 			url:"/coursestatus",
 			templateUrl:"pages/coursestatus.html",
 			controller:"coursestatusctrl"
