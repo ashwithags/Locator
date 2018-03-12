@@ -38,6 +38,29 @@ angular.module('LocatorApp.controllers', [])
 .controller('profileCtrl', function($scope, $state){
 	
 })
+.controller('instiCtrl', function($scope, $state){
+	$scope.edit1 = true;
+	$scope.editphoto = function(){
+		$scope.edit1 = false;
+	};
+	$scope.edit2 = true;
+	$scope.editabout = function(){
+		$scope.edit2 = false;
+	};
+	$scope.edit3 = true;
+	$scope.editdesc = function(){
+		$scope.edit3 = false;
+	};
+	$scope.edit4 = true;
+	$scope.editbasic = function(){
+		$scope.edit4 = false;
+	};
+	$scope.edit5 = true;
+	$scope.editcntct = function(){
+		$scope.edit5 = false;
+	};
+
+})
 .controller('enquiryController', function($scope, $state, enquiry){
 	enquiry.getReceivedLeads('enquiry', sessionStorage.getItem('logged_in')).success(function(now){
 		if(now.status){

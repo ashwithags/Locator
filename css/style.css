@@ -263,13 +263,40 @@ footer.page-footer.blue.center-on-small-only {
     padding-bottom: 15px;
     opacity: 0.8;
 }
-.float{
-    float: right;
+.floatL{
+    float: left;
+}
+.color{
+    color: #228AE6 !important;
+}
+.labelfont{
+    font-size: 16px;
 }
 .forwardicon{
     float: right;
     height: 15px; 
     width: 15px;
+}
+.marginR{
+    border-right: 1px solid lightgrey ;
+    margin-left: 10px;
+}
+.glyphicon{
+    font-size: 23px;
+}
+.upldlogo{
+    margin-left: 70px;
+}
+/*#5f656d*/
+.insti{
+    border-radius: 5px; 
+    padding: 20px; 
+    display: inline-block; 
+    background-color: #fff;
+    opacity: 0.8;
+    letter-spacing: 3.3px;
+    /*height: 20%;*/
+    /*width: 80%;*/
 }
 .profileDetails{
     border-radius: 5px;

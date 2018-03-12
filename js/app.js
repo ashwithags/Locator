@@ -54,4 +54,9 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 			templateUrl : 'pages/profileinfo.html',
 			controller: 'profileCtrl'
 		})
+		.state('instituteInfo',{
+			url:'/instituteInfo',
+			templateUrl : 'pages/instituteInfo.html',
+			controller: 'instiCtrl'
+		})
 });
