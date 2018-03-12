@@ -1,12 +1,45 @@
-<div class="flexcontainer1">
-	<ul class="flexcontainer2" >
-		<li class="fntsz" ng-repeat="course in courses">
-			{{course.course_name}}
-			<label class="switch">
-			  <input type="checkbox" ng-model="ticked" ng-click="course_availablity(ticked,course.course_id)" >
-			  <span class="slider round"></span>
-			</label>
+<header ng-controller="headercntrl"></header>
+<div class="topSpacing">
+	<div class="container-fluid">
+		<div class="col-md-2 col-lg-2">
+			<sidebar></sidebar>
+		</div>
+		<div class="col-md-10 col-lg-10">
+			<div class="profileDetails cstat">
+				<ul class="nav nav-tabs crstabs">
+					<li class="crs active">
+						<a data-toggle="tab" data-target="#coursesOffered">Courses Offered</a>
+					</li>
+					<li class="crs">
+						<a data-toggle="tab" data-target="#preferredLocation">Preferred Location</a>
+					</li>
+				</ul>
 
-		</li>
-	</ul>
+				<div class="tab-content">
+					<div id="coursesOffered" class="tab-pane fade in active">
+						<ul class="list-group">
+							<div class="list-group-item" ng-repeat="course in availableCourses">
+								{{course.course_name}}
+								<label class="switch">
+									<input type="checkbox" ng-model="ticked" ng-click="course_availablity(ticked,course.id)">
+									<span class=" slider round"></span>
+								</label>
+							</div>
+						</ul>
+					</div>
+					<div id="preferredLocation" class="tab-pane fade">
+						<div class="droptab list-group">
+							<div class="list-group-item" ng-repeat="place in availableLocations">{{place.Complc}}
+								<label class="switch">
+									<input type="checkbox" ng-model="tickedLoc" ng-click="place_availablity(tickedLoc,place.id)">
+									<span class=" slider round"></span>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button class="btn btn-primary">Update</button>
+			</div>
+		</div>
+	</div>
 </div>

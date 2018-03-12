@@ -1,10 +1,10 @@
+/*css for toggle button*/
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
-  float: right;
-  margin-right: 5px;
+  width: 50px;
+  height: 20px;
+  float:right;
 }
 
 .switch input {display:none;}
@@ -16,7 +16,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #2196F3;
+  
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -24,17 +25,21 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  left:4px;
+  bottom:3px;
+  width:14px;
+  height:14px;
   background-color: white;
+  
   -webkit-transition: .4s;
   transition: .4s;
+  -webkit-transform: translateX(30px);
+  -ms-transform: translateX(30px);
+  transform: translateX(30px);
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+ background-color: #ccc;
 }
 
 input:focus + .slider {
@@ -42,9 +47,10 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+-webkit-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  transform: translateX(0px);
+  
 }
 
 /* Rounded sliders */
@@ -55,21 +61,46 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-.flexcontainer1 {
+/*css for toggle button ends*/
+.fieldpos {
+  position: relative;
   display: flex;
-  min-height: 100vh;
+  min-width: 80%;
   justify-content: center;
-  align-items: center;
+  
 }
-.flexcontainer2 {
-  display: flex;
-  border: 1px solid;
-  width:50%;
-  max-height: 300px;
-  flex-flow: column;
-  overflow: scroll;
-  box-shadow: 2px 2px silver;
+.nav-tabs>li.crs {
+  float: none;
+  background-color: #0000;
 }
-.fntsz {
-  font-size: 2rem;
+.nav-tabs>li.crs:focus, .nav-tabs>li.crs:hover {
+  background-color: #0000;
+}
+.nav-tabs>li.crs>a {
+  color:black;
+  background-color: #0000;
+}
+.nav-tabs>li.crs.active>a, .nav-tabs>li.crs.active>a:focus , .nav-tabs>li.crs.active>a:hover {
+  border:0px;
+  color:#2196F3;
+  background-color: #0000;
+}
+.nav-tabs.crstabs {
+  border-bottom:0px;
+  text-align:center;
+}
+.nav>li.crs {
+  display: inline-block;
+}
+.btn {
+  display: block;
+  width: 72px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.btn-primary {
+  background-color: #2196F3;
+}
+.profileDetails.cstat {
+  height:auto;
 }
