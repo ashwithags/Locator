@@ -270,7 +270,10 @@ footer.page-footer.blue.center-on-small-only {
     color: #228AE6 !important;
 }
 .labelfont{
-    font-size: 16px;
+    font-size: 20px;
+}
+.btn-big{
+    width: 90px !important;
 }
 .forwardicon{
     float: right;
@@ -291,12 +294,31 @@ footer.page-footer.blue.center-on-small-only {
 .insti{
     border-radius: 5px; 
     padding: 20px; 
-    display: inline-block; 
     background-color: #fff;
     opacity: 0.8;
     letter-spacing: 3.3px;
     /*height: 20%;*/
     /*width: 80%;*/
+}
+.shadowNone{
+    box-shadow: none !important;
+}
+.borderNone{
+    border: 0px !important;
+}
+.glyphicon-pencil{
+    font-size: 12px;
+}
+.mainBlockProfile{
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    opacity: 0.8;
+    letter-spacing: 3.3px;
+}
+.panel-logo{
+    border: 0px; 
+    background-color: #FFF;
 }
 .profileDetails{
     border-radius: 5px;
