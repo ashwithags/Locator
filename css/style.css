@@ -1,7 +1,7 @@
 body{
     background-color: #cbddca;
     overflow-x: hidden;
-    font-family: 'Roboto', sans-serif; 
+    font-family: 'Roboto', sans-serif;
 }
 h3,h6,p{
     margin: 6px;
@@ -32,12 +32,12 @@ input.ng-invalid.ng-dirty {
     padding: 15px;
     border: 0px;
 }
-.register input[type=number]::-webkit-inner-spin-button, 
-.register input[type=number]::-webkit-outer-spin-button { 
+.register input[type=number]::-webkit-inner-spin-button,
+.register input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    margin: 0; 
+    margin: 0;
 }
 .register ::placeholder {
     color: #FFF;
@@ -88,7 +88,7 @@ ul.nav.navbar-nav.navbar-right {
     font-size: 20px;
 }
 .first-letter {
-    background-color:  transparent;   /*#de2222*/ 
+    background-color:  transparent;   /*#de2222*/
     width: 55px;
     height: 55px;
     text-align: center;
@@ -116,20 +116,20 @@ ul.nav.navbar-nav.navbar-right {
     color: #454647;
     padding: 0px 0px;
     opacity: 0.9;
-    font-weight: 400; 
+    font-weight: 400;
 }
 .msg{
     color: #454647;
     letter-spacing: 0.6px;
     opacity: 0.9;
-    font-weight: 400; 
+    font-weight: 400;
 }
 .first-char{
     display: inline-block;
     height: 65px;
 }
 .list {
-    white-space: nowrap; 
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 10px 15px;
@@ -149,7 +149,7 @@ ul.nav.navbar-nav.navbar-right {
     transition-duration: 1s;
     transition-timing-function: linear;
     transition-delay: 1s;
-} 
+}
 .nav-tabs {
     border-bottom: 0px solid #ddd;
 }
@@ -194,7 +194,7 @@ footer.page-footer.blue.center-on-small-only {
     opacity: 0.65;
 }
 .training-institue-logo {
-    background-color:  transparent;   /*#de2222*/ 
+    background-color:  transparent;   /*#de2222*/
     width: 42px;
     height: 42px;
     text-align: center;
@@ -203,7 +203,7 @@ footer.page-footer.blue.center-on-small-only {
 }
 
 
-/* HEADER    */   
+/* HEADER    */
 .header-section{
     background-color: #fff !important;
     padding: 15px 10px;
@@ -212,11 +212,11 @@ footer.page-footer.blue.center-on-small-only {
 }
 .form-control1-modify{
     border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;   
+    border-bottom-right-radius: 0px;
 }
 .form-control2-modify{
     border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;   
+    border-bottom-left-radius: 0px;
 }
 .padding-modify{
     padding-left: 0px;
@@ -277,7 +277,7 @@ footer.page-footer.blue.center-on-small-only {
 }
 .forwardicon{
     float: right;
-    height: 15px; 
+    height: 15px;
     width: 15px;
 }
 .marginR{
@@ -292,8 +292,8 @@ footer.page-footer.blue.center-on-small-only {
 }
 /*#5f656d*/
 .insti{
-    border-radius: 5px; 
-    padding: 20px; 
+    border-radius: 5px;
+    padding: 20px;
     background-color: #fff;
     opacity: 0.8;
     letter-spacing: 3.3px;
@@ -317,7 +317,7 @@ footer.page-footer.blue.center-on-small-only {
     letter-spacing: 3.3px;
 }
 .panel-logo{
-    border: 0px; 
+    border: 0px;
     background-color: #FFF;
 }
 .profileDetails{
@@ -361,7 +361,7 @@ span.payment-request{
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 15px;
-    
+
 }
 .leftBottom{
     margin-top: 5px;
@@ -463,7 +463,7 @@ span.payment-request{
 /*    SEARCH RESULT   */
 .filter-block{
     border-radius: 6px;
-     background-color: #fff; 
+     background-color: #fff;
 }
 .filter-block h3{
     font-size: 18px;
@@ -539,4 +539,31 @@ label.gender{
 }
 .search-msges {
     color: #228ae6;
+}
+.messageBlock{
+  background-color: rgba(211, 211, 211, 0.41);
+  max-height: 400px;
+  overflow-y: scroll;
+}
+.msgDetails h6:last-child{
+  padding-bottom: 10px;
+}
+.msgDetails h6:first-child{
+  padding-top: 10px;
+}
+
+h6 div{
+  line-height: 1em;
+  background-color: #87CEFA;
+  padding: 10px 10px;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  opacity: 0.9;
+  display: inline-block;
+  border-radius: 5px;
+}
+.institute{
+  background-color: #FFF !important;
+  float: right !important;
+  margin-bottom: 7px;
 }

@@ -36,30 +36,28 @@
 		</div>
 		<div class="col-md-7 col-lg-7">
 			<div class="message">
-				<div class="msgDetails">	
-					<div ng-hide="msgbox">	
-						<div class="form-group center" ng-if="userDetail.message == null" > 
-							<form name="messageform">
-		    					<label for="message"></label>
-		    					<textarea class="form-control" name="msgText" ng-model="newmessage" id="message" rows="7"></textarea>
-		    					<br>
-		    					<button class="btn btn-info" ng-click="submitQuotation()" ng-disabled="messageform.$invalid || messageform.$pristine">Send</button>
-		    				</form>
-		    			</div>
-		    		</div>	
-					<div ng-show="msgbox1">
-						<div ng-if="userDetail.message != null">	
-								<h5>{{userDetail.message}}</h5>
+				<div class="msgDetails">
+					<div>
+						<div class="messageBlock" ng-show="dispChat">
+							<h6 ng-repeat="a in messages track by $index">
+									<div ng-if="a.from == 'customer'">{{a.text}} <br><span style="float:right;font-size: 10px;margin-top: 10px;">{{a.timestamp}}</span></div>
+									<div class="institute" ng-if="a.from == 'institute'">{{a.text}} <br><span style="float:right;font-size: 10px;margin-top: 10px;">{{a.timestamp}}</span></div>
+							</h6>
 						</div>
+						<form name="messageform">
+    					<label for="message"></label>
+    					<textarea class="form-control" name="msgText" ng-model="newmessage" id="message" rows="7"></textarea>
+    					<br>
+    					<button class="btn btn-info" ng-click="submitQuotation()" ng-disabled="messageform.$invalid || messageform.$pristine">Send</button>
+    				</form>
 					</div>
-    			</div>
-				<div class="discuss-details center">
-					<h3>Call {{userDetail.enquired_username}} to discuss details</h3>
-					<div class="contact-block">
-						<button class="contact-button"><i class="fas fa-phone-volume"></i> &nbsp;<h4 class="desc">{{userDetail.mobile}}</h4></button>
+					<div class="discuss-details center">
+						<h3>Call {{userDetail.enquired_username}} to discuss details</h3>
+						<div class="contact-block">
+							<button class="contact-button"><i class="fas fa-phone-volume"></i> &nbsp;<h4 class="desc">{{userDetail.mobile}}</h4></button>
+						</div>
+						<p>Please call between 9am and 9pm</p>
 					</div>
-					<p>Please call between 9am and 9pm</p>
-				</div>
 			</div>
 		</div>
 	</div>
