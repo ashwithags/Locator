@@ -16,7 +16,7 @@
 					</div>
 					<div class="panel-body borderNone">
 						<img class="center-block" style="margin-bottom: 16px;" src="https://c.urbanpro.com/assets/new-ui/profilePhoto_placeholder-d9efc4c8dfff0d644f650bdfbba81654.png">
-						<input type="file/hidden" class="btn btn-big btn-primary center-block" value="UPLOAD" ng-disabled="edit1" disabled="disabled">
+						<input type="file/hidden" class="btn btn-primary center-block" value="UPLOAD" ng-disabled="edit1" disabled="disabled">
 					</div>
 				</div><hr>
 				<div>
@@ -24,7 +24,7 @@
 						<div class="panel-heading labelfont color borderNone">
 							About
 							<button class="pull-right btn btn btn-default" ng-click= "editabout()"><i class="glyphicon glyphicon-pencil"></i> Edit</button><br>
-							<div><textarea style="margin-top: 26px;" class="form-control" ng-disabled = "edit2"></textarea>
+							<div><textarea style="margin-top: 26px;" ng-model="institute.about" class="form-control" ng-disabled = "edit2"></textarea>
 							</div>
 						</div>
 					</div>
@@ -34,7 +34,7 @@
 						<div class="panel-heading labelfont color borderNone">
 							Institute Description
 							<button class="pull-right btn btn btn-default" ng-click = "editdesc()"><i class="glyphicon glyphicon-pencil"></i> Edit </button><br>
-							<textarea style="margin-top: 46px;" class="form-control" ng-disabled = "edit3"></textarea>
+							<textarea style="margin-top: 46px;" ng-model="institute.desc" class="form-control" ng-disabled = "edit3"></textarea>
 						</div>
 					</div>
 				</div>
@@ -51,11 +51,11 @@
 				<div>
 					<div style="margin-top: 26px;">
 						<span><i class="fa fa-user"></i></span>&nbsp;<label class="color">  Founded By </label>
-							<input class="form-control" type="text" name="founded" ng-disabled = "edit4">
+							<input class="form-control" type="text" ng-model="institute.founder" name="founded" ng-disabled = "edit4">
 					</div>
 					<div style="margin-top: 16px;">
 						<span><i class="fa fa-calendar"></i></span>&nbsp;<label class="color">  Founded On </label>
-							<input class="form-control" type="date" name="founded" ng-disabled = "edit4">
+							<input class="form-control" type="date" ng-model="institute.foundedYear" name="founded" ng-disabled = "edit4">
 					</div>
 				</div><hr>
 				<div>
@@ -68,10 +68,12 @@
 				</div>
 				<div>
 					<span><i class="fa fa-phone"></i></span>&nbsp;<label class="color"> Phone *</label>
-					<input class="form-control" type="text" name="phone" ng-disabled="edit5"><br><br>
+					<input class="form-control" ng-model="institute.phone" type="text" name="phone" ng-disabled="edit5"><br><br>
 					<span><i class="fa fa-envelope"></i></span>&nbsp;<label class="color"> Email *</label>
-					<input class="form-control" type="text" name="email" ng-disabled="edit5">
+					<input class="form-control" ng-model="institute.email" type="text" name="email" ng-disabled="edit5">
 				</div><hr>
+
+				<input type="button" class="btn btn-primary center-block" value="SAVE CHANGES" ng-click="addInstituteInfo(institute)">
 			</div>
 		</div>
 	</div>

@@ -60,6 +60,10 @@ angular.module('LocatorApp.controllers', [])
 		$scope.edit5 = false;
 	};
 
+	$scope.addInstituteInfo = function(data){
+		console.log(data);
+	};
+
 })
 .controller('enquiryController', function($scope, $state, enquiry){
 	enquiry.getReceivedLeads('enquiry', sessionStorage.getItem('logged_in')).success(function(now){
