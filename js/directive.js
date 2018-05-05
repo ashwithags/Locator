@@ -1,7 +1,7 @@
 angular.module('LocatorApp.directive',[])
 .directive('header',function(){
 	return{
-		templateUrl: 'pages/header.html' 
+		templateUrl: 'pages/header.html'
 	};
 })
 .directive('sidebar',function(){

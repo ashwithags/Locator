@@ -544,6 +544,7 @@ label.gender{
   background-color: rgba(211, 211, 211, 0.41);
   max-height: 400px;
   overflow-y: scroll;
+  padding: 10px;
 }
 .msgDetails h6:last-child{
   padding-bottom: 10px;
@@ -554,7 +555,6 @@ label.gender{
 
 h6 div{
   line-height: 1em;
-  background-color: #87CEFA;
   padding: 10px 10px;
   letter-spacing: 0.5px;
   font-size: 14px;
@@ -563,7 +563,18 @@ h6 div{
   border-radius: 5px;
 }
 .institute{
-  background-color: #FFF !important;
+  background-color: #FFF ;
   float: right !important;
+  margin-bottom: 7px;
+  clear: both;
+}
+.customer{
+  background-color: #87CEFA;
+  float: left !important;
+  margin-bottom: 7px;
+  clear: both;
+}
+h6{
+  margin: 0px;
   margin-bottom: 7px;
 }
