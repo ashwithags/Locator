@@ -8,6 +8,8 @@ angular.module('LocatorApp.controllers', [])
 				sessionStorage.setItem('logged_in',wow.result.id);
 				$rootScope.instituteImage = wow.result.inst_images;
 				$rootScope.instituteName = wow.result.inst_name;
+				sessionStorage.setItem('logged_inst_img',wow.result.inst_images);
+				sessionStorage.setItem('logged_inst_name',wow.result.inst_name);
 
 				$state.go('enquiry',{inst_id: wow.result.id});
 			} else {
@@ -69,33 +71,53 @@ angular.module('LocatorApp.controllers', [])
 	});
 	enquiry.getReceivedLeads("student",3).success(function(info){
 		$scope.StudentsList = info.response;
-		console.log($scope.StudentsList);
+		//console.log($scope.StudentsList);
 	});
 	enquiry.currentPosition().success(function(data){
 		$scope.position = data;
 		//console.log(position);
 	});
 	$scope.enquiryDetail = function(data, type){
-		console.log(data);
-   		//$scope.userDetail = data;
-   		$state.go('needuserdetails',{obj: data, type: type});
-   	}
-   	enquiry.getReceivedLeads('contact', sessionStorage.getItem('logged_in'))
-   	.success(function(data) {
-   		$scope.contacted = data.response;
-   	}).error(function(error) {
+		//console.log(data);
+		//$scope.userDetail = data;
+		$state.go('needuserdetails',{obj: data, type: type});
+	}
+	enquiry.getReceivedLeads('contact', sessionStorage.getItem('logged_in'))
+	.success(function(data) {
+		$scope.contacted = data.response;
+	}).error(function(error) {
 
-   	});
-   })
+	});
+})
 
-.controller('detailController',function($scope, $state, enquiry){
+.controller('detailController',function($scope, $state, enquiry, $interval){
 	var data;
 	$scope.dispChat = false;
-	$scope.userDetail = $state.params.obj;
-	$scope.type = $state.params.type;
+	if($state.params.obj != null){
+		sessionStorage.setItem('tempInfo',JSON.stringify($state.params.obj));
+		sessionStorage.setItem('tempType',$state.params.type);
+		$scope.userDetail = $state.params.obj;
+		$scope.type = $state.params.type;
+	} else {
+		$scope.userDetail = JSON.parse(sessionStorage.getItem('tempInfo'));
+		$scope.type = sessionStorage.getItem('tempType');
+	}
+
+	$interval(function(){
+		getChatMessages();
+	},3000);
+
+	function getChatMessages(){
+		enquiry.getMessages($scope.userDetail.transactionid).success(function(resp) {
+
+			$scope.messages = JSON.parse(resp.result);
+		}).error(function(error) {
+		});
+	}
+
 	$scope.messages = JSON.parse($scope.userDetail.message);
 	if($scope.messages != null)
-		$scope.dispChat = true;
+	$scope.dispChat = true;
 	$scope.submitQuotation = function(){
 		console.log($('#message').val());
 		console.log($scope.userDetail.transactionid);
@@ -170,33 +192,33 @@ angular.module('LocatorApp.controllers', [])
 .controller('selectLocationsController', function($scope, $state, selectLoc){
 	selectLoc.getLocations().success(function(res){
 		$scope.locations = res.response;
-    	//console.log(res);
-    }).error(function(err){
-    	console.log(err);
-    });
+		//console.log(res);
+	}).error(function(err){
+		console.log(err);
+	});
 
-    $scope.checkedItems = function() {
-    	$scope.checkedItemsList = [];
-    	angular.forEach($scope.locations, function(appObj, arrayIndex){
-    		if(appObj.checked) {
-    			$scope.checkedItemsList.push(appObj.id);
-    		}
-    	});
-    };
-    $scope.saveLocations = function() {
-    	var list = $scope.checkedItemsList.join();
-    	var obj = {};
-    	obj.i_lc = list;
-    	obj.i_type = "location";
-    	obj.i_id = sessionStorage.getItem('logged_in');
-    	selectLoc.saveLocations(obj).success(function(res) {
-    		if(res.status) {
-    			$state.go('courses');
-    		}
-    	}).error(function(error){
+	$scope.checkedItems = function() {
+		$scope.checkedItemsList = [];
+		angular.forEach($scope.locations, function(appObj, arrayIndex){
+			if(appObj.checked) {
+				$scope.checkedItemsList.push(appObj.id);
+			}
+		});
+	};
+	$scope.saveLocations = function() {
+		var list = $scope.checkedItemsList.join();
+		var obj = {};
+		obj.i_lc = list;
+		obj.i_type = "location";
+		obj.i_id = sessionStorage.getItem('logged_in');
+		selectLoc.saveLocations(obj).success(function(res) {
+			if(res.status) {
+				$state.go('courses');
+			}
+		}).error(function(error){
 
-    	});
-    };
+		});
+	};
 })
 
 
@@ -253,13 +275,14 @@ angular.module('LocatorApp.controllers', [])
 		})
 	};
 })
-.controller('headercntrl', function($scope,$state,selectLoc,courseListProcess){
+.controller('headercntrl', function($scope,$state,selectLoc,courseListProcess, $rootScope){
 
 	$scope.hidethis = true;
 	$scope.hidden = true;
-
+	$rootScope.instituteImage = sessionStorage.getItem('logged_inst_img');
+	$rootScope.instituteName = sessionStorage.getItem('logged_inst_name');
 	selectLoc.getLocations().success(function(res){
-		console.log('wow');
+		//console.log('wow');
 		$scope.location = res.response;
 	}).error(function(err){
 		console.log(err);
@@ -318,14 +341,14 @@ angular.module('LocatorApp.controllers', [])
 	$scope.capture = function(l,c){
 		console.log(l);
 		console.log(c);
-	//Set these values in Local Session Storage
-	sessionStorage.setItem('search_location',l);
-	sessionStorage.setItem('search_course',c);
-	$state.go('searchResult', { location_id: l, course_id: c});
-}
+		//Set these values in Local Session Storage
+		sessionStorage.setItem('search_location',l);
+		sessionStorage.setItem('search_course',c);
+		$state.go('searchResult', { location_id: l, course_id: c});
+	}
 
-  /*$scope.dispp = function(){
-    $scope.hidden = true;
+	/*$scope.dispp = function(){
+	$scope.hidden = true;
 };*/
 
 
@@ -446,12 +469,12 @@ angular.module('LocatorApp.controllers', [])
 })
 
 function js_yyyy_mm_dd_hh_mm_ss () {
-  now = new Date();
-  year = "" + now.getFullYear();
-  month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
-  day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
-  hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
-  minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
-  second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
-  return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+	now = new Date();
+	year = "" + now.getFullYear();
+	month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
+	day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
+	hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
+	minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
+	second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
+	return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
 }

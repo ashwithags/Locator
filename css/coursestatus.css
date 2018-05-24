@@ -17,7 +17,7 @@
   right: 0;
   bottom: 0;
   background-color: #2196F3;
-  
+
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -30,7 +30,7 @@
   width:14px;
   height:14px;
   background-color: white;
-  
+
   -webkit-transition: .4s;
   transition: .4s;
   -webkit-transform: translateX(30px);
@@ -50,7 +50,7 @@ input:checked + .slider:before {
 -webkit-transform: translateX(0px);
   -ms-transform: translateX(0px);
   transform: translateX(0px);
-  
+
 }
 
 /* Rounded sliders */
@@ -67,7 +67,7 @@ input:checked + .slider:before {
   display: flex;
   min-width: 80%;
   justify-content: center;
-  
+
 }
 .nav-tabs>li.crs {
   float: none;
@@ -94,7 +94,8 @@ input:checked + .slider:before {
 }
 .btn {
   display: block;
-  width: 72px;
+  width: 60px;
+  height: 33px;
   margin-right: auto;
   margin-left: auto;
 }

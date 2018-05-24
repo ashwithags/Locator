@@ -1,5 +1,5 @@
 
-<header></header>
+<header ng-controller="headercntrl"></header>
 <style type="text/css">
 	.profile .panel-profile {
 	    border: none;
@@ -79,7 +79,7 @@
 	}
 	.panel-body {
 	    color: #002d56;
-	}   
+	}
 </style>
 <div class="topSpacing">
 	<div class="container-fluid">
@@ -133,13 +133,13 @@
 	                        <span ng-if="search.user_altmobile_number != undefined"><i class="fa fa-phone-square"></i><a href="#">{{search.user_altmobile_number}}</a></span>
 	                    </div>
 	                    <div class="clearfix margin-bottom-20"></div>
-                    </div>    
+                    </div>
                     <hr>
                     <ul class="list-inline share-list" style="background-color: #ffffff">
                         <li><i class="fa fa-group"></i><a href="#"><span am-time-ago="search.datetime | amParse:'YYYY-MM-DD HH:mm:ss'"></span> Posted</a></li>
                     </ul>
                 </div>
-            </div>     
+            </div>
     	</div>
 	</div>
 </div>

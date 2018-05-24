@@ -109,6 +109,9 @@ ul.nav.navbar-nav.navbar-right {
     opacity: 0.9;
     font-weight: 400;
 }
+.category > strong {
+  margin-left: 6px;
+}
 .location{
     color: #454647;
     padding: 6px 0px;
@@ -266,6 +269,9 @@ footer.page-footer.blue.center-on-small-only {
 .floatL{
     float: left;
 }
+.floatR{
+  float: right;
+}
 .color{
     color: #228AE6 !important;
 }
@@ -285,7 +291,8 @@ footer.page-footer.blue.center-on-small-only {
     margin-left: 10px;
 }
 .glyphicon{
-    font-size: 23px;
+    font-size: 22px;
+    top: -1px;
 }
 .upldlogo{
     margin-left: 70px;
@@ -331,8 +338,11 @@ footer.page-footer.blue.center-on-small-only {
     padding: 25px;
     padding-bottom: 5px;
 }
-.profileDetails h4{
-    margin-left: 50px;
+.actionables {
+    margin: 35px;
+}
+.profileDetails hr {
+    margin: 35px;
 }
 /*.payment{
     right: 10px;

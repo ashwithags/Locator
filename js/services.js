@@ -23,7 +23,7 @@ angular.module('LocatorApp.services', [])
 		})
 	}
 	return services;
-	
+
 })
 .factory('enquiry',function($http){
 	var services={};
@@ -45,6 +45,12 @@ angular.module('LocatorApp.services', [])
 		return $http({
 			method: 'GET',
 			url:'https://api.myjson.com/bins/d8ut1'
+		})
+	}
+	services.getMessages = function(tranxid){
+		return $http({
+			method: 'GET',
+			url:'http://localhost:7999/api/v1/user/usermessage/'+tranxid
 		})
 	}
 	services.searchCourseLocation = function(course, location) {
@@ -88,17 +94,17 @@ angular.module('LocatorApp.services', [])
 	services.getstaticLocations = function(data){
 		return $http({
 			url: 'http://localhost:7999/api/v1/institute/offerings',
-			method: 'POST',	
+			method: 'POST',
 			header: {
 				'Content-Type': 'application/json'
 			},
-			data: data			
+			data: data
 		})
 	};
 	services.getLocations = function(){
 		return $http({
 			url: 'http://localhost:7999/api/v1/search/alllocation',
-			method: 'GET'				
+			method: 'GET'
 		})
 	}
 	services.saveLocations = function(slocdata) {
@@ -118,7 +124,7 @@ angular.module('LocatorApp.services', [])
 
 .factory("courseListProcess", function($http){
 	var services = {};
-	
+
 	services.staticgetCourseList = function(){
 		return $http({
 			url:"../data/course_status.json",
@@ -128,7 +134,7 @@ angular.module('LocatorApp.services', [])
 	services.getCourseList = function(){
 		return $http({
 			url: 'http://localhost:7999/api/v1/search/allcourses',
-			method: 'GET'				
+			method: 'GET'
 		})
 	}
 	services.sendCourseDetails = function(info){
