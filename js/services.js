@@ -91,6 +91,27 @@ angular.module('LocatorApp.services', [])
 
 .factory("selectLoc", function($http){
 	var services = {};
+	services.updateInfo = function(infodata) {
+		infodata.instid = sessionStorage.getItem('logged_in');
+		return $http({
+			url: 'http://localhost:7999/api/v1/institute/updateInstituteBasicInfo',
+			method: 'POST',
+			header: {
+				'Content-Type': 'application/json'
+			},
+			data: infodata
+		});
+	};
+	services.getInstituteInfo = function(infodata) {
+		var url = 'http://localhost:7999/api/v1/institute/getInstituteInformation/'+sessionStorage.getItem('logged_in');
+		return $http({
+			url: url,
+			method: 'GET',
+			header: {
+				'Content-Type': 'application/json'
+			}
+		});
+	};
 	services.getstaticLocations = function(data){
 		return $http({
 			url: 'http://localhost:7999/api/v1/institute/offerings',
@@ -106,7 +127,7 @@ angular.module('LocatorApp.services', [])
 			url: 'http://localhost:7999/api/v1/search/alllocation',
 			method: 'GET'
 		})
-	}
+	};
 	services.saveLocations = function(slocdata) {
 		return $http({
 			url: 'http://localhost:7999/api/v1/institute/updatelc',
@@ -116,7 +137,7 @@ angular.module('LocatorApp.services', [])
 			},
 			data: slocdata
 		});
-	}
+	};
 	return services;
 })
 

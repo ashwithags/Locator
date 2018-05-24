@@ -40,7 +40,14 @@ angular.module('LocatorApp.controllers', [])
 .controller('profileCtrl', function($scope, $state){
 
 })
-.controller('instiCtrl', function($scope, $state){
+.controller('instiCtrl', function($scope, $state, selectLoc){
+	selectLoc.getInstituteInfo().success(function(res) {
+		$scope.info = res.response[0];
+		$scope.otherinfo = res.response[0];
+	}).error(function(error){
+
+	});
+
 	$scope.edit1 = true;
 	$scope.editphoto = function(){
 		$scope.edit1 = false;
@@ -60,6 +67,21 @@ angular.module('LocatorApp.controllers', [])
 	$scope.edit5 = true;
 	$scope.editcntct = function(){
 		$scope.edit5 = false;
+	};
+	$scope.saveAboutDesc = function(info){
+		selectLoc.updateInfo(info).success(function(res) {
+			console.log(res);
+		}).error(function(error){
+
+		});
+	};
+	$scope.saveOtherInfo = function(otherinfo){
+		console.log(otherinfo);
+		selectLoc.updateInfo(otherinfo).success(function(res) {
+			console.log(res);
+		}).error(function(error){
+
+		});
 	};
 
 })

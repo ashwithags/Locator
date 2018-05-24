@@ -4,13 +4,13 @@
 		<div class="col-md-2 col-lg-2">
 			<sidebar></sidebar>
 		</div>
-		
+
 
 		<div class="col-md-10 col-lg-10 center-block mainBlockProfile">
 			<div class="col-md-6 col-lg-6" style="border-right: 1px solid lightgrey">
 				<div class="panel panel-default shadowNone borderNone">
-					<div class="panel-heading labelfont color borderNone"> 
-						Upload Logo 
+					<div class="panel-heading labelfont color borderNone">
+						Upload Logo
 						<button class="pull-right btn btn btn-default" ng-click="editphoto()"><i class="glyphicon glyphicon-pencil"></i> Edit </button>
 						<div class="clearfix"></div>
 					</div>
@@ -19,62 +19,68 @@
 						<input type="file/hidden" class="btn btn-big btn-primary center-block" value="UPLOAD" ng-disabled="edit1" disabled="disabled">
 					</div>
 				</div><hr>
-				<div>
-					<div class="panel panel-default shadowNone borderNone">
-						<div class="panel-heading labelfont color borderNone">
-							About
-							<button class="pull-right btn btn btn-default" ng-click= "editabout()"><i class="glyphicon glyphicon-pencil"></i> Edit</button><br>
-							<div><textarea style="margin-top: 26px;" class="form-control" ng-disabled = "edit2"></textarea>
+				<form name="infoform" novalidate>
+					<div>
+						<div class="panel panel-default shadowNone borderNone">
+							<div class="panel-heading labelfont color borderNone">
+								About
+								<button class="pull-right btn btn btn-default" ng-click= "editabout()"><i class="glyphicon glyphicon-pencil"></i> Edit</button><br>
+								<div><textarea style="margin-top: 26px;" ng-model="info.inst_about" class="form-control" ng-disabled = "edit2"></textarea>
+								</div>
+							</div>
+						</div>
+					</div><hr>
+					<div>
+						<div class="panel panel-default shadowNone borderNone">
+							<div class="panel-heading labelfont color borderNone">
+								Institute Description
+								<button class="pull-right btn btn btn-default" ng-click = "editdesc()"><i class="glyphicon glyphicon-pencil"></i> Edit </button><br>
+								<textarea style="margin-top: 46px;" ng-model="info.inst_desc" class="form-control textareablock" ng-disabled = "edit3"></textarea>
 							</div>
 						</div>
 					</div>
-				</div><hr>
-				<div>
-					<div class="panel panel-default shadowNone borderNone">
-						<div class="panel-heading labelfont color borderNone">
-							Institute Description
-							<button class="pull-right btn btn btn-default" ng-click = "editdesc()"><i class="glyphicon glyphicon-pencil"></i> Edit </button><br>
-							<textarea style="margin-top: 46px;" class="form-control" ng-disabled = "edit3"></textarea>
-						</div>
-					</div>
-				</div>
+				</form>
+				<button class="custom-btn btn-primary" ng-click="saveAboutDesc(info)">Save About & Description</button>
 			</div>
 
 			<div class="col-md-6 col-lg-6">
-				<div>
-					<div class="panel panel-default shadowNone borderNone">
-						<div class="panel-heading labelfont color borderNone">
-							Basic Info<button class="pull-right btn btn btn-default" ng-click = "editbasic()"><i class="glyphicon glyphicon-pencil"></i> Edit </button><br>
+				<form name="otherinfoform" novalidate>
+					<div>
+						<div class="panel panel-default shadowNone borderNone">
+							<div class="panel-heading labelfont color borderNone">
+								Basic Info<button class="pull-right btn btn btn-default" ng-click = "editbasic()"><i class="glyphicon glyphicon-pencil"></i> Edit </button><br>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div>
-					<div style="margin-top: 26px;">
-						<span><i class="fa fa-user"></i></span>&nbsp;<label class="color">  Founded By </label>
-							<input class="form-control" type="text" name="founded" ng-disabled = "edit4">
-					</div>
-					<div style="margin-top: 16px;">
-						<span><i class="fa fa-calendar"></i></span>&nbsp;<label class="color">  Founded On </label>
-							<input class="form-control" type="date" name="founded" ng-disabled = "edit4">
-					</div>
-				</div><hr>
-				<div>
-					<div class="panel panel-default shadowNone borderNone">
-						<div class="panel-heading labelfont color shadowNone borderNone">
-							Contact Info
-							<button class="pull-right btn btn btn-default" ng-click= "editcntct()"><i class="glyphicon glyphicon-pencil"></i> Edit </button>
+					<div>
+						<div style="margin-top: 26px;">
+							<span><i class="fa fa-user"></i></span>&nbsp;<label class="color">  Founded By </label>
+								<input class="form-control" type="text" ng-model="otherinfo.inst_founder" name="founded" ng-disabled = "edit4">
+						</div>
+						<div style="margin-top: 16px;">
+							<span><i class="fa fa-calendar"></i></span>&nbsp;<label class="color">  Founded On </label>
+								<input class="form-control" type="date" ng-model="otherinfo.inst_founded_date" name="founded" ng-disabled = "edit4">
+						</div>
+					</div><hr>
+					<div>
+						<div class="panel panel-default shadowNone borderNone">
+							<div class="panel-heading labelfont color shadowNone borderNone">
+								Contact Info
+								<button class="pull-right btn btn btn-default" ng-click= "editcntct()"><i class="glyphicon glyphicon-pencil"></i> Edit </button>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div>
-					<span><i class="fa fa-phone"></i></span>&nbsp;<label class="color"> Phone *</label>
-					<input class="form-control" type="text" name="phone" ng-disabled="edit5"><br><br>
-					<span><i class="fa fa-envelope"></i></span>&nbsp;<label class="color"> Email *</label>
-					<input class="form-control" type="text" name="email" ng-disabled="edit5">
-				</div><hr>
+					<div>
+						<span><i class="fa fa-phone"></i></span>&nbsp;<label class="color"> Phone *</label>
+						<input class="form-control" ng-model="otherinfo.inst_contact" type="text" name="phone" ng-disabled="edit5"><br><br>
+						<span><i class="fa fa-phone"></i></span>&nbsp;<label class="color"> Alternative Phone *</label>
+						<input class="form-control" ng-model="otherinfo.inst_altcontact" type="text" name="altphone" ng-disabled="edit5"><br><br>
+						<span><i class="fa fa-envelope"></i></span>&nbsp;<label class="color"> Email *</label>
+						<input class="form-control" type="text" ng-model="otherinfo.inst_email" name="email" ng-disabled="edit5">
+					</div><hr>
+				</form>
+				<button ng-click="saveOtherInfo(otherinfo)" class="custom-btn btn-primary">Update Information</button>
 			</div>
 		</div>
 	</div>
 </div>
-			
-			

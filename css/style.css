@@ -156,6 +156,9 @@ ul.nav.navbar-nav.navbar-right {
 .nav-tabs {
     border-bottom: 0px solid #ddd;
 }
+.nav-tabs>li{
+    margin: 0px 5px;
+}
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     padding: 20px 50px;
     border: 0px;
@@ -163,6 +166,7 @@ ul.nav.navbar-nav.navbar-right {
     border: 0px;
     color: #333;
     border-radius: 0px;
+    background-color: #FFF;
 }
 .nav-tabs>li>a {
     background-color: #dcdcdc;
@@ -172,7 +176,7 @@ ul.nav.navbar-nav.navbar-right {
     font-size: 16px;
     font-weight: bold;
     border-radius: 0px;
-    margin-right: 11px;
+    /* margin-right: 11px; */
 }
 .tab-content {
     /* background-color: #fff; */
@@ -587,4 +591,15 @@ h6 div{
 h6{
   margin: 0px;
   margin-bottom: 7px;
+}
+
+.custom-btn{
+  display: block;
+  margin-right: auto;
+  padding: 5px 15px;
+  margin-left: auto;
+  border-radius: 5px;
+}
+.textareablock{
+  height: 100px !important;
 }
