@@ -9,7 +9,7 @@
 
 	.profile .profile-blog {
 	    padding: 20px;
-	    background: #a8a9a9;
+			background-image: linear-gradient(to bottom, #73a0e5, #5fb5d8, #84c2c2, #b1c9bc, #cfd0cd);
 	}
 
 	.profile .blog-border {
@@ -83,7 +83,7 @@
 </style>
 <div class="topSpacing">
 	<div class="container-fluid">
-		<div class="col-md-3 col-lg-3">
+		<div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
 			<div class="filter-block">
 				<h3><i class="fas fa-filter"></i>&nbsp; FILTER</h3>
 				<div class="location">
@@ -118,11 +118,11 @@
 			</div>
 		</div>
 
-		<div class="col-md-9 col-lg-9 profile">
+		<div class="col-sm-9 col-xs-9 col-md-9 col-lg-9 profile">
 			<div class="col-sm-4" ng-if="searchResults.status" ng-repeat="search in searchResults.response">
                 <div class="blog-border">
                 	<div class="profile-blog">
-	                    <img class="rounded-x" src="http://www.anyrefer.com/assets/uploads/users/default.png" alt="">
+	                    <img class="rounded-x" src="https://cdn4.iconfinder.com/data/icons/green-shopper/1068/user.png" alt="">
 	                    <div class="name-location">
 	                        <strong>{{search.user_first_name}} {{search.user_last_name}}</strong>
 	                        <span><i class="fa fa-map-marker"></i><a href="#">{{search.location_name}}</a></span> <br/>
