@@ -19,9 +19,9 @@
 					<div id="coursesOffered" class="tab-pane fade in active">
 						<ul class="list-group">
 							<div class="list-group-item" ng-repeat="course in availableCourses">
-								{{course.course_name}}
+								{{course.LOC_COURSE_NAME}}
 								<label class="switch">
-									<input type="checkbox" ng-model="ticked" ng-click="course_availablity(ticked,course.id)">
+									<input type="checkbox" ng-model="ticked" ng-click="course_availablity(ticked,course.LOC_COURSE_ID)">
 									<span class=" slider round"></span>
 								</label>
 							</div>
@@ -31,7 +31,7 @@
 						<div class="droptab list-group">
 							<div class="list-group-item" ng-repeat="place in availableLocations">{{place.Complc}}
 								<label class="switch">
-									<input type="checkbox" ng-model="tickedLoc" ng-click="place_availablity(tickedLoc,place.id)">
+									<input type="checkbox" ng-model="tickedLoc" ng-click="place_availablity(tickedLoc,place.LOC_LOCATION_ID)">
 									<span class=" slider round"></span>
 								</label>
 							</div>

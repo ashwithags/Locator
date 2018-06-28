@@ -1,7 +1,7 @@
 angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.services','LocatorApp.directive','angularMoment'])
 .config(function($stateProvider, $urlRouterProvider){
-	   $urlRouterProvider.otherwise('login');	
-	
+	   $urlRouterProvider.otherwise('login');
+
 	$stateProvider
 		.state('login',{
 			url: '/login',

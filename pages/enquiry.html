@@ -14,26 +14,28 @@
 
 			<div class="tab-content">
 				<div id="home" class="tab-pane fade in active">
-					<div class="list total">{{enquries.length}} Enquiries</div>
-					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="enquery in enquries" ng-click="enquiryDetail(enquery, 'enquiry')">
+					<div ng-if="!noEnquiry" class="list total">{{enquries.length}} Enquiries</div>
+					<div ng-if="noEnquiry" class="list total">No New Lead Details Available</div>
+					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="enquiry in enquries" ng-click="enquiryDetail(enquiry, 'enquiry')">
 						<div class="first-char">
-							<div class="first-letter randomColor" ng-bind="enquery.firstname.charAt(0)"></div>
+							<div class="first-letter randomColor" ng-bind="enquiry.firstname.charAt(0)"></div>
 						</div>
 						<div class="desc">
-							<h3>{{enquery.firstname}} {{enquery.lastname}}</h3>
-							<h6 class="category"><strong>{{enquery.coursename | uppercase}}</strong></h6>
-							<p class="location" ng-model="loaction">{{enquery.location_name}}, {{enquery.location_city}}</p>
+							<h3>{{enquiry.firstname}} {{enquiry.lastname}}</h3>
+							<h6 class="category"><strong>{{enquiry.coursename | uppercase}}</strong></h6>
+							<p class="location" ng-model="loaction">{{enquiry.LOC_LOCATION_NAME}}, {{enquiry.LOC_LOCATION_CITY}}</p>
 						</div>
 					</div>
 				</div>
 				<div id="contacted" class="tab-pane fade">
+					<div ng-if="noContact" class="list total">No Contacted Student Details Available</div>
 					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="contacts in contacted" ng-click="enquiryDetail(contacts, 'contact')">
 						<div class="first-char">
 							<div class="first-letter randomColor" ng-bind="contacts.firstname.charAt(0)"></div>
 						</div>
 						<div class="desc">
 							<h3>{{contacts.firstname}} {{contacts.lastname}}</h3>
-							<h6 class="category"><strong>{{contacts.coursename | uppercase}}</strong>, {{contacts.location_name}},  {{contacts.location_city}}</h6>
+							<h6 class="category"><strong>{{contacts.coursename | uppercase}}</strong>, {{contacts.LOC_LOCATION_NAME}},  {{contacts.LOC_LOCATION_CITY}}</h6>
 							<p class="location" ng-model="loaction"></p>
 							<p ng-if="contacts.message != null" class="msg">{{contacts.message}}</p>
 							<p ng-if="contacts.message == null" class="msg">No Message</p>
@@ -41,6 +43,7 @@
 					</div>
 				</div>
 				<div id="student" class="tab-pane fade">
+					<div ng-if="noStudent" class="list total">No Joined Lead Details Available</div>
 					<div class="list animation wow flipInX" data-wow-delay="0.2s" ng-repeat="stud in StudentsList">
 						<div class="first-char">
 							<div class="first-letter randomColor" ng-bind="stud.firstname.charAt(0)"></div>
