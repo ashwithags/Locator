@@ -125,12 +125,12 @@ hr{
 						<img class="rounded-x" src="https://cdn4.iconfinder.com/data/icons/green-shopper/1068/user.png" alt="">
 						<div class="name-location">
 							<strong>{{search.LOC_USER_FNAME}} {{search.LOC_USER_LNAME}}</strong>
-							<span><i class="fa fa-map-marker"></i><a href="#">{{search.LOC_LOCATION_NAME}}, {{search.LOC_LOCATION_CITY}}, {{search.LOC_LOCATION_STATE}}</a></span> <br/>
+							<i class="fas fa-map-marker-alt"></i><a href="#">{{search.LOC_LOCATION_NAME}}, {{search.LOC_LOCATION_CITY}}, {{search.LOC_LOCATION_STATE}}</a></span> <br/>
 							<span><i class="fa fa-phone-volume"></i><a href="tel:{{search.LOC_USER_MOBILE}}" ng-if="search.comp_inst.indexOf(comp_inst) !== -1">{{search.LOC_USER_MOBILE}}</a></span>
 							<span ng-if="search.comp_inst.indexOf(comp_inst) === -1"><i class="fa fa-phone-volume"></i>XXX XXX {{search.mobLast3}}</span> <br/>
 							<span><i class="fa fa-user"></i><a href="#">{{search.LOC_USER_TYPE}}</a></span> <br/>
 							<span><i class="fa fa-envelope"></i><a href="#">{{search.LOC_USER_EMAIL}}</a></span> <br/>
-							<span ng-if="search.user_altmobile_number != undefined"><i class="fa fa-phone-square"></i><a href="#">{{search.LOC_USER_ALT_CONTACT}}</a></span>
+							<span ng-if="search.user_altmobile_number != undefined"><a href="#">{{search.LOC_USER_ALT_CONTACT}}</a></span>
 						</div>
 						<div class="clearfix margin-bottom-20"></div>
 					</div>

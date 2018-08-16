@@ -6,18 +6,26 @@
 		</div>
 		<div class="col-md-10 col-lg-10 center-block mainBlockProfile">
 			<div class="col-md-6 col-lg-6" style="border-right: 1px solid lightgrey">
-				<div class="panel panel-default shadowNone borderNone">
-					<div class="panel-heading labelfont color borderNone">
-						Upload Logo
-						<button class="pull-right btn btn btn-default" ng-click="editphoto()"><i class="glyphicon glyphicon-pencil"></i> Edit </button>
-						<div class="clearfix"></div>
-					</div>
-					<div class="panel-body borderNone">
-						<img class="center-block" style="margin-bottom: 16px;" src={{LOC_INST_IMG}} onerror="https://c.urbanpro.com/assets/new-ui/profilePhoto_placeholder-d9efc4c8dfff0d644f650bdfbba81654.png">
-						<input type="file/hidden" class="btn btn-big btn-primary center-block" value="UPLOAD" ng-disabled="edit1" disabled="disabled">
-					</div>
-				</div><hr>
 				<form name="infoform" novalidate>
+					<div class="panel panel-default shadowNone borderNone">
+						<div class="panel-heading labelfont color borderNone">
+							Social Info
+							<button class="pull-right btn btn btn-default" ng-click="editphoto()"><i class="glyphicon glyphicon-pencil"></i> Edit </button>
+							<div class="clearfix"></div>
+						</div>
+						<div class="panel-body borderNone">
+							<span><i class="fa fa-image leftIcons"></i></span>&nbsp;&nbsp;
+							<input class="form-control socialMedialinks" ng-model="info.LOC_INST_IMG" type="text" name="logo" ng-disabled="edit1"><br/><br/>
+							<span><i class="fab fa-facebook-square leftIcons"></i></span>&nbsp;&nbsp;
+							<input class="form-control socialMedialinks" ng-model="info.LOC_INST_FB_LINK" type="text" name="facebook" ng-disabled="edit1"><br/><br/>
+							<span><i class="fab fa-linkedin-in leftIcons"></i></span>&nbsp;&nbsp;
+							<input class="form-control socialMedialinks" type="text" ng-model="info.LOC_INST_LINKEDIN_LINK" name="linkedin" ng-disabled="edit1"><br/><br/>
+							<span><i class="fab fa-twitter-square leftIcons"></i></span>&nbsp;&nbsp;
+							<input class="form-control socialMedialinks" type="text" ng-model="info.LOC_INST_TWITTER_LINK" name="twitter" ng-disabled="edit1"><br/><br/>
+							<span><i class="fas fa-globe leftIcons"></i></span>&nbsp;&nbsp;
+							<input class="form-control socialMedialinks" type="text" ng-model="info.LOC_INST_WEBSITE_LINK" name="twitter" ng-disabled="edit1">
+						</div> 
+					</div><hr>
 					<div>
 						<div class="panel panel-default shadowNone borderNone">
 							<div class="panel-heading labelfont color borderNone">

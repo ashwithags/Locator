@@ -20,7 +20,9 @@
         <div class="form-group">
           <input type="text" size="50" class="form-control form-control2-modify" placeholder="Search courses.." ng-model="subject" ng-keyup="suggestCourses(subject)" ng-blur="dispp()">
           <ul class=" drop list-group" ng-hide="hidden" >
-            <li class="list-group-item" ng-repeat="course in courses" ng-click="fillcoursebox(course);">{{course.course_name}}</li>
+            <li class="list-group-item" ng-repeat="course in courses" ng-click="fillcoursebox(course);">
+              {{course.LOC_COURSE_NAME}}
+            </li>
           </ul>
         </div>
       </div>

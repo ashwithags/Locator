@@ -10,8 +10,15 @@ angular.module('LocatorApp.controllers', [])
 				$rootScope.instituteName = wow.result.LOC_INST_NAME;
 				sessionStorage.setItem('logged_inst_img',wow.result.LOC_INST_IMG);
 				sessionStorage.setItem('logged_inst_name',wow.result.LOC_INST_NAME);
-
-				$state.go('enquiry',{inst_id: wow.result.id});
+				console.log(wow.result.LOC_INST_OFFER_LOCATION +'   '+ wow.result.LOC_INST_OFFER_COURSE);
+				if((wow.result.LOC_INST_OFFER_LOCATION != null) && (wow.result.LOC_INST_OFFER_COURSE != null)) {
+					$state.go('enquiry',{inst_id: wow.result.id});
+				} else if((wow.result.LOC_INST_OFFER_LOCATION == null) && (wow.result.LOC_INST_OFFER_COURSE == null)) {
+					$state.go('selectLocations',{selected_location: wow.result.LOC_INST_CITY});
+				} else if(wow.result.LOC_INST_OFFER_COURSE == null){
+					$state.go('courses');
+				}
+				
 			} else {
 				alert(wow.message);
 			}
@@ -28,7 +35,7 @@ angular.module('LocatorApp.controllers', [])
 				$scope.showDiv=true;
 				console.log(wow);
 				sessionStorage.setItem('logged_in',wow.result.user_id);
-				$state.go('selectLocations',{inst_id: wow.result.user_id});
+				$state.go('selectLocations',{selected_location: signUpData.i_city});
 			} else {
 				$scope.showDiv=true;
 			}
@@ -42,6 +49,7 @@ angular.module('LocatorApp.controllers', [])
 })
 .controller('instiCtrl', function($scope, $state, selectLoc){
 	selectLoc.getInstituteInfo().success(function(res) {
+		sessionStorage.setItem('logged_inst_img',res.response[0].LOC_INST_IMG);
 		$scope.info = res.response[0];
 		$scope.otherinfo = res.response[0];
 	}).error(function(error){
@@ -224,12 +232,16 @@ angular.module('LocatorApp.controllers', [])
 })
 
 .controller('selectLocationsController', function($scope, $state, selectLoc){
-	selectLoc.getLocations().success(function(res){
-		$scope.locations = res.response;
-		//console.log(res);
-	}).error(function(err){
-		console.log(err);
-	});
+	$scope.selected_location = $state.params.selected_location;
+	if($scope.selected_location != null){
+		selectLoc.getLocationByCity($scope.selected_location).success(function(res){
+			$scope.locations = res.response;
+			//console.log(res);
+		}).error(function(err){
+			console.log(err);
+		});
+	}
+	
 
 	$scope.checkedItems = function() {
 		$scope.checkedItemsList = [];
@@ -309,7 +321,7 @@ angular.module('LocatorApp.controllers', [])
 		})
 	};
 })
-.controller('headercntrl', function($scope,$state,selectLoc,courseListProcess, $rootScope){
+.controller('headercntrl', function($scope, $state, selectLoc,courseListProcess, $rootScope){
 
 	$scope.hidethis = true;
 	$scope.hidden = true;
@@ -359,11 +371,11 @@ angular.module('LocatorApp.controllers', [])
 		$scope.courses = [];
 		$scope.hidden = false;
 		angular.forEach($scope.courselist,function(cr){
-
 			if(cr.LOC_COURSE_NAME.toLowerCase().indexOf(sub.toLowerCase()) >=0){
 				$scope.courses.push(cr);
 			}
 		});
+		console.log($scope.courses);
 	};
 
 	$scope.fillcoursebox = function(course){
@@ -373,8 +385,8 @@ angular.module('LocatorApp.controllers', [])
 	};
 
 	$scope.capture = function(l,c){
-		console.log(l);
-		console.log(c);
+		// console.log(l);
+		// console.log(c);
 		//Set these values in Local Session Storage
 		sessionStorage.setItem('search_location',l);
 		sessionStorage.setItem('search_course',c);
