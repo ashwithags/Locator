@@ -146,6 +146,16 @@ angular.module('LocatorApp.services', [])
 			data: slocdata
 		});
 	};
+	services.updateCourseNLocationInfo = function(updatedInfo) {
+		return $http({
+			url: 'http://localhost:7999/api/v1/institute/updateLocationandCourseOffering',
+			method: 'PUT',
+			header: {
+				'Content-Type': 'application/json'
+			},
+			data: updatedInfo
+		});
+	};
 	return services;
 })
 

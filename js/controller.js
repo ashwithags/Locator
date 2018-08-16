@@ -1,6 +1,6 @@
-angular.module('LocatorApp.controllers', [])
+angular.module('LocatorApp.controllers', ['ngDialog'])
 
-.controller('loginController', function($scope, $state, loginOperation, $rootScope) {
+.controller('loginController', function($scope, $state, loginOperation, $rootScope, ngDialog) {
 	$scope.login = function(loginData) {
 		console.log(loginData);
 		loginOperation.instituteLogin(loginData).success(function(wow) {
@@ -8,19 +8,23 @@ angular.module('LocatorApp.controllers', [])
 				sessionStorage.setItem('logged_in',wow.result.LOC_INST_ID);
 				$rootScope.instituteImage = wow.result.LOC_INST_IMG;
 				$rootScope.instituteName = wow.result.LOC_INST_NAME;
-				sessionStorage.setItem('logged_inst_img',wow.result.LOC_INST_IMG);
+				if(wow.result.LOC_INST_IMG != null){
+					sessionStorage.setItem('logged_inst_img',wow.result.LOC_INST_IMG);
+				}
 				sessionStorage.setItem('logged_inst_name',wow.result.LOC_INST_NAME);
-				console.log(wow.result.LOC_INST_OFFER_LOCATION +'   '+ wow.result.LOC_INST_OFFER_COURSE);
 				if((wow.result.LOC_INST_OFFER_LOCATION != null) && (wow.result.LOC_INST_OFFER_COURSE != null)) {
+					//$scope.commonAlertBox(wow.message,'enquiry',{inst_id: wow.result.id});
 					$state.go('enquiry',{inst_id: wow.result.id});
 				} else if((wow.result.LOC_INST_OFFER_LOCATION == null) && (wow.result.LOC_INST_OFFER_COURSE == null)) {
+					//$scope.commonAlertBox(wow.message,'selectLocations',{selected_location: wow.result.LOC_INST_CITY});
 					$state.go('selectLocations',{selected_location: wow.result.LOC_INST_CITY});
 				} else if(wow.result.LOC_INST_OFFER_COURSE == null){
+					//$scope.commonAlertBox(wow.message,'courses');
 					$state.go('courses');
 				}
 				
 			} else {
-				alert(wow.message);
+				$scope.commonAlertBox(wow.message);
 			}
 		}, function(err) {
 			console.log(err);
@@ -43,13 +47,36 @@ angular.module('LocatorApp.controllers', [])
 			console.log(err);
 		});
 	}
+	/* Alert Popup Code starts here	*/
+	$scope.commonAlertBox = function (message,nextState,data) {
+		console.log(message);
+        $scope.messageToBeDisplayed = message;
+        $scope.alertDialog = ngDialog.open({
+            template: 'pages/custom_alert.html',
+            className: 'ngdialog-theme-default pictures-warning-notification-popup',
+            scope: $scope,
+            closeByDocument: false
+		});
+
+		$scope.closeDialogAlert = function() {
+			if(nextState == undefined){
+				ngDialog.close();
+			} else if((nextState != undefined) && (data == undefined)){
+				ngDialog.close();
+				$state.go(nextState);
+			} else {
+				ngDialog.close();
+				$state.go(nextState,data);
+			}
+			
+		};
+	}
 })
 .controller('profileCtrl', function($scope, $state){
 
 })
-.controller('instiCtrl', function($scope, $state, selectLoc){
+.controller('instiCtrl', function($scope, $state, selectLoc,ngDialog){
 	selectLoc.getInstituteInfo().success(function(res) {
-		sessionStorage.setItem('logged_inst_img',res.response[0].LOC_INST_IMG);
 		$scope.info = res.response[0];
 		$scope.otherinfo = res.response[0];
 	}).error(function(error){
@@ -78,7 +105,7 @@ angular.module('LocatorApp.controllers', [])
 	};
 	$scope.saveAboutDesc = function(info){
 		selectLoc.updateInfo(info).success(function(res) {
-			console.log(res);
+			$scope.commonAlertBox(res.message);
 		}).error(function(error){
 
 		});
@@ -86,12 +113,35 @@ angular.module('LocatorApp.controllers', [])
 	$scope.saveOtherInfo = function(otherinfo){
 		console.log(otherinfo);
 		selectLoc.updateInfo(otherinfo).success(function(res) {
-			console.log(res);
+			$scope.commonAlertBox(res.message);
 		}).error(function(error){
 
 		});
 	};
 
+	$scope.commonAlertBox = function (message,nextState,data) {
+		console.log(message);
+        $scope.messageToBeDisplayed = message;
+        $scope.alertDialog = ngDialog.open({
+            template: 'pages/custom_alert.html',
+            className: 'ngdialog-theme-default pictures-warning-notification-popup',
+            scope: $scope,
+            closeByDocument: false
+		});
+
+		$scope.closeDialogAlert = function() {
+			if(nextState == undefined){
+				ngDialog.close();
+			} else if((nextState != undefined) && (data == undefined)){
+				ngDialog.close();
+				$state.go(nextState);
+			} else {
+				ngDialog.close();
+				$state.go(nextState,data);
+			}
+			
+		};
+	}
 })
 .controller('enquiryController', function($scope, $state, enquiry){
 	enquiry.getReceivedLeads('enquiry', sessionStorage.getItem('logged_in')).success(function(now){
@@ -325,7 +375,21 @@ angular.module('LocatorApp.controllers', [])
 
 	$scope.hidethis = true;
 	$scope.hidden = true;
-	$rootScope.instituteImage = sessionStorage.getItem('logged_inst_img');
+	console.log(sessionStorage.getItem('logged_inst_img'))
+	if(sessionStorage.getItem('logged_inst_img') == undefined){
+		selectLoc.getInstituteInfo().success(function(res) {
+			sessionStorage.setItem('logged_inst_img',res.response[0].LOC_INST_IMG);
+			if(sessionStorage.getItem('logged_inst_img') != null){
+				$rootScope.instituteImage = sessionStorage.getItem('logged_inst_img');
+			}
+			$scope.info = res.response[0];
+			$scope.otherinfo = res.response[0];
+		}).error(function(error){
+	
+		});
+	} else {
+		$rootScope.instituteImage = sessionStorage.getItem('logged_inst_img');
+	}
 	$rootScope.instituteName = sessionStorage.getItem('logged_inst_name');
 	selectLoc.getLocations().success(function(res){
 		//console.log('wow');
@@ -399,7 +463,7 @@ angular.module('LocatorApp.controllers', [])
 
 
 })
-.controller('coursestatusctrl', function($scope,selectLoc){
+.controller('coursestatusctrl', function($scope,selectLoc,ngDialog,$state){
 
 	$scope.availableCourses=[];
 	$scope.unavailableCourses = [];
@@ -423,8 +487,8 @@ angular.module('LocatorApp.controllers', [])
 				$scope.idOfunava_cour.push(ce.LOC_COURSE_ID);
 			}
 		});
-		console.log($scope.availableCourses);
-		console.log($scope.unavailableCourses);
+		//console.log($scope.availableCourses);
+		//console.log($scope.unavailableCourses);
 	}).error(function(err){
 		console.log(err);
 	});
@@ -445,7 +509,7 @@ angular.module('LocatorApp.controllers', [])
 				$scope.unavailableLocationsid.push(ce.LOC_LOCATION_ID);
 			}
 		});
-		console.log($scope.availableLocations);
+		//console.log($scope.availableLocations);
 	});
 
 	$scope.showRegCourses = function(keyword){
@@ -474,8 +538,7 @@ angular.module('LocatorApp.controllers', [])
 	};
 
 	$scope.course_availablity = function(status,id){
-
-		console.log(status,id);
+		//console.log(status,id);
 		if(status==false){
 			$scope.idOfava_cour.push(id);
 			if($scope.idOfunava_cour.indexOf(id)>=0){
@@ -489,12 +552,11 @@ angular.module('LocatorApp.controllers', [])
 				$scope.idOfunava_cour.push(id);
 			}
 		}
-		console.log($scope.idOfava_cour);
-		console.log($scope.idOfunava_cour);
+		//console.log($scope.idOfava_cour);
+		//console.log($scope.idOfunava_cour);
 	};
 
 	$scope.place_availablity = function(stat,ide){
-
 		if(stat == false){
 			$scope.availableLocationsid.push(ide);
 			if($scope.unavailableLocationsid.indexOf(ide)>=0){
@@ -507,10 +569,46 @@ angular.module('LocatorApp.controllers', [])
 				$scope.unavailableLocationsid.push(ide);
 			}
 		}
-		console.log($scope.availableLocationsid);
-		console.log($scope.unavailableLocationsid);
+		//console.log($scope.availableLocationsid);
+		//console.log($scope.unavailableLocationsid);
 	};
 
+	$scope.updateCourseNLocationInfo = function(){
+		var updatedInfo = {
+			locations: $scope.availableLocationsid.toString(),
+			courses: $scope.idOfava_cour.toString(),
+			instid: sessionStorage.getItem('logged_in')
+		}
+		selectLoc.updateCourseNLocationInfo(updatedInfo).success(function(result){
+			$scope.commonAlertBox(result.message);
+		})
+		// console.log($scope.availableLocationsid);
+		// console.log($scope.idOfava_cour);
+	};
+
+	$scope.commonAlertBox = function (message,nextState,data) {
+		console.log(message);
+        $scope.messageToBeDisplayed = message;
+        $scope.alertDialog = ngDialog.open({
+            template: 'pages/custom_alert.html',
+            className: 'ngdialog-theme-default pictures-warning-notification-popup',
+            scope: $scope,
+            closeByDocument: false
+		});
+
+		$scope.closeDialogAlert = function() {
+			if(nextState == undefined){
+				ngDialog.close();
+			} else if((nextState != undefined) && (data == undefined)){
+				ngDialog.close();
+				$state.go(nextState);
+			} else {
+				ngDialog.close();
+				$state.go(nextState,data);
+			}
+			
+		};
+	}
 
 })
 
