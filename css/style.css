@@ -109,6 +109,9 @@ ul.nav.navbar-nav.navbar-right {
     opacity: 0.9;
     font-weight: 400;
 }
+.category > strong {
+  margin-left: 6px;
+}
 .location{
     color: #454647;
     padding: 6px 0px;
@@ -153,6 +156,9 @@ ul.nav.navbar-nav.navbar-right {
 .nav-tabs {
     border-bottom: 0px solid #ddd;
 }
+.nav-tabs>li{
+    margin: 0px 5px;
+}
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     padding: 20px 50px;
     border: 0px;
@@ -160,6 +166,7 @@ ul.nav.navbar-nav.navbar-right {
     border: 0px;
     color: #333;
     border-radius: 0px;
+    background-color: #FFF;
 }
 .nav-tabs>li>a {
     background-color: #dcdcdc;
@@ -169,7 +176,7 @@ ul.nav.navbar-nav.navbar-right {
     font-size: 16px;
     font-weight: bold;
     border-radius: 0px;
-    margin-right: 11px;
+    /* margin-right: 11px; */
 }
 .tab-content {
     /* background-color: #fff; */
@@ -266,6 +273,9 @@ footer.page-footer.blue.center-on-small-only {
 .floatL{
     float: left;
 }
+.floatR{
+  float: right;
+}
 .color{
     color: #228AE6 !important;
 }
@@ -285,7 +295,8 @@ footer.page-footer.blue.center-on-small-only {
     margin-left: 10px;
 }
 .glyphicon{
-    font-size: 23px;
+    font-size: 22px;
+    top: -1px;
 }
 .upldlogo{
     margin-left: 70px;
@@ -331,8 +342,11 @@ footer.page-footer.blue.center-on-small-only {
     padding: 25px;
     padding-bottom: 5px;
 }
-.profileDetails h4{
-    margin-left: 50px;
+.actionables {
+    margin: 35px;
+}
+.profileDetails hr {
+    margin: 35px;
 }
 /*.payment{
     right: 10px;
@@ -577,4 +591,15 @@ h6 div{
 h6{
   margin: 0px;
   margin-bottom: 7px;
+}
+
+.custom-btn{
+  display: block;
+  margin-right: auto;
+  padding: 5px 15px;
+  margin-left: auto;
+  border-radius: 5px;
+}
+.textareablock{
+  height: 100px !important;
 }

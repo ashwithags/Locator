@@ -1,0 +1,7 @@
+this.events.publish('reloadOfferingDetails', json.OFFERING_ID);
+
+this.offeringassets[index1].stage_assets[index2].DOWNLOADED = false;
+this.events.subscribe("reloadOfferingDetails", (index: any) => {
+    console.log('Getting Triggered on completion: ' +index);
+    console.log(this.offeringid);
+});

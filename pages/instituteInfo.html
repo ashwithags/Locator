@@ -1,21 +1,19 @@
-<header ng-controller="instiCtrl"></header>
+<header ng-controller="headercntrl"></header>
 <div class="topSpacing">
 	<div class="container-fluid">
 		<div class="col-md-2 col-lg-2">
 			<sidebar></sidebar>
 		</div>
-		
-
 		<div class="col-md-10 col-lg-10 center-block mainBlockProfile">
 			<div class="col-md-6 col-lg-6" style="border-right: 1px solid lightgrey">
 				<div class="panel panel-default shadowNone borderNone">
-					<div class="panel-heading labelfont color borderNone"> 
-						Upload Logo 
+					<div class="panel-heading labelfont color borderNone">
+						Upload Logo
 						<button class="pull-right btn btn btn-default" ng-click="editphoto()"><i class="glyphicon glyphicon-pencil"></i> Edit </button>
 						<div class="clearfix"></div>
 					</div>
 					<div class="panel-body borderNone">
-						<img class="center-block" style="margin-bottom: 16px;" src="https://c.urbanpro.com/assets/new-ui/profilePhoto_placeholder-d9efc4c8dfff0d644f650bdfbba81654.png">
+<!-- 						<img class="center-block" style="margin-bottom: 16px;" src="https://c.urbanpro.com/assets/new-ui/profilePhoto_placeholder-d9efc4c8dfff0d644f650bdfbba81654.png">
 						<input type="file/hidden" class="btn btn-primary center-block" value="UPLOAD" ng-disabled="edit1" disabled="disabled">
 					</div>
 				</div><hr>
@@ -35,19 +33,45 @@
 							Institute Description
 							<button class="pull-right btn btn btn-default" ng-click = "editdesc()"><i class="glyphicon glyphicon-pencil"></i> Edit </button><br>
 							<textarea style="margin-top: 46px;" ng-model="institute.desc" class="form-control" ng-disabled = "edit3"></textarea>
+======= -->
+						<img class="center-block" style="margin-bottom: 16px;" src={{LOC_INST_IMG}} onerror="https://c.urbanpro.com/assets/new-ui/profilePhoto_placeholder-d9efc4c8dfff0d644f650bdfbba81654.png">
+						<input type="file/hidden" class="btn btn-big btn-primary center-block" value="UPLOAD" ng-disabled="edit1" disabled="disabled">
+					</div>
+				</div><hr>
+				<form name="infoform" novalidate>
+					<div>
+						<div class="panel panel-default shadowNone borderNone">
+							<div class="panel-heading labelfont color borderNone">
+								About
+								<button class="pull-right btn btn btn-default" ng-click= "editabout()"><i class="glyphicon glyphicon-pencil"></i> Edit</button><br>
+								<div><textarea style="margin-top: 26px;" ng-model="info.LOC_INST_ABOUT" class="form-control" ng-disabled = "edit2"></textarea>
+								</div>
+							</div>
+						</div>
+					</div><hr>
+					<div>
+						<div class="panel panel-default shadowNone borderNone">
+							<div class="panel-heading labelfont color borderNone">
+								Institute Description
+								<button class="pull-right btn btn btn-default" ng-click = "editdesc()"><i class="glyphicon glyphicon-pencil"></i> Edit </button><br>
+								<textarea style="margin-top: 46px;" ng-model="info.LOC_INST_DESC" class="form-control textareablock" ng-disabled = "edit3"></textarea>
+							</div>
 						</div>
 					</div>
-				</div>
+				</form>
+				<button class="custom-btn btn-primary" ng-click="saveAboutDesc(info)">Save About & Description</button>
 			</div>
 
 			<div class="col-md-6 col-lg-6">
-				<div>
-					<div class="panel panel-default shadowNone borderNone">
-						<div class="panel-heading labelfont color borderNone">
-							Basic Info<button class="pull-right btn btn btn-default" ng-click = "editbasic()"><i class="glyphicon glyphicon-pencil"></i> Edit </button><br>
+				<form name="otherinfoform" novalidate>
+					<div>
+						<div class="panel panel-default shadowNone borderNone">
+							<div class="panel-heading labelfont color borderNone">
+								Basic Info<button class="pull-right btn btn btn-default" ng-click = "editbasic()"><i class="glyphicon glyphicon-pencil"></i> Edit </button><br>
+							</div>
 						</div>
 					</div>
-				</div>
+<!-- 				</div>
 				<div>
 					<div style="margin-top: 26px;">
 						<span><i class="fa fa-user"></i></span>&nbsp;<label class="color">  Founded By </label>
@@ -74,9 +98,36 @@
 				</div><hr>
 
 				<input type="button" class="btn btn-primary center-block" value="SAVE CHANGES" ng-click="addInstituteInfo(institute)">
+======= -->
+					<div>
+						<div style="margin-top: 26px;">
+							<span><i class="fa fa-user"></i></span>&nbsp;<label class="color">  Founded By </label>
+								<input class="form-control" type="text" ng-model="otherinfo.LOC_INST_FOUNDER" name="founded" ng-disabled = "edit4">
+						</div>
+						<div style="margin-top: 16px;">
+							<span><i class="fa fa-calendar"></i></span>&nbsp;<label class="color">  Founded On </label>
+								<input class="form-control" type="date" ng-model="otherinfo.LOC_INST_FOUND_DATE" name="founded" ng-disabled = "edit4">
+						</div>
+					</div><hr>
+					<div>
+						<div class="panel panel-default shadowNone borderNone">
+							<div class="panel-heading labelfont color shadowNone borderNone">
+								Contact Info
+								<button class="pull-right btn btn btn-default" ng-click= "editcntct()"><i class="glyphicon glyphicon-pencil"></i> Edit </button>
+							</div>
+						</div>
+					</div>
+					<div>
+						<span><i class="fa fa-phone"></i></span>&nbsp;<label class="color"> Phone *</label>
+						<input class="form-control" ng-model="otherinfo.LOC_INST_CONTACT" type="text" name="phone" ng-disabled="edit5"><br><br>
+						<span><i class="fa fa-phone"></i></span>&nbsp;<label class="color"> Alternative Phone *</label>
+						<input class="form-control" ng-model="otherinfo.LOC_INST_ALTCONTACT" type="text" name="altphone" ng-disabled="edit5"><br><br>
+						<span><i class="fa fa-envelope"></i></span>&nbsp;<label class="color"> Email *</label>
+						<input class="form-control" type="text" ng-model="otherinfo.LOC_INST_EMAIL" name="email" ng-disabled="edit5">
+					</div><hr>
+				</form>
+				<button ng-click="saveOtherInfo(otherinfo)" class="custom-btn btn-primary">Update Information</button>
 			</div>
 		</div>
 	</div>
 </div>
-			
-			

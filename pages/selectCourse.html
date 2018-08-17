@@ -12,7 +12,7 @@
       				  	<div class="panel-body">
       				  		  <div class='col-xs-6 col-md-6' ng-repeat="course in courses">
       					        <div class="checkbox">
-      								    <label><input ng-model="course_ip" type="checkbox" ng-disabled="check_disable && !course_ip" ng-click="getCourseId(course.id)" ng-required="true">{{course.course_name}} </label>
+      								    <label><input ng-model="course_ip" type="checkbox" ng-disabled="check_disable && !course_ip" ng-click="getCourseId(course.LOC_COURSE_ID)" ng-required="true">{{course.LOC_COURSE_NAME}} </label>
       								    <!-- <span style="color: red">{{check_disable}}</span><span style="color: green">{{course_ip}}</span> -->
       							  	</div>
       						    </div>
