@@ -603,3 +603,11 @@ h6{
 .textareablock{
   height: 100px !important;
 }
+
+.socialMedialinks{
+    display: inline-block;
+    width: 85%;
+}
+.leftIcons{
+    font-size: 20px;
+}

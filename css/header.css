@@ -18,3 +18,60 @@ li:hover
 	z-index: 999;
 	width: 450px;
 }
+
+/*  Pop-Up Message related CSS  */
+.ngdialog-content {
+    padding: 0px !important;
+    background-color: white !important;
+    width: 420px !important;
+    text-align: center;
+    border-radius: 0px !important;
+    z-index: 999;
+}
+.notification-shot-desc {
+    font-family: "Open Sans Regular";
+    color: #666;
+    font-size: 16px;
+    line-height: 100%;
+}
+.notification-header {
+    padding: 15px;
+    border-bottom: 1px solid #f1f1f2;
+}
+
+.notification-long-desc {
+    font-family: "Open Sans Regular";
+    color: #999;
+    font-size: 18px;
+    margin: 20px;
+}
+.suggestedFitSizeTable{
+    width:80%;
+    margin: 10px auto;
+    border: 1px solid black;
+    margin-bottom:1em;
+}
+.suggestedFitSize_td{
+    padding: 0;
+    border: 1px solid black;
+    border-collapse: separate;
+}
+
+.cancel-proceed-container .btn {
+  font-family: "Open Sans Semibold";
+  color: white;
+  background-color: #25A7AD;
+  border-radius: 0px;
+  font-size: 14px;
+  padding: 7px 21px !important;
+}
+.cancel-proceed-container{
+  padding-bottom: 20px;
+}
+.cancel-proceed-container.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: none;
+}
+.cancel-proceed-container .btn:active, .btn.active {
+  box-shadow: none;
+}
+/* Popup CSS ends here */

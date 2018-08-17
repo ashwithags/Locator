@@ -122,9 +122,17 @@ angular.module('LocatorApp.services', [])
 			data: data
 		})
 	};
-	services.getLocations = function(){
+	services.getLocationByCity = function(data){
+		var searchUrl = 'http://localhost:7999/api/v1/search/alllocation/'+data;
 		return $http({
-			url: 'http://localhost:7999/api/v1/search/alllocation',
+			url: searchUrl,
+			method: 'GET'
+		})
+	};
+	services.getLocations = function(data){
+		var searchUrl = 'http://localhost:7999/api/v1/search/alllocation';
+		return $http({
+			url: searchUrl,
 			method: 'GET'
 		})
 	};
@@ -136,6 +144,16 @@ angular.module('LocatorApp.services', [])
 				'Content-Type': 'application/json'
 			},
 			data: slocdata
+		});
+	};
+	services.updateCourseNLocationInfo = function(updatedInfo) {
+		return $http({
+			url: 'http://localhost:7999/api/v1/institute/updateLocationandCourseOffering',
+			method: 'PUT',
+			header: {
+				'Content-Type': 'application/json'
+			},
+			data: updatedInfo
 		});
 	};
 	return services;
