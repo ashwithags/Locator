@@ -1,5 +1,4 @@
 angular.module('LocatorApp.controllers', [])
-
 .controller('loginController', function($scope, $state, loginOperation, $rootScope) {
 	$scope.login = function(loginData) {
 		console.log(loginData);
