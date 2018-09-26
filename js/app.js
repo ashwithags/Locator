@@ -1,7 +1,7 @@
-angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.services','LocatorApp.directive','angularMoment'])
+angular.module('LocatorApp', ['ui.router','ngDialog','LocatorApp.controllers','LocatorApp.services','LocatorApp.directive','angularMoment'])
 .config(function($stateProvider, $urlRouterProvider){
-	   $urlRouterProvider.otherwise('login');	
-	
+	   $urlRouterProvider.otherwise('login');
+
 	$stateProvider
 		.state('login',{
 			url: '/login',
@@ -42,6 +42,9 @@ angular.module('LocatorApp', ['ui.router','LocatorApp.controllers','LocatorApp.s
 		.state('selectLocations',{
 			url: '/selectLocations',
 			templateUrl : 'pages/selectLocations.html',
+			params: {
+				selected_location: null
+			},
 			controller : 'selectLocationsController'
 		})
 		.state('courses',{

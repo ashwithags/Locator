@@ -1,89 +1,89 @@
 
-<header></header>
+<header ng-controller="headercntrl"></header>
 <style type="text/css">
-	.profile .panel-profile {
-	    border: none;
-	    margin-bottom: 0;
-	    box-shadow: none;
-	}
+.profile .panel-profile {
+	border: none;
+	margin-bottom: 0;
+	box-shadow: none;
+}
 
-	.profile .profile-blog {
-	    padding: 20px;
-	    background: #a8a9a9;
-	}
+.profile .profile-blog {
+	padding: 20px;
+	background-image: linear-gradient(to bottom, #73a0e5, #5fb5d8, #84c2c2, #b1c9bc, #cfd0cd);
+}
 
-	.profile .blog-border {
-	    border: 1px solid #f0f0f0;
-	}
+.profile .blog-border {
+	border: 1px solid #f0f0f0;
+}
 
-	.profile .profile-blog img {
-	    float: left;
-	    width: 50px;
-	    height: 50px;
-	    margin-right: 20px;
-	}
+.profile .profile-blog img {
+	float: left;
+	width: 50px;
+	height: 50px;
+	margin-right: 20px;
+}
 
-	.rounded-x {
-	    border-radius: 50% !important;
-	}
+.rounded-x {
+	border-radius: 50% !important;
+}
 
-	.profile .name-location {
-	    overflow: hidden;
-	}
+.profile .name-location {
+	overflow: hidden;
+}
 
-	.profile .name-location strong {
-	    color: #002d56;
-	    display: block;
-	    font-size: 16px;
-	}
+.profile .name-location strong {
+	color: #002d56;
+	display: block;
+	font-size: 16px;
+}
 
-	.profile .name-location span a {
-	    color: #fff;
-	}
+.profile .name-location span a {
+	color: #fff;
+}
 
-	.margin-bottom-20 {
-	    margin-bottom: 20px;
-	}
+.margin-bottom-20 {
+	margin-bottom: 20px;
+}
 
-	.share-list {
-	    margin-bottom: 0;
-	}
+.share-list {
+	margin-bottom: 0;
+}
 
 
-	.list-inline {
-	    padding-left: 0;
-	    margin-left: 0px;
-	    list-style: none;
-	}
+.list-inline {
+	padding-left: 0;
+	margin-left: 0px;
+	list-style: none;
+}
 
-	.list-inline li {
-	    display: inline-block;
-	    padding-right: 5px;
-	    padding-left: 5px;
-	    font-size: 13px;
-	    padding: 7px;
-	}
-	.list-inline li a{
-		color: red;
-	}
-	hr{
-		margin: 0px !important;
-	}
+.list-inline li {
+	display: inline-block;
+	padding-right: 5px;
+	padding-left: 5px;
+	font-size: 13px;
+	padding: 7px;
+}
+.list-inline li a{
+	color: red;
+}
+hr{
+	margin: 0px !important;
+}
 
-	.share-list li i {
-	    color: #72c02c;
-	    margin-right: 5px;
-	}
-	.blog-border a{
-		padding: 10px;
-	}
-	.panel-body {
-	    color: #002d56;
-	}   
+.share-list li i {
+	color: #72c02c;
+	margin-right: 5px;
+}
+.blog-border a{
+	padding: 10px;
+}
+.panel-body {
+	color: #002d56;
+}
 </style>
 <div class="topSpacing">
 	<div class="container-fluid">
-		<div class="col-md-3 col-lg-3">
+		<div class="col-sm-3 col-xs-3 col-md-3 col-lg-3">
 			<div class="filter-block">
 				<h3><i class="fas fa-filter"></i>&nbsp; FILTER</h3>
 				<div class="location">
@@ -118,28 +118,33 @@
 			</div>
 		</div>
 
-		<div class="col-md-9 col-lg-9 profile">
+		<div class="col-sm-9 col-xs-9 col-md-9 col-lg-9 profile">
 			<div class="col-sm-4" ng-if="searchResults.status" ng-repeat="search in searchResults.response">
-                <div class="blog-border">
-                	<div class="profile-blog">
-	                    <img class="rounded-x" src="http://www.anyrefer.com/assets/uploads/users/default.png" alt="">
-	                    <div class="name-location">
-	                        <strong>{{search.user_first_name}} {{search.user_last_name}}</strong>
-	                        <span><i class="fa fa-map-marker"></i><a href="#">{{search.location_name}}</a></span> <br/>
-	                        <span><i class="fa fa-phone-volume"></i><a href="tel:{{search.user_mobile_number}}" ng-if="search.comp_inst.indexOf(comp_inst) !== -1">{{search.user_mobile_number}}</a></span>
-	                        <span ng-if="search.comp_inst.indexOf(comp_inst) === -1"><i class="fa fa-phone-volume"></i>XXX XXX {{search.mobLast3}}</span> <br/>
-	                        <span><i class="fa fa-user"></i><a href="#">{{search.user_type}}</a></span> <br/>
-	                        <span><i class="fa fa-envelope"></i><a href="#">{{search.user_email}}</a></span> <br/>
-	                        <span ng-if="search.user_altmobile_number != undefined"><i class="fa fa-phone-square"></i><a href="#">{{search.user_altmobile_number}}</a></span>
-	                    </div>
-	                    <div class="clearfix margin-bottom-20"></div>
-                    </div>    
-                    <hr>
-                    <ul class="list-inline share-list" style="background-color: #ffffff">
-                        <li><i class="fa fa-group"></i><a href="#"><span am-time-ago="search.datetime | amParse:'YYYY-MM-DD HH:mm:ss'"></span> Posted</a></li>
-                    </ul>
-                </div>
-            </div>     
-    	</div>
+				<div class="blog-border">
+					<div class="profile-blog">
+						<img class="rounded-x" src="https://cdn4.iconfinder.com/data/icons/green-shopper/1068/user.png" alt="">
+						<div class="name-location">
+							<strong>{{search.LOC_USER_FNAME}} {{search.LOC_USER_LNAME}}</strong>
+							<i class="fas fa-map-marker-alt"></i><a href="#">{{search.LOC_LOCATION_NAME}}, {{search.LOC_LOCATION_CITY}}, {{search.LOC_LOCATION_STATE}}</a></span> <br/>
+							<span><i class="fa fa-phone-volume"></i><a href="tel:{{search.LOC_USER_MOBILE}}" ng-if="search.comp_inst.indexOf(comp_inst) !== -1">{{search.LOC_USER_MOBILE}}</a></span>
+							<span ng-if="search.comp_inst.indexOf(comp_inst) === -1"><i class="fa fa-phone-volume"></i>XXX XXX {{search.mobLast3}}</span> <br/>
+							<span><i class="fa fa-user"></i><a href="#">{{search.LOC_USER_TYPE}}</a></span> <br/>
+							<span><i class="fa fa-envelope"></i><a href="#">{{search.LOC_USER_EMAIL}}</a></span> <br/>
+							<span ng-if="search.user_altmobile_number != undefined"><a href="#">{{search.LOC_USER_ALT_CONTACT}}</a></span>
+						</div>
+						<div class="clearfix margin-bottom-20"></div>
+					</div>
+					<hr>
+					<ul class="list-inline share-list" style="background-color: #ffffff">
+						<li><i class="fa fa-group"></i><a href="#"><span am-time-ago="search.datetime | amParse:'YYYY-MM-DD HH:mm:ss'"></span> Posted</a></li>
+					</ul>
+				</div>
+			</div>
+			<div ng-if="searchResults.status == false">
+					<div class="blog-border">
+						No result found for the search.
+					</div>
+			</div>
+		</div>
 	</div>
 </div>

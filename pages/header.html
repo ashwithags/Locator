@@ -20,7 +20,9 @@
         <div class="form-group">
           <input type="text" size="50" class="form-control form-control2-modify" placeholder="Search courses.." ng-model="subject" ng-keyup="suggestCourses(subject)" ng-blur="dispp()">
           <ul class=" drop list-group" ng-hide="hidden" >
-            <li class="list-group-item" ng-repeat="course in courses" ng-click="fillcoursebox(course);">{{course.course_name}}</li>
+            <li class="list-group-item" ng-repeat="course in courses" ng-click="fillcoursebox(course);">
+              {{course.LOC_COURSE_NAME}}
+            </li>
           </ul>
         </div>
       </div>
@@ -38,13 +40,13 @@
           <a href="#" >
             <ul class="dropdown-menu">
               <li class="dropdown-header"><a href="#">{{instituteName}}</a></li>
-              <li class="divider"></li>             
+              <li class="divider"></li>
               <li><a href="#">Profile Settings</a></li>
 
               <li class="divider"></li>
               <li><a href="#">Sign Out</a></li>
             </ul>
-            <img ng-src={{instituteImage}} alt="urban" data-toggle="dropdown" class="img-responsive techninzaz-logo">
+            <img ng-src={{instituteImage}} onerror="this.onerror=null;this.src='https://cdn3.iconfinder.com/data/icons/abstract-1/512/no_image-512.png';" alt="Institute Logo" data-toggle="dropdown" class="img-responsive techninzaz-logo">
           </a>
         </div>
       </span>
