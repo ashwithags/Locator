@@ -5,9 +5,10 @@ angular.module('LocatorApp.services', [])
 	services.instituteLogin = function(ldata){
 		return $http({
 			method: 'POST',
-			url:'http://localhost:7999/api/v1/institute/loginInstitute',
+			url:'http://localhost:7999/api/v1/loginInstitute',
 	        headers: {
-            	'Content-Type': 'application/json'
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
             },
             data: ldata
 		})
@@ -17,7 +18,8 @@ angular.module('LocatorApp.services', [])
 			method: 'POST',
 			url:'http://localhost:7999/api/v1/institute/addinstitute',
 	        headers: {
-            	'Content-Type': 'application/json'
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
             },
             data: ldata
 		})
@@ -31,38 +33,60 @@ angular.module('LocatorApp.services', [])
 		return $http({
 			method: 'GET',
 			url: 'json/enquiry.json',
-			dataType: 'json'
+			headers: {
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
+            }
 		})
 	},
 	services.getContactedList = function(){
 		return $http({
 			method: 'GET',
 			url: 'json/contacted.json',
-			dataType: 'json'
+			headers: {
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
+            }
 		})
 	}
 	services.currentPosition = function(){
 		return $http({
 			method: 'GET',
-			url:'https://api.myjson.com/bins/d8ut1'
+			url:'https://api.myjson.com/bins/d8ut1',
+			headers: {
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
+            }
 		})
 	}
 	services.getMessages = function(tranxid){
 		return $http({
 			method: 'GET',
-			url:'http://localhost:7999/api/v1/user/usermessage/'+tranxid
+			url:'http://localhost:7999/api/v1/user/usermessage/'+tranxid,
+			headers: {
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
+            }
 		})
 	}
 	services.searchCourseLocation = function(course, location) {
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:7999/api/v1/institute/searchStudents/' + course + '/' + location
+			url: 'http://localhost:7999/api/v1/institute/searchStudents/' + course + '/' + location,
+			headers: {
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
+            }
 		})
 	}
 	services.getReceivedLeads = function(type, inst_id) {
 		return $http({
 			method: 'GET',
-			url: 'http://localhost:7999/api/v1/institute/receivedleads/'+type+'/'+inst_id
+			url: 'http://localhost:7999/api/v1/institute/receivedleads/'+type+'/'+inst_id,
+			headers: {
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
+            }
 		})
 	}
 	services.updateLeadStatus = function(data) {
@@ -70,7 +94,8 @@ angular.module('LocatorApp.services', [])
 			method: 'POST',
 			url: 'http://localhost:7999/api/v1/institute/updateleadstatus',
 			header: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
 			},
 			data: data
 		})
@@ -80,7 +105,8 @@ angular.module('LocatorApp.services', [])
 			method: 'POST',
 			url: 'http://localhost:7999/api/v1/institute/sendMessage',
 			header: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
 			},
 			data: data
 		})
@@ -97,7 +123,8 @@ angular.module('LocatorApp.services', [])
 			url: 'http://localhost:7999/api/v1/institute/updateInstituteBasicInfo',
 			method: 'POST',
 			header: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
 			},
 			data: infodata
 		});
@@ -108,7 +135,8 @@ angular.module('LocatorApp.services', [])
 			url: url,
 			method: 'GET',
 			header: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
 			}
 		});
 	};
@@ -117,7 +145,8 @@ angular.module('LocatorApp.services', [])
 			url: 'http://localhost:7999/api/v1/institute/offerings',
 			method: 'POST',
 			header: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
 			},
 			data: data
 		})
@@ -126,14 +155,22 @@ angular.module('LocatorApp.services', [])
 		var searchUrl = 'http://localhost:7999/api/v1/search/alllocation/'+data;
 		return $http({
 			url: searchUrl,
-			method: 'GET'
+			method: 'GET',
+			headers: {
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
+            }
 		})
 	};
 	services.getLocations = function(data){
 		var searchUrl = 'http://localhost:7999/api/v1/search/alllocation';
 		return $http({
 			url: searchUrl,
-			method: 'GET'
+			method: 'GET',
+			headers: {
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
+            }
 		})
 	};
 	services.saveLocations = function(slocdata) {
@@ -141,7 +178,8 @@ angular.module('LocatorApp.services', [])
 			url: 'http://localhost:7999/api/v1/institute/updatelc',
 			method: 'POST',
 			header: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
 			},
 			data: slocdata
 		});
@@ -151,7 +189,8 @@ angular.module('LocatorApp.services', [])
 			url: 'http://localhost:7999/api/v1/institute/updateLocationandCourseOffering',
 			method: 'PUT',
 			header: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
 			},
 			data: updatedInfo
 		});
@@ -167,20 +206,32 @@ angular.module('LocatorApp.services', [])
 	services.staticgetCourseList = function(){
 		return $http({
 			url:"../data/course_status.json",
-			method:"GET"
+			method:"GET",
+			headers: {
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
+            }
 		});
 	};
 	services.getCourseList = function(){
 		return $http({
 			url: 'http://localhost:7999/api/v1/search/allcourses',
-			method: 'GET'
+			method: 'GET',
+			headers: {
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
+            }
 		})
 	}
 	services.sendCourseDetails = function(info){
 		return $http({
 			url:"http://localhost:7999/api/v1/institute/updatelc",
 			method:"POST",
-			data:info
+			data:info,
+			headers: {
+            	'Content-Type': 'application/json',
+            	'token': sessionStorage.getItem('accessToken')
+            }
 
 		})
 	}

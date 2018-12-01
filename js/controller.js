@@ -1,16 +1,13 @@
-<<<<<<< HEAD
-angular.module('LocatorApp.controllers', [])
-.controller('loginController', function($scope, $state, loginOperation, $rootScope) {
-=======
 angular.module('LocatorApp.controllers', ['ngDialog'])
 
 .controller('loginController', function($scope, $state, loginOperation, $rootScope, ngDialog) {
->>>>>>> a91c698d6b6fbb005d47afe2953f23354b367d39
 	$scope.login = function(loginData) {
+		loginData.device_type = getPlatformType();
 		console.log(loginData);
 		loginOperation.instituteLogin(loginData).success(function(wow) {
 			if (wow.status) {
 				sessionStorage.setItem('logged_in',wow.result.LOC_INST_ID);
+				sessionStorage.setItem('accessToken',wow.result.ACCESS_TOKEN);
 				$rootScope.instituteImage = wow.result.LOC_INST_IMG;
 				$rootScope.instituteName = wow.result.LOC_INST_NAME;
 				if(wow.result.LOC_INST_IMG != null){
@@ -37,6 +34,7 @@ angular.module('LocatorApp.controllers', ['ngDialog'])
 	}
 	$scope.signUp = function(signUpData) {
 		console.log(signUpData);
+		signUpData.device_type = getPlatformType();
 		signUpData.i_images = "no images";
 		loginOperation.instituteSignup(signUpData).success(function(wow) {
 			$scope.signUpData = '';
@@ -630,4 +628,16 @@ function js_yyyy_mm_dd_hh_mm_ss () {
 	minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
 	second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
 	return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+}
+
+function getPlatformType() {
+	if(navigator.userAgent.match(/mobile/i)) {
+	  return 'ANDROID';
+	} else if (navigator.userAgent.match(/iPad|Touch/i)) {
+	  return 'TABLET';
+	} else if (navigator.userAgent.match(/iPhone|iPod/i)) {
+		return 'iOS';
+	} else {
+	  return 'WEB';
+	}
 }
